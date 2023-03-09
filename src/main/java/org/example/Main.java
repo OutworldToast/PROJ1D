@@ -8,3 +8,10 @@ public class Main {
         System.out.println("ewa ewa");
     }
 }
+
+class paars{
+    private String welkekleur;
+    public paars(String welkekleur) {
+        this.welkekleur = welkekleur;
+    }
+}

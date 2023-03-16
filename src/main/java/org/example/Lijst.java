@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 public class Lijst {
 
+    boolean gesorteerd = false;
     ArrayList<Offerteoptie> optielijst = new ArrayList<>();
     ArrayList<Offerteoptie> gekozenlijst = new ArrayList<>();
 
@@ -30,10 +31,35 @@ public class Lijst {
         }
     }
 
-    public void printLijst(){
+    public void printLijst(){ //print de lijst
+        if (!gesorteerd) {
+            sortLijst();
+        }
         for (Offerteoptie optie : optielijst) {
             System.out.printf("Naam: %s, Categorie: %s, Prijs: €%.2f%n", optie.naam, optie.categorie, optie.prijs);
         }
+
+    }
+
+    public void sortLijst(){ //sorteert lijst
+        ArrayList<Offerteoptie> esslijst = new ArrayList<>();
+        ArrayList<Offerteoptie> extlijst = new ArrayList<>();
+        for (Offerteoptie optie : optielijst){
+            if (optie.categorie.equals("Essentieel")) { //zet alle essentiele in een lijst
+                esslijst.add(optie);
+            } else if (optie.categorie.equals("Extra")) { //zet alle extra in een lijst
+                extlijst.add(optie);
+            } else { //errorcontrole
+                System.out.printf("Incorrecte categorie bij optie met naam %s", optie.naam);
+            }
+        }
+        esslijst.addAll(extlijst); //combineert lijsten
+        optielijst = esslijst; //update de lijst
+        gesorteerd = true; //lijst is gesorteerd
+    }
+    public void addOptie(String naam, String categorie, double prijs){
+        gekozenlijst.add(new Offerteoptie(naam, categorie, prijs));
+        gesorteerd = false;
     }
 
 

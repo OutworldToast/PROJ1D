@@ -31,7 +31,7 @@ public class Lijst {
         }
     }
 
-    public void PrintLijst(){
+    public void printLijst(){
         for (Offerteoptie optie : optielijst) {
             System.out.printf("Naam: %s, Categorie: %s, Prijs: €%.2f%n", optie.naam, optie.categorie, optie.prijs);
         }

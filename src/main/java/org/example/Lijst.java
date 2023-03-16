@@ -18,5 +18,4 @@ public class Lijst {
         double prijs;
     }
 
-
 }

@@ -9,6 +9,7 @@ public class Lijst {
     ArrayList<Offerteoptie> gekozenlijst = new ArrayList<>();
 
     Lijst(){
+
         String line = "";
         String splitBy = ",";
         try {

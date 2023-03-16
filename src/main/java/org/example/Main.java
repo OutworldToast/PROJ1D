@@ -11,6 +11,12 @@ public class Main {
         Joost.printKlantInfo();
         Overheid overheid = new Overheid();
 
+        TestKlant();
 
+    }
+
+    public static void TestKlant() {
+        Lijst lijst = new Lijst();
+        lijst.printLijst();
     }
 }

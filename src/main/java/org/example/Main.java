@@ -21,7 +21,7 @@ public class Main {
 
     public static void TestLijst() {
         Lijst lijst = new Lijst();
-        lijst.printLijst();
+        lijst.printOpties();
     }
 
 

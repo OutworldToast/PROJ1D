@@ -2,6 +2,7 @@ package org.example;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Lijst {
 
@@ -31,20 +32,31 @@ public class Lijst {
         }
     }
 
-    public void printLijst(){ //print de lijst
+    public void printOpties(){
+        printLijst(optielijst);
+    }
+    public void printGekozen(){
+        printLijst(gekozenlijst);
+    }
+    private void printLijst(ArrayList<Offerteoptie>  lijst){ //print de lijst
         if (!gesorteerd) {
-            sortLijst();
+            ArrayList<Offerteoptie> newLijst = sortLijst(lijst);
+            lijst.clear();
+            lijst.addAll(newLijst);
         }
-        for (Offerteoptie optie : optielijst) {
-            System.out.printf("Naam: %s, Categorie: %s, Prijs: €%.2f%n", optie.naam, optie.categorie, optie.prijs);
+
+        int i = 1;
+        for (Offerteoptie optie : lijst) {
+            i++;
+            System.out.printf("[%d] Naam: %s, Categorie: %s, Prijs: €%.2f%n", i, optie.naam, optie.categorie, optie.prijs);
         }
 
     }
 
-    public void sortLijst(){ //sorteert lijst
+    private ArrayList<Offerteoptie> sortLijst(ArrayList<Offerteoptie> lijst){ //sorteert lijst
         ArrayList<Offerteoptie> esslijst = new ArrayList<>();
         ArrayList<Offerteoptie> extlijst = new ArrayList<>();
-        for (Offerteoptie optie : optielijst){
+        for (Offerteoptie optie : lijst){
             if (optie.categorie.equals("Essentieel")) { //zet alle essentiele in een lijst
                 esslijst.add(optie);
             } else if (optie.categorie.equals("Extra")) { //zet alle extra in een lijst
@@ -54,14 +66,39 @@ public class Lijst {
             }
         }
         esslijst.addAll(extlijst); //combineert lijsten
-        optielijst = esslijst; //update de lijst
         gesorteerd = true; //lijst is gesorteerd
+        return esslijst; //update de lijst
     }
     public void addOptie(String naam, String categorie, double prijs){
         gekozenlijst.add(new Offerteoptie(naam, categorie, prijs));
         gesorteerd = false;
     }
 
+    public void addLoop() {
+        Scanner scanner = new Scanner(System.in);
+        boolean looping = true;
+        while(looping) {
+            System.out.println("Wat wilt u toevoegen?");
+            System.out.println("[A] Terug");
+            System.out.println("[B] Nieuwe optie");
+            printOpties();
+            String input = scanner.nextLine();
+            try {
+                if (input.equalsIgnoreCase("A")) {
+                    looping = false;
+                } else if (input.equalsIgnoreCase("B")) {
+                    //nieuwe optie
+                } else if (Integer.parseInt(input) > 0 && Integer.parseInt(input) <= optielijst.size()) {
+                    gekozenlijst.add(optielijst.get(Integer.parseInt(input) - 1));
+                } else {
+                    System.out.println("Dat is geen optie");
+                }
+            } catch (Exception e) {
+                System.out.println("Non-valide input");
+            }
+
+        }
+    }
 
     static class Offerteoptie { //klasse met alle optieinformatie
         private String naam; //naam van de optie

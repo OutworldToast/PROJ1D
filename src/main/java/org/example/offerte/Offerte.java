@@ -1,10 +1,13 @@
-package org.example;
+package org.example.offerte;
+
+import org.example.Klant;
+import org.example.OptieLijst;
 
 import java.util.ArrayList;
 
 public class Offerte {
     private String beschrijving;
-    private Lijst opties;
+    private OptieLijst opties;
     private Klant klant;
 
     public String getBeschrijving() {
@@ -15,11 +18,11 @@ public class Offerte {
         this.beschrijving = beschrijving;
     }
 
-    public Lijst getOpties() {
+    public OptieLijst getOpties() {
         return opties;
     }
 
-    public void setOpties(Lijst opties) {
+    public void setOpties(OptieLijst opties) {
         this.opties = opties;
     }
 

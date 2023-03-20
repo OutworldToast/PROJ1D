@@ -1,11 +1,13 @@
 package org.example;
 
+import org.example.offerte.Offerte;
+
 import java.util.ArrayList;
 
 public class ExportService {
     private ArrayList<String> offerteOpties = new ArrayList<>();
 
-    public static void exportOfferte() {
+    public static void exportOfferte(Offerte offerte) {
         System.out.println("---- Offerte: TITLE\n");
 
         System.out.println("Klanttype: blablabla");
@@ -13,7 +15,7 @@ public class ExportService {
         System.out.println("Optie 1: blablabla");
         System.out.println("Optie 2: blablabla");
 
-        System.out.println("Totaalprijs: $0");
+        System.out.println("Totaalprijs: " + offerte.getTotaalPrijs());
     }
 
 }

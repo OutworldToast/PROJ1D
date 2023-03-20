@@ -20,7 +20,7 @@ public class Main {
     }
 
     public static void TestLijst() {
-        Lijst lijst = new Lijst();
+        OptieLijst lijst = new OptieLijst();
         lijst.printOpties();
     }
 

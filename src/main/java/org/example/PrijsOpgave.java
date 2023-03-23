@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.klant.Klant;
+
 public class PrijsOpgave {
 
     private Klant klantnaam;

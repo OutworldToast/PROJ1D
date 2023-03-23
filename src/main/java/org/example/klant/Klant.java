@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Klant {
     // De main klant waarvan alle andere overerven met hieronder de variabelen
     private String naam;
-    protected int kortingAlsPercentage;
+    protected int kortingAlsPercentage = 0;
     private String email;
 
     public static void printArrayList(ArrayList<Klant> klantArrayList){
@@ -41,11 +41,6 @@ public class Klant {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public void setKlantInfo(String naam, String email) {
-        setNaam(naam);
-        setEmail(email);
     }
 
     public void printKlantInfo() {

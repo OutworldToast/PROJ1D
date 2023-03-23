@@ -49,10 +49,6 @@ public class OfferteOptie {
         return this.milieuvriendelijkekorting;
     }
 
-    public void voegMilieuvriendelijkeKortingToe(int percentage){//Methode (Korting toepassen)
-        this.setKortingPercentage(percentage);
-    }
-
     public double berekenGereduceerdePrijs(double prijs) {//Nieuwprijs na korting
         double gereduceerdePrijs = prijs * (1 - this.getKortingPercentage());
         return gereduceerdePrijs;

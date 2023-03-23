@@ -9,10 +9,10 @@ import java.util.Scanner;
 public class OptieLijst {
 
     boolean gesorteerd = false;
-    ArrayList<OfferteOptie> totaalLijst = new ArrayList<>();
-    ArrayList<OfferteOptie> gekozenlijst = new ArrayList<>();
+    private ArrayList<OfferteOptie> totaalLijst = new ArrayList<>();
+    private ArrayList<OfferteOptie> gekozenlijst = new ArrayList<>();
 
-    OptieLijst(){
+     public OptieLijst(){
 
         String line; //string waar de regels ingelezen worden
         String splitBy = ","; //delimiter
@@ -32,6 +32,10 @@ public class OptieLijst {
         } catch (Exception e) {
             System.out.println(e);
         }
+    }
+
+    public ArrayList<OfferteOptie> getGekozenOpties() {
+        return this.gekozenlijst;
     }
 
     public void printOpties(){

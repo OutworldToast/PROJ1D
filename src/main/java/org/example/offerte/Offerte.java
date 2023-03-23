@@ -1,14 +1,18 @@
 package org.example.offerte;
 
-import org.example.Klant;
+import org.example.klant.Klant;
 import org.example.OptieLijst;
-
-import java.util.ArrayList;
 
 public class Offerte {
     private String beschrijving;
     private OptieLijst opties;
     private Klant klant;
+
+    public Offerte(String beschrijving, Klant klant, OptieLijst opties) {
+        this.beschrijving = beschrijving;
+        this.klant = klant;
+        this.opties = opties;
+    }
 
     public String getBeschrijving() {
         return beschrijving;
@@ -34,10 +38,14 @@ public class Offerte {
         this.klant = klant;
     }
 
-    Offerte(String beschrijving, Klant klant, Lijst opties) {
-        this.beschrijving = beschrijving;
-        this.klant = klant;
-        this.opties = opties;
+    public double getTotaalPrijs() {
+        double totaalPrijs = 0.0;
+
+        for(OfferteOptie optie : opties.getGekozenOpties()) {
+            totaalPrijs += optie.getPrijs();
+        }
+
+        return totaalPrijs;
     }
 
 }

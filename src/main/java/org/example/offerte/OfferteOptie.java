@@ -7,10 +7,14 @@ public class OfferteOptie {
     private int milieuvriendelijkekorting;//Berekende korting voor elk onderdeel indien van toepassing
 
     public OfferteOptie(String naam, String categorie, double prijs,int milieuvriendelijkekorting) {
+        this(naam, categorie, prijs);
+        this.milieuvriendelijkekorting = milieuvriendelijkekorting;
+    }
+
+    public OfferteOptie(String naam, String categorie, double prijs) {
         this.naam = naam;
         this.categorie = categorie;
         this.prijs = prijs;
-        this.milieuvriendelijkekorting = milieuvriendelijkekorting;
     }
 
     public String getNaam() {

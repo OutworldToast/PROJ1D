@@ -4,17 +4,13 @@ public class OfferteOptie {
     private String naam; //naam van de optie
     private String categorie; //bijbehorende categorie (essentieel of extra)
     private double prijs; //prijs van de optie
-    private int milieuvriendelijkekorting;//Berekende korting voor elk onderdeel indien van toepassing
+    private int milieukorting;//Berekende korting voor elk onderdeel indien van toepassing
 
-    public OfferteOptie(String naam, String categorie, double prijs,int milieuvriendelijkekorting) {
-        this(naam, categorie, prijs);
-        this.milieuvriendelijkekorting = milieuvriendelijkekorting;
-    }
-
-    public OfferteOptie(String naam, String categorie, double prijs) {
+    public OfferteOptie(String naam, String categorie, double prijs, int milieukorting) {
         this.naam = naam;
         this.categorie = categorie;
         this.prijs = prijs;
+        this.milieukorting = milieukorting;
     }
 
     public String getNaam() {
@@ -41,20 +37,21 @@ public class OfferteOptie {
         this.prijs = prijs;
     }
 
-    public void setKortingPercentage(int percentage) {
-        this.milieuvriendelijkekorting = percentage;
+    public void setMilieukorting(int percentage) {
+        //check voor non-valide waardes
+        this.milieukorting = percentage;
     }
 
-    public double getKortingPercentage() {//Methode
-        return this.milieuvriendelijkekorting;
+    public int getMilieukorting() {//Methode
+        return milieukorting;
     }
 
     public void voegMilieuvriendelijkeKortingToe(int percentage){//Methode (Korting toepassen)
-        this.setKortingPercentage(percentage);
-    }
+        this.setMilieukorting(percentage);
+    } //feedback
 
     public double berekenGereduceerdePrijs(double prijs) {//Nieuwprijs na korting
-        double gereduceerdePrijs = prijs * (1 - this.getKortingPercentage());
+        double gereduceerdePrijs = prijs * (1 - this.getMilieukorting());
         return gereduceerdePrijs;
     }
 }

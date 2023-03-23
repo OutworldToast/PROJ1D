@@ -26,7 +26,8 @@ public class OptieLijst {
 
             while ((line = br.readLine()) != null) { //loopt door bestand
                 String[] opties = line.split(splitBy); //separate regels
-                totaalLijst.add (new OfferteOptie(opties[0], opties[1], Double.parseDouble(opties[2])));
+                totaalLijst.add (new OfferteOptie(
+                        opties[0], opties[1], Double.parseDouble(opties[2]), Integer.parseInt(opties[3])));
                 //voegt nieuwe offerteoptie toe
             }
         } catch (Exception e) {
@@ -53,8 +54,8 @@ public class OptieLijst {
 
         int i = 1;
         for (OfferteOptie optie : lijst) {
-            System.out.printf("[%d] Naam: %s, Categorie: %s, Prijs: €%.2f%n",
-                    i, optie.getNaam(), optie.getCategorie(), optie.getPrijs());
+            System.out.printf("[%d] Naam: %s, Categorie: %s, Prijs: €%.2f, Milieukortingspercentage:%d%n",
+                    i, optie.getNaam(), optie.getCategorie(), optie.getPrijs(), optie.getMilieukorting());
             i++;
         }
 
@@ -76,8 +77,8 @@ public class OptieLijst {
         gesorteerd = true; //lijst is gesorteerd
         return esslijst; //update de lijst
     }
-    public void addOptie(String naam, String categorie, double prijs){
-        gekozenlijst.add(new OfferteOptie(naam, categorie, prijs));
+    public void addOptie(String naam, String categorie, double prijs, int milieukorting){
+        gekozenlijst.add(new OfferteOptie(naam, categorie, prijs, milieukorting));
         gesorteerd = false;
     }
 
@@ -88,13 +89,24 @@ public class OptieLijst {
             System.out.println("Wat wilt u toevoegen?");
             System.out.println("[A] Terug");
             System.out.println("[B] Nieuwe optie");
+            System.out.println("[C] Update optie");
             printOpties();
             String input = scanner.nextLine();
             try {
                 if (input.equalsIgnoreCase("A")) {
                     looping = false;
                 } else if (input.equalsIgnoreCase("B")) {
-                    //nieuwe optie
+                    System.out.println("Hoe heet het onderdeel?");
+                    String naam = scanner.nextLine();
+                    System.out.println("Is het een extra([EX]) of essentiële([ES]) optie?");
+                    String categorie = scanner.nextLine();
+                    System.out.println("Hoeveel kost het onderdeel?");
+                    double prijs = scanner.nextDouble(); //voeg afronding toe
+                    System.out.println("Wat is het milieukortingspercentage? (0-100) ");
+                    int milieukorting = scanner.nextInt();
+                    totaalLijst.add(new OfferteOptie(naam, categorie, prijs, milieukorting));
+                } else if (input.equalsIgnoreCase("C")) {
+                    //updateoptie
                 } else if (Integer.parseInt(input) > 0 && Integer.parseInt(input) <= totaalLijst.size()) {
                     gekozenlijst.add(totaalLijst.get(Integer.parseInt(input) - 1));
                 } else {

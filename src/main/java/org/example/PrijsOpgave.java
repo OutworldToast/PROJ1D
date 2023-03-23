@@ -4,27 +4,27 @@ import org.example.klant.Klant;
 
 public class PrijsOpgave {
 
-    private Klant klantnaam;
+    private Klant klant;
    ///private Schip schiptype;
     private String specificaties;
     private double materialeKosten;
     private int arbeidsuren;
     private double uurtarief;
 
-    public PrijsOpgave(Klant klantnaam, String specificaties, double materialeKosten, int arbeidsuren, double uurtarief) {
-        this.klantnaam = klantnaam;
+    public PrijsOpgave(Klant klant, String specificaties, double materialeKosten, int arbeidsuren, double uurtarief) {
+        this.klant = klant;
         this.specificaties = specificaties;
         this.materialeKosten = materialeKosten;
         this.arbeidsuren = arbeidsuren;
         this.uurtarief = uurtarief;
     }
 
-    public Klant getKlantnaam() {
-        return klantnaam;
+    public Klant getKlant() {
+        return klant;
     }
 
-    public void setKlantnaam(Klant klantnaam) {
-        this.klantnaam = klantnaam;
+    public void setKlant(Klant klant) {
+        this.klant = klant;
     }
 
     public String getSpecificaties() {
@@ -64,11 +64,11 @@ public class PrijsOpgave {
     }
 
     public void printPrijsopgave() {
-        System.out.println("Prijsopgave voor " + getKlantnaam());
+        System.out.println("Prijsopgave voor " + klant.getNaam());
        // System.out.println("Scheepsbouwproject: " + schipType + " met " + specificaties);
-        System.out.println("Materialenkosten: €" + getMaterialeKosten());
-        System.out.println("Arbeidsuren: " + getArbeidsuren());
-        System.out.println("Uurtarief: €" + getUurtarief());
+        System.out.println("Materialenkosten: €" + materialeKosten);
+        System.out.println("Arbeidsuren: " + arbeidsuren);
+        System.out.println("Uurtarief: €" + uurtarief);
         System.out.println("Totale kosten: €" + berekenTotaleKosten());
     }
 

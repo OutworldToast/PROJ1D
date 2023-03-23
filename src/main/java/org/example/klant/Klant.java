@@ -43,11 +43,6 @@ public class Klant {
         this.email = email;
     }
 
-    public void setKlantInfo(String naam, String email) {
-        setNaam(naam);
-        setEmail(email);
-    }
-
     public void printKlantInfo() {
         System.out.println("De naam van de klant is: " + getNaam());
         System.out.println("De email die opgegeven is: " + getEmail());

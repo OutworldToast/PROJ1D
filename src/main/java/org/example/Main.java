@@ -19,7 +19,6 @@ public class Main {
         klantArrayList.get(1).setEmail("Joost@hotmail.com");
         Klant.printArrayList(klantArrayList);
         klantArrayList.get(0).printKlantInfo();
-        klantArrayList.get(0).setKlantInfo("josd","sjidbf",0);
 
     }
 

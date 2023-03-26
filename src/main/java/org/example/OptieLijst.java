@@ -82,8 +82,7 @@ public class OptieLijst {
         gesorteerd = false;
     }
 
-    public void addLoop() {
-        Scanner scanner = new Scanner(System.in);
+    public void addLoop(Scanner scanner) {
         boolean looping = true;
         while(looping) {
             System.out.println("Wat wilt u toevoegen?");

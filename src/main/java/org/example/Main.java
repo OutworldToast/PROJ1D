@@ -6,9 +6,9 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Hello world!");
 
-        TestKlant();
-        TestLijst();
-
+        //TestKlant();
+        //TestLijst();
+        new Loop();
     }
 
     public static void TestKlant() {

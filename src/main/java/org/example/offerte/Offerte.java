@@ -39,6 +39,8 @@ public class Offerte {
     }
 
     public double getTotaalPrijs() {
+
+
         double totaalPrijs = 0.0;
 
         for(Onderdeel optie : opties.getGekozenOpties()) {

@@ -1,18 +1,18 @@
 package org.example;
 
-import org.example.offerte.OfferteOptie;
+import org.example.offerte.Onderdeel;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class OptieLijst {
+public class TotaalLijst {
 
     boolean gesorteerd = false;
-    private ArrayList<OfferteOptie> totaalLijst = new ArrayList<>();
-    private ArrayList<OfferteOptie> gekozenlijst = new ArrayList<>();
+    private ArrayList<Onderdeel> totaalLijst = new ArrayList<>();
+    private ArrayList<Onderdeel> gekozenlijst = new ArrayList<>();
 
-     public OptieLijst(){
+     public TotaalLijst(){
 
         String line; //string waar de regels ingelezen worden
         String splitBy = ","; //delimiter
@@ -26,7 +26,7 @@ public class OptieLijst {
 
             while ((line = br.readLine()) != null) { //loopt door bestand
                 String[] opties = line.split(splitBy); //separate regels
-                totaalLijst.add (new OfferteOptie(
+                totaalLijst.add (new Onderdeel(
                         opties[0], opties[1], Double.parseDouble(opties[2]), Integer.parseInt(opties[3])));
                 //voegt nieuwe offerteoptie toe
             }
@@ -35,7 +35,7 @@ public class OptieLijst {
         }
     }
 
-    public ArrayList<OfferteOptie> getGekozenOpties() {
+    public ArrayList<Onderdeel> getGekozenOpties() {
         return this.gekozenlijst;
     }
 
@@ -45,15 +45,15 @@ public class OptieLijst {
     public void printGekozen(){
         printLijst(gekozenlijst);
     }
-    private void printLijst(ArrayList<OfferteOptie>  lijst){ //print de lijst
+    private void printLijst(ArrayList<Onderdeel>  lijst){ //print de lijst
         if (!gesorteerd) {
-            ArrayList<OfferteOptie> newLijst = sortLijst(lijst);
+            ArrayList<Onderdeel> newLijst = sortLijst(lijst);
             lijst.clear();
             lijst.addAll(newLijst);
         }
 
         int i = 1;
-        for (OfferteOptie optie : lijst) {
+        for (Onderdeel optie : lijst) {
             System.out.printf("[%d] Naam: %s, Categorie: %s, Prijs: €%.2f, Milieukortingspercentage:%d%n",
                     i, optie.getNaam(), optie.getCategorie(), optie.getPrijs(), optie.getMilieukorting());
             i++;
@@ -61,10 +61,10 @@ public class OptieLijst {
 
     }
 
-    private ArrayList<OfferteOptie> sortLijst(ArrayList<OfferteOptie> lijst){ //sorteert lijst
-        ArrayList<OfferteOptie> esslijst = new ArrayList<>();
-        ArrayList<OfferteOptie> extlijst = new ArrayList<>();
-        for (OfferteOptie optie : lijst){
+    private ArrayList<Onderdeel> sortLijst(ArrayList<Onderdeel> lijst){ //sorteert lijst
+        ArrayList<Onderdeel> esslijst = new ArrayList<>();
+        ArrayList<Onderdeel> extlijst = new ArrayList<>();
+        for (Onderdeel optie : lijst){
             if (optie.getCategorie().equals("Essentieel")) { //zet alle essentiele in een lijst
                 esslijst.add(optie);
             } else if (optie.getCategorie().equals("Extra")) { //zet alle extra in een lijst
@@ -78,7 +78,7 @@ public class OptieLijst {
         return esslijst; //update de lijst
     }
     public void addOptie(String naam, String categorie, double prijs, int milieukorting){
-        gekozenlijst.add(new OfferteOptie(naam, categorie, prijs, milieukorting));
+        gekozenlijst.add(new Onderdeel(naam, categorie, prijs, milieukorting));
         gesorteerd = false;
     }
 
@@ -103,7 +103,7 @@ public class OptieLijst {
                     double prijs = scanner.nextDouble(); //voeg afronding toe
                     System.out.println("Wat is het milieukortingspercentage? (0-100) ");
                     int milieukorting = scanner.nextInt();
-                    totaalLijst.add(new OfferteOptie(naam, categorie, prijs, milieukorting));
+                    totaalLijst.add(new Onderdeel(naam, categorie, prijs, milieukorting));
                 } else if (input.equalsIgnoreCase("C")) {
                     //updateoptie
                 } else if (Integer.parseInt(input) > 0 && Integer.parseInt(input) <= totaalLijst.size()) {

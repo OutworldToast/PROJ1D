@@ -1,12 +1,12 @@
 package org.example.offerte;
 
-public class OfferteOptie {
+public class Onderdeel {
     private String naam; //naam van de optie
     private String categorie; //bijbehorende categorie (essentieel of extra)
     private double prijs; //prijs van de optie
     private int milieukorting;//Berekende korting voor elk onderdeel indien van toepassing
 
-    public OfferteOptie(String naam, String categorie, double prijs, int milieukorting) {
+    public Onderdeel(String naam, String categorie, double prijs, int milieukorting) {
         this.naam = naam;
         this.categorie = categorie;
         this.prijs = prijs;

@@ -1,14 +1,14 @@
 package org.example.offerte;
 
+import org.example.TotaalLijst;
 import org.example.klant.Klant;
-import org.example.OptieLijst;
 
 public class Offerte {
     private String beschrijving;
-    private OptieLijst opties;
+    private TotaalLijst opties;
     private Klant klant;
 
-    public Offerte(String beschrijving, Klant klant, OptieLijst opties) {
+    public Offerte(String beschrijving, Klant klant, TotaalLijst opties) {
         this.beschrijving = beschrijving;
         this.klant = klant;
         this.opties = opties;
@@ -22,11 +22,11 @@ public class Offerte {
         this.beschrijving = beschrijving;
     }
 
-    public OptieLijst getOpties() {
+    public TotaalLijst getOpties() {
         return opties;
     }
 
-    public void setOpties(OptieLijst opties) {
+    public void setOpties(TotaalLijst opties) {
         this.opties = opties;
     }
 
@@ -41,7 +41,7 @@ public class Offerte {
     public double getTotaalPrijs() {
         double totaalPrijs = 0.0;
 
-        for(OfferteOptie optie : opties.getGekozenOpties()) {
+        for(Onderdeel optie : opties.getGekozenOpties()) {
             totaalPrijs += optie.getPrijs();
         }
 

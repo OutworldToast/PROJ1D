@@ -12,7 +12,7 @@ public class Main {
     }
 
     public static void TestKlant() {
-        // later misschien uniek "KlantenID" ofzo.
+        // later misschien uniek "KlantenID" ofzo
         ArrayList<Klant> klantArrayList = new ArrayList<>();
         klantArrayList.add(new Bedrijf("Joost Inc.", "Bedrijfje@wow.nl", 39099902));
         klantArrayList.add(new Particulier("Joost","Joost@mail.nl"));
@@ -24,7 +24,7 @@ public class Main {
 
 
     public static void TestLijst() {
-        OptieLijst lijst = new OptieLijst();
+        TotaalLijst lijst = new TotaalLijst();
         lijst.printOpties();
     }
 }

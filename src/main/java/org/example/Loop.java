@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Loop {
     boolean loop = true;
     Scanner scanner = new Scanner(System.in); //waar zetten we de scanner?
-    OptieLijst optieLijst = new OptieLijst();
+    TotaalLijst totaalLijst = new TotaalLijst();
 
     public Loop(){
         Introductie();
@@ -18,7 +18,7 @@ public class Loop {
             try {
                 System.out.println("Wat wilt u doen?");
                 System.out.println("[1] Klant aanmaken");
-                System.out.println("[2] Offerte aanmaken");
+                System.out.println("[2] Offerte aanmaken"); //veranderen
                 System.out.println("[3] Prijsopgave bekijken");
                 System.out.println("[4] Boot Template toevoegen");
                 System.out.println("[5] Onderdelen toevoegen");

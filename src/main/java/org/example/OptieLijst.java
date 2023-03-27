@@ -12,8 +12,11 @@ public class OptieLijst {
     private ArrayList<OfferteOptie> totaalLijst = new ArrayList<>();
     private ArrayList<OfferteOptie> gekozenlijst = new ArrayList<>();
 
-     public OptieLijst(){
+    public OptieLijst() {
+        leesInOptiesVanCSV();
+    }
 
+    public void leesInOptiesVanCSV() {
         String line; //string waar de regels ingelezen worden
         String splitBy = ","; //delimiter
         try {
@@ -27,7 +30,11 @@ public class OptieLijst {
             while ((line = br.readLine()) != null) { //loopt door bestand
                 String[] opties = line.split(splitBy); //separate regels
                 totaalLijst.add (new OfferteOptie(
-                        opties[0], opties[1], Double.parseDouble(opties[2]), Integer.parseInt(opties[3])));
+                        opties[0],
+                        opties[1],
+                        Double.parseDouble(opties[2]),
+                        Integer.parseInt(opties[3].equals("null") ? "0" : opties[3])
+                ));
                 //voegt nieuwe offerteoptie toe
             }
         } catch (Exception e) {

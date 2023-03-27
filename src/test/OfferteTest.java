@@ -10,10 +10,10 @@ public class OfferteTest {
 
     @Test
     public void printTotaalPrijsTest() {
-        Klant klant = new Particulier();
+        Klant klant = new Particulier("Mark", "markie@hotmail.com");
         OptieLijst opties = new OptieLijst();
-        opties.addOptie("Test Optie 1", "Essentieel", 25.0);
-        opties.addOptie("Test Optie 2", "Essentieel", 21.50);
+        opties.addOptie("Test Optie 1", "Essentieel", 25.0, 0);
+        opties.addOptie("Test Optie 2", "Essentieel", 21.50, 0);
         Offerte offerte = new Offerte("Test beschrijving", klant, opties);
 
         double totaalPrijs = offerte.getTotaalPrijs();

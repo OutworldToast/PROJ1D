@@ -5,7 +5,7 @@ public class OfferteOptie {
     private String categorie; //bijbehorende categorie (essentieel of extra)
     private double prijs; //prijs van de optie
     private int korting;//Berekende korting voor elk onderdeel indien van toepassing
-    private boolean milieukorting;
+    private boolean milieukorting;//False
 
     public OfferteOptie(String naam, String categorie, double prijs,int korting) {
         this.naam = naam;

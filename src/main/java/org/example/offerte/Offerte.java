@@ -38,6 +38,7 @@ public class Offerte {
         this.klant = klant;
     }
 
+    /* STANDUP: integratie schipverandering
     public double getTotaalPrijs() {
 
 
@@ -49,5 +50,6 @@ public class Offerte {
 
         return totaalPrijs;
     }
+    */
 
 }

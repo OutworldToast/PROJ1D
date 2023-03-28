@@ -9,10 +9,13 @@ import java.util.Scanner;
 public class TotaalLijst {
 
     boolean gesorteerd = false;
-    private ArrayList<Onderdeel> totaalLijst = new ArrayList<>();
-    private ArrayList<Onderdeel> gekozenlijst = new ArrayList<>();
+    private final ArrayList<Onderdeel> totaalLijst = new ArrayList<>();
 
-     public TotaalLijst(){
+    public ArrayList<Onderdeel> getTotaalLijst() {
+        return totaalLijst;
+    }
+
+    public TotaalLijst(){
 
         String line; //string waar de regels ingelezen worden
         String splitBy = ","; //delimiter
@@ -35,17 +38,10 @@ public class TotaalLijst {
         }
     }
 
-    public ArrayList<Onderdeel> getGekozenOpties() {
-        return this.gekozenlijst;
-    }
-
     public void printOpties(){
-        printLijst(totaalLijst);
+        printOnderdeelLijst(totaalLijst);
     }
-    public void printGekozen(){
-        printLijst(gekozenlijst);
-    }
-    private void printLijst(ArrayList<Onderdeel>  lijst){ //print de lijst
+    public void printOnderdeelLijst(ArrayList<Onderdeel>  lijst){ //print de lijst
         if (!gesorteerd) {
             ArrayList<Onderdeel> newLijst = sortLijst(lijst);
             lijst.clear();
@@ -53,9 +49,9 @@ public class TotaalLijst {
         }
 
         int i = 1;
-        for (Onderdeel optie : lijst) {
-            System.out.printf("[%d] Naam: %s, Categorie: %s, Prijs: €%.2f, Milieukortingspercentage:%d%n",
-                    i, optie.getNaam(), optie.getCategorie(), optie.getPrijs(), optie.getMilieukorting());
+        for (Onderdeel onderdeel : lijst) {
+            System.out.printf("[%d] Naam: %s, Categorie: %s, Prijs: €%.2f, Milieukortingspercentage: %d%n",
+                    i, onderdeel.getNaam(), onderdeel.getCategorie(), onderdeel.getPrijs(), onderdeel.getMilieukorting());
             i++;
         }
 
@@ -78,18 +74,18 @@ public class TotaalLijst {
         return esslijst; //update de lijst
     }
     public void addOptie(String naam, String categorie, double prijs, int milieukorting){
-        gekozenlijst.add(new Onderdeel(naam, categorie, prijs, milieukorting));
+        totaalLijst.add(new Onderdeel(naam, categorie, prijs, milieukorting));
         gesorteerd = false;
     }
 
-    public void addLoop(Scanner scanner) {
+    public void addLoop() {
+         Scanner scanner = Loop.scanner;
         boolean looping = true;
         while(looping) {
             System.out.println("Wat wilt u toevoegen?");
             System.out.println("[A] Terug");
             System.out.println("[B] Nieuwe optie");
             System.out.println("[C] Update optie");
-            printOpties();
             String input = scanner.nextLine();
             try {
                 if (input.equalsIgnoreCase("A")) {
@@ -106,8 +102,6 @@ public class TotaalLijst {
                     totaalLijst.add(new Onderdeel(naam, categorie, prijs, milieukorting));
                 } else if (input.equalsIgnoreCase("C")) {
                     //updateoptie
-                } else if (Integer.parseInt(input) > 0 && Integer.parseInt(input) <= totaalLijst.size()) {
-                    gekozenlijst.add(totaalLijst.get(Integer.parseInt(input) - 1));
                 } else {
                     System.out.println("Dat is geen optie");
                 }

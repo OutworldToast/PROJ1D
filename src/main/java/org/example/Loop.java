@@ -1,11 +1,13 @@
 package org.example;
 
+import org.example.schip.Schip;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Loop {
     boolean loop = true;
-    Scanner scanner = new Scanner(System.in); //waar zetten we de scanner?
+    public static Scanner scanner = new Scanner(System.in); //waar zetten we de scanner?
     TotaalLijst totaalLijst = new TotaalLijst();
 
     public Loop(){
@@ -17,22 +19,24 @@ public class Loop {
         while (loop) {
             try {
                 System.out.println("Wat wilt u doen?");
-                System.out.println("[1] Klant aanmaken");
-                System.out.println("[2] Offerte aanmaken"); //veranderen
-                System.out.println("[3] Prijsopgave bekijken");
-                System.out.println("[4] Boot Template toevoegen");
-                System.out.println("[5] Onderdelen toevoegen");
-                System.out.println("[6] Verander gebruikerstype");
-                System.out.println("[7] Programma verlaten");
+                System.out.println("[1] Programma verlaten");
+                System.out.println("[2] Klant aanmaken");
+                System.out.println("[3] Schip aanmaken");
+                System.out.println("[4] Offerte aanmaken"); //veranderen
+                System.out.println("[5] Prijsopgave bekijken");
+                System.out.println("[6] Boot Template toevoegen");
+                System.out.println("[7] Onderdelen toevoegen");
+                System.out.println("[8] Verander gebruikerstype");
                 int input = scanner.nextInt();
                 switch (input) {
-                    case 1 -> MaakKlant();
-                    case 2 -> MaakOfferte();
-                    case 3 -> BekijkPrijsOpgave();
-                    case 4 -> AddTemplate();
-                    case 5 -> AddOnderdeel();
-                    case 6 -> BepaalLoop();
-                    case 7 -> Exit();
+                    case 1 -> Exit();
+                    case 2 -> MaakKlant();
+                    case 3 -> MaakSchip();
+                    case 4 -> MaakOfferte();
+                    case 5 -> BekijkPrijsOpgave();
+                    case 6 -> AddTemplate();
+                    case 7 -> AddOnderdeel();
+                    case 8 -> BepaalLoop();
                     default -> System.out.println("Dat is geen optie");
                 }
             } catch (InputMismatchException e) {
@@ -40,6 +44,11 @@ public class Loop {
                 scanner.next();
             }
         }
+    }
+
+    private void MaakSchip() { //STANDUP: waar zetten we schepenlijst?
+        Schip schip = new Schip(totaalLijst);
+        schip.invoerLoop();
     }
 
     private void Exit() {
@@ -56,7 +65,7 @@ public class Loop {
     }
 
     private void AddOnderdeel() {
-        //voeg code toe
+        totaalLijst.addLoop();
     }
 
     private void AddTemplate() {

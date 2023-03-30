@@ -4,6 +4,7 @@ import org.example.TotaalLijst;
 import org.example.klant.Klant;
 import org.example.schip.Schip;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Offerte {
@@ -41,14 +42,16 @@ public class Offerte {
         boolean k = true;
         while(k){
             try{
-                System.out.println("Wilt u korting toepassen voor dit onderdeel?");
-                String invoer = sc.nextLine();
-                if (invoer.equalsIgnoreCase("ja")){
-                } else if (invoer.equalsIgnoreCase("nee")) {
-                    System.out.println("Geen korting toegepast voor dit onderdeel");
+                ArrayList<Onderdeel> onderdeel = schip.getOnderdeelLijst();
+                schip.getTotaalOnderdeelLijst().printOnderdeelLijst(onderdeel);
+                System.out.println("Voor welke onderdeel wilt u korting toepassen?");
+                int keuze = sc.nextInt();
+                if (keuze > 0 && keuze <= onderdeel.size()){
+                    int percentage = sc.nextInt();
+                    onderdeel.get(keuze - 1).setMilieukorting(percentage);//Binnen 0-100 percentage toevoegen
                 }
             }catch (Exception d){
-                System.out.println("Geen optie voor koting gegeven");
+                System.out.println("Geen onderdeel aangegeven");
             }
         }
     }

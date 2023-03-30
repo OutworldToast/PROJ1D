@@ -123,6 +123,7 @@ public class TotaalLijst {
                 }
             } catch (Exception e) {
                 System.out.println("Typ een getal");
+                scanner.next();
             }
 
         }
@@ -147,6 +148,7 @@ public class TotaalLijst {
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Typ een getal");
+                scanner.next();
             }
         }
     }
@@ -177,6 +179,7 @@ public class TotaalLijst {
 
             } catch (InputMismatchException e) {
                 System.out.println("Typ een getal");
+                scanner.next();
             }
         }
     }

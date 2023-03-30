@@ -38,7 +38,7 @@ public class TotaalLijst {
 
                 String[] opties = line.split(splitBy); //separate regels
                 totaalLijst.add (new Onderdeel(
-                        opties[0], opties[1], Double.parseDouble(opties[2]), Integer.parseInt(opties[3])));
+                        opties[0], opties[1], Double.parseDouble(opties[2]), 0));
                 //voegt nieuwe offerteoptie toe
             }
         } catch (Exception e) {

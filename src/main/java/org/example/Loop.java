@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class Loop {
     boolean loop = true;
-    public static Scanner scanner = new Scanner(System.in); //waar zetten we de scanner?
+    public static Scanner scanner = new Scanner(System.in);
     TotaalLijst totaalLijst = new TotaalLijst();
 
     public Loop(){

@@ -11,8 +11,8 @@ import java.util.Scanner;
 public class Schip {
 
     private String materiaal;
-    private TotaalLijst totaalLijst;
-    private ArrayList<Onderdeel> onderdeelLijst = new ArrayList<>();
+    private final TotaalLijst totaalLijst;
+    private final ArrayList<Onderdeel> onderdeelLijst = new ArrayList<>();
     Scanner scanner = Loop.scanner;
 
     public Schip(TotaalLijst totaalLijst) {
@@ -30,7 +30,7 @@ public class Schip {
                 System.out.println("[3] Toon huidige onderdelen");
                 System.out.println("[4] Onderdeel toevoegen aan schip");
                 System.out.println("[5] Onderdeel verwijderen uit schip");
-                System.out.println("[6] Onderdeel toevoegen aan totaallijst");
+                System.out.println("[6] Onderdeel toevoegen/veranderen in totaallijst");
                 int input = scanner.nextInt();
                 switch (input) {
                     case 1 -> b = false;

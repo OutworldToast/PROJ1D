@@ -4,10 +4,12 @@ import org.example.offerte.Onderdeel;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class TotaalLijst {
 
+    Scanner scanner = Loop.scanner;
     boolean gesorteerd = false;
     private final ArrayList<Onderdeel> totaalLijst = new ArrayList<>();
 
@@ -79,36 +81,88 @@ public class TotaalLijst {
     }
 
     public void addLoop() {
-         Scanner scanner = Loop.scanner;
         boolean looping = true;
         while(looping) {
-            System.out.println("Wat wilt u toevoegen?");
-            System.out.println("[A] Terug");
-            System.out.println("[B] Nieuwe optie");
-            System.out.println("[C] Update optie");
-            String input = scanner.nextLine();
             try {
-                if (input.equalsIgnoreCase("A")) {
-                    looping = false;
-                } else if (input.equalsIgnoreCase("B")) {
-                    System.out.println("Hoe heet het onderdeel?");
-                    String naam = scanner.nextLine();
-                    System.out.println("Is het een extra([EX]) of essentiële([ES]) optie?");
-                    String categorie = scanner.nextLine();
-                    System.out.println("Hoeveel kost het onderdeel?");
-                    double prijs = scanner.nextDouble(); //voeg afronding toe
-                    System.out.println("Wat is het milieukortingspercentage? (0-100) ");
-                    int milieukorting = scanner.nextInt();
-                    totaalLijst.add(new Onderdeel(naam, categorie, prijs, milieukorting));
-                } else if (input.equalsIgnoreCase("C")) {
-                    //updateoptie
+                System.out.println("Wat wilt u doen?");
+                System.out.println("[0] Terug");
+                System.out.println("[1] Nieuwe optie");
+                System.out.println("[2] Update optie");
+                int input = scanner.nextInt();
+                switch (input) {
+                    case 0 -> looping = false;
+                    case 1 -> { //NOG TOE TE VOEGEN: controle voor foutieve inputs
+                        System.out.println("Hoe heet het onderdeel?");
+                        String naam = scanner.nextLine();
+                        System.out.println("Is het een extra([EX]) of essentiële([ES]) optie?");
+                        String categorie = scanner.nextLine();
+                        System.out.println("Hoeveel kost het onderdeel?");
+                        double prijs = scanner.nextDouble(); //voeg afronding toe
+                        System.out.println("Wat is het milieukortingspercentage? (0-100) ");
+                        int milieukorting = scanner.nextInt();
+                        addOptie(naam, categorie, prijs, milieukorting);
+                        }
+                    case 2 -> updateOnderdeelLoop();
+                    default -> System.out.println("Dat is geen optie");
+                }
+            } catch (Exception e) {
+                System.out.println("Typ een getal");
+            }
+
+        }
+    }
+
+    private void updateOnderdeelLoop(){
+        printOpties();
+        boolean b = true;
+        while (b) {
+            try {
+                System.out.println("Wat is het nummer van het onderdeel?");
+                System.out.println("[0] om terug te gaan");
+                int input = scanner.nextInt();
+                if (input == 0) {
+                    b = false;
+                } else if (input > 0 && input <= totaalLijst.size()) {
+                    Onderdeel onderdeel = totaalLijst.get(input - 1);
+                    kiesOnderdeelLoop(onderdeel);
+                    b = false;
                 } else {
                     System.out.println("Dat is geen optie");
                 }
-            } catch (Exception e) {
-                System.out.println("Non-valide input");
+            } catch (InputMismatchException e) {
+                System.out.println("Typ een getal");
             }
+        }
+    }
 
+    private void kiesOnderdeelLoop(Onderdeel onderdeel){ //NOG TOE TE VOEGEN: controle voor foutieve inputs
+        boolean b = true;
+        System.out.println("U heeft het volgende onderdeel gekozen:");
+        System.out.printf("Naam: %s, Categorie: %s, Prijs: €%.2f, Milieukortingspercentage: %d%n",
+                onderdeel.getNaam(), onderdeel.getCategorie(), onderdeel.getPrijs(), onderdeel.getMilieukorting());
+        while (b) {
+            try {
+                System.out.println("Wat wilt u doen?");
+                System.out.println("[0] Terug");
+                System.out.println("[1] Verander naam");
+                System.out.println("[2] Verander categorie");
+                System.out.println("[3] Verander prijs");
+                System.out.println("[4] Verander milieukortingspercentage");
+                int input = scanner.nextInt();
+                switch (input) {
+                    case 0 -> b = false;
+                    case 1 -> {
+                        String naam = scanner.nextLine();
+                        //onderdeel.setNaam();
+                    }
+                    case 2 -> updateOnderdeelLoop();
+                    default -> System.out.println("Dat is geen optie");
+                }
+                b = false;
+
+            } catch (InputMismatchException e) {
+                System.out.println("Typ een getal");
+            }
         }
     }
 

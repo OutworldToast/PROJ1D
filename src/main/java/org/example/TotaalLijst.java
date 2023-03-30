@@ -29,7 +29,13 @@ public class TotaalLijst {
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
             //file inlezen
 
+            boolean skipEersteLine = true;
             while ((line = br.readLine()) != null) { //loopt door bestand
+                if(skipEersteLine) {
+                    skipEersteLine = false;
+                    continue;
+                }
+
                 String[] opties = line.split(splitBy); //separate regels
                 totaalLijst.add (new Onderdeel(
                         opties[0], opties[1], Double.parseDouble(opties[2]), Integer.parseInt(opties[3])));

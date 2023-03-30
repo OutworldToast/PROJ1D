@@ -36,8 +36,8 @@ public class Schip {
                     case 1 -> b = false;
                     case 2 -> totaalLijst.printOpties();
                     case 3 -> printOnderdeelLijst();
-                    case 4 -> voegToeOnderdeel();
-                    case 5 -> verwijderOnderdeel();
+                    case 4 -> voegOnderdeelToeConsole();
+                    case 5 -> verwijderOnderdeelConsole();
                     case 6 -> totaalLijst.addLoop();
                     default -> System.out.println("Dat is geen optie");
                 }
@@ -52,7 +52,21 @@ public class Schip {
         totaalLijst.printOnderdeelLijst(onderdeelLijst);
     }
 
-    private void voegToeOnderdeel() { //STANDUP: waar check voor essentiele onderdelen?
+    public ArrayList<Onderdeel> getOnderdeelLijst() {
+        return onderdeelLijst;
+    }
+    public TotaalLijst getTotaalOnderdeelLijst() {
+        return totaalLijst;
+    }
+
+
+    public void voegOnderdeelToe(int onderdeelNummer) {
+        Onderdeel onderdeel = totaalLijst.getTotaalLijst().get(onderdeelNummer - 1);
+        onderdeelLijst.add(onderdeel);
+        System.out.printf("Het onderdeel '%s' is toegevoegd%n", onderdeel.getNaam());
+    }
+
+    private void voegOnderdeelToeConsole() { //STANDUP: waar check voor essentiele onderdelen?
         boolean b = true;
         totaalLijst.printOpties(); //STANDUP: willen we dit hier?
         ArrayList<Onderdeel> lijst = totaalLijst.getTotaalLijst();
@@ -64,9 +78,7 @@ public class Schip {
                 if (input == 0) {
                     b = false;
                 } else if (input > 0 && input <= lijst.size()) {
-                    Onderdeel onderdeel = lijst.get(input - 1);
-                    onderdeelLijst.add(onderdeel);
-                    System.out.printf("Het onderdeel '%s' is toegevoegd%n", onderdeel.getNaam());
+                    voegOnderdeelToe(input);
                 } else {
                     System.out.println("Dat is geen optie");
                 }
@@ -77,7 +89,13 @@ public class Schip {
 
     }
 
-    private void verwijderOnderdeel() {
+    public void verwijderOnderdeel(int onderdeelNummer) {
+        Onderdeel onderdeel = onderdeelLijst.get(onderdeelNummer - 1);
+        onderdeelLijst.remove(onderdeel);
+        System.out.printf("Het onderdeel '%s' is verwijderd%n", onderdeel.getNaam());
+    }
+
+    private void verwijderOnderdeelConsole() {
         boolean b = true;
         printOnderdeelLijst();
         ArrayList<Onderdeel> lijst = onderdeelLijst;
@@ -89,9 +107,7 @@ public class Schip {
                 if (input == 0) {
                     b = false;
                 } else if (input > 0 && input <= lijst.size()) {
-                    Onderdeel onderdeel = lijst.get(input - 1);
-                    onderdeelLijst.remove(onderdeel);
-                    System.out.printf("Het onderdeel '%s' is verwijderd%n", onderdeel.getNaam());
+                    verwijderOnderdeel(input);
                     b = false;
                 } else {
                     System.out.println("Dat is geen optie");

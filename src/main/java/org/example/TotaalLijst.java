@@ -17,7 +17,7 @@ public class TotaalLijst {
         return totaalLijst;
     }
 
-    public TotaalLijst(){
+    public TotaalLijst(){ //test 123
 
         String line; //string waar de regels ingelezen worden
         String splitBy = ","; //delimiter
@@ -95,6 +95,7 @@ public class TotaalLijst {
                 System.out.println("[1] Nieuwe optie");
                 System.out.println("[2] Update optie");
                 int input = scanner.nextInt();
+                scanner.nextLine();
                 switch (input) {
                     case 0 -> looping = false;
                     case 1 -> { //NOG TOE TE VOEGEN: controle voor foutieve inputs
@@ -102,14 +103,23 @@ public class TotaalLijst {
                         String naam = scanner.nextLine();
                         System.out.println("Is het een extra([EX]) of essentiële([ES]) optie?");
                         String categorie = scanner.nextLine();
+                        if (categorie.equalsIgnoreCase("EX")){
+                            categorie = "Extra";
+                        } else if (categorie.equalsIgnoreCase("ES")) {
+                            categorie = "Essentieel";
+                        } else {
+                            System.out.println("Dat is geen optie");
+                        }
                         System.out.println("Hoeveel kost het onderdeel?");
                         double prijs = scanner.nextDouble(); //voeg afronding toe
+                        scanner.next();
                         System.out.println("Wat is het milieukortingspercentage? (0-100) ");
                         int milieukorting = scanner.nextInt();
+                        scanner.next();
                         addOptie(naam, categorie, prijs, milieukorting);
                         }
                     case 2 -> updateOnderdeelLoop();
-                    default -> System.out.println("Dat is geen optie");
+                    default -> {System.out.println("Dat is geen optie");scanner.next();}
                 }
             } catch (Exception e) {
                 System.out.println("Typ een getal");
@@ -155,13 +165,12 @@ public class TotaalLijst {
                 System.out.println("[3] Verander prijs");
                 System.out.println("[4] Verander milieukortingspercentage");
                 int input = scanner.nextInt();
-                switch (input) {
+                switch (input) {//NOG TOE TE VOEGEN: controles voor foutieve inputs
                     case 0 -> b = false;
-                    case 1 -> {
-                        String naam = scanner.nextLine();
-                        //onderdeel.setNaam();
-                    }
-                    case 2 -> updateOnderdeelLoop();
+                    case 1 -> onderdeel.setNaam(scanner.nextLine());
+                    case 2 -> onderdeel.setCategorie(scanner.nextLine());
+                    case 3 -> onderdeel.setPrijs(scanner.nextDouble());
+                    case 4 -> onderdeel.setMilieukorting(scanner.nextInt());
                     default -> System.out.println("Dat is geen optie");
                 }
                 b = false;

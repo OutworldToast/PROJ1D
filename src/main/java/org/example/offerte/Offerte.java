@@ -51,8 +51,6 @@ public class Offerte {
             totaalPrijs += prijs;
         }
 
-
-
         return totaalPrijs;
     }
 

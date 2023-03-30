@@ -88,14 +88,16 @@ public class Loop {
         while (loop) {
             try {
                 System.out.println("Wat wilt u doen?");
+                System.out.println("[0] Programma verlaten");
                 System.out.println("[1] Offerte bekijken");
                 System.out.println("[2] Verander gebruikerstype");
-                System.out.println("[3] Programma verlaten");
+                System.out.println("[3] Bekijk lijst van opties");
                 int input = scanner.nextInt();
                 switch (input) {
+                    case 0 -> Exit();
                     case 1 -> BekijkPrijsOpgave();
                     case 2 -> BepaalLoop();
-                    case 3 -> Exit();
+                    case 3 -> bekijkOptielijst();
                     default -> System.out.println("Dat is geen optie");
                 }
             } catch (InputMismatchException e) {
@@ -103,6 +105,10 @@ public class Loop {
                 scanner.next();
             }
         }
+    }
+
+    private void bekijkOptielijst() {
+        totaalLijst.printOpties();
     }
 
     private void Introductie(){

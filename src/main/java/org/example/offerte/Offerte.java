@@ -2,16 +2,16 @@ package org.example.offerte;
 
 import org.example.TotaalLijst;
 import org.example.klant.Klant;
+import org.example.schip.Schip;
 
 public class Offerte {
     private String beschrijving;
-    private TotaalLijst opties;
     private Klant klant;
+    private Schip schip;
 
-    public Offerte(String beschrijving, Klant klant, TotaalLijst opties) {
+    public Offerte(String beschrijving, Klant klant) {
         this.beschrijving = beschrijving;
         this.klant = klant;
-        this.opties = opties;
     }
 
     public String getBeschrijving() {
@@ -22,14 +22,6 @@ public class Offerte {
         this.beschrijving = beschrijving;
     }
 
-    public TotaalLijst getOpties() {
-        return opties;
-    }
-
-    public void setOpties(TotaalLijst opties) {
-        this.opties = opties;
-    }
-
     public Klant getKlant() {
         return klant;
     }
@@ -38,18 +30,30 @@ public class Offerte {
         this.klant = klant;
     }
 
-    /* STANDUP: integratie schipverandering
+    public Schip getSchip() {
+        return schip;
+    }
+
     public double getTotaalPrijs() {
 
 
         double totaalPrijs = 0.0;
 
-        for(Onderdeel optie : opties.getGekozenOpties()) {
-            totaalPrijs += optie.getPrijs();
+        for(Onderdeel onderdeel : schip.getOnderdeelLijst()) {
+            double prijs = onderdeel.getPrijs();
+
+            int milieukorting = onderdeel.getMilieukorting();
+
+            prijs -= (milieukorting / 100.0) * prijs;
+
+            System.out.println("oude prijs: " + onderdeel.getPrijs());
+            System.out.println("nieuwe prijs: " + prijs);
+            totaalPrijs += prijs;
         }
+
+
 
         return totaalPrijs;
     }
-    */
 
 }

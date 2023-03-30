@@ -1,7 +1,9 @@
 package org.example;
 
+import org.example.offerte.Onderdeel;
 import org.example.schip.Schip;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -108,8 +110,39 @@ public class Loop {
     }
 
     private void bekijkOptielijst() {
-        totaalLijst.printOpties();
+        ArrayList<Onderdeel> lijst = new ArrayList<>();
+        boolean b = true;
+        while (b) {
+            try {
+                System.out.println("Welke onderdelen wilt u selecteren");
+                System.out.println("[0] Klaar");
+                totaalLijst.printOpties();
+                int input = scanner.nextInt();
+                if (input == 0) {
+                    b = false;
+                } else if (input > 0 && input <= totaalLijst.getTotaalLijst().size()) {
+                    Onderdeel onderdeel = totaalLijst.getTotaalLijst().get(input - 1);
+                    lijst.add(onderdeel);
+                    System.out.println("U heeft onderdeel: "+ onderdeel.getNaam() + " toegevoegd.");
+                    System.out.println();
+                } else {
+                    System.out.println("Dat is geen optie");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Typ een getal");
+                scanner.next();
+            }
+        }
+        double som = 0;
+        for (Onderdeel onderdeel : lijst) {
+            som += onderdeel.getPrijs();
+        }
+        if (som != 0){
+            System.out.println("Totaalprijs van geselecteerde onderdelen is: "+som);
+            System.out.println();
+        }
     }
+
 
     private void Introductie(){
         System.out.println("Welkom bij ShipFlex!");

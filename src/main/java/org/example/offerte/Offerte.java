@@ -4,6 +4,8 @@ import org.example.TotaalLijst;
 import org.example.klant.Klant;
 import org.example.schip.Schip;
 
+import java.util.Scanner;
+
 public class Offerte {
     private String beschrijving;
     private Klant klant;
@@ -32,6 +34,23 @@ public class Offerte {
 
     public Schip getSchip() {
         return schip;
+    }
+
+    public void invoerKorting(){
+        Scanner sc = new Scanner(System.in);
+        boolean k = true;
+        while(k){
+            try{
+                System.out.println("Wilt u korting toepassen voor dit onderdeel?");
+                String invoer = sc.nextLine();
+                if (invoer.equalsIgnoreCase("ja")){
+                } else if (invoer.equalsIgnoreCase("nee")) {
+                    System.out.println("Geen korting toegepast voor dit onderdeel");
+                }
+            }catch (Exception d){
+                System.out.println("Geen optie voor koting gegeven");
+            }
+        }
     }
 
     public double getTotaalPrijs() {

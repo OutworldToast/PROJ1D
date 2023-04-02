@@ -22,6 +22,7 @@ public class Loop {
             try {
                 System.out.println("Wat wilt u doen?");
                 System.out.println("[1] Programma verlaten");
+<<<<<<< Updated upstream
                 System.out.println("[2] Klant aanmaken");
                 System.out.println("[3] Schip aanmaken");
                 System.out.println("[4] Offerte aanmaken"); //veranderen
@@ -39,6 +40,31 @@ public class Loop {
                     case 6 -> AddTemplate();
                     case 7 -> AddOnderdeel();
                     case 8 -> BepaalLoop();
+=======
+
+                if (offerte != null) {
+                    System.out.println("[2] Klant veranderen");
+                    System.out.println("[3] Schip veranderen");
+                    System.out.println("[4] Offerte veranderen"); //veranderen
+                    System.out.println("[5] Totaalprijs offerte bekijken");
+                }
+
+                System.out.println("[6] Prijsopgave bekijken");
+                System.out.println("[7] Boot Template toevoegen");
+                System.out.println("[8] Onderdelen toevoegen");
+                System.out.println("[9] Verander gebruikerstype");
+                int input = scanner.nextInt();
+                switch (input) {
+                    case 1 -> Exit();
+                    case 2 -> veranderKlant();
+                    case 3 -> veranderSchip();
+                    case 4 -> veranderOfferte();
+                    case 5 -> bekijkTotaalprijs();
+                    case 6 -> BekijkPrijsOpgave();
+                    case 7 -> AddTemplate();
+                    case 8 -> AddOnderdeel();
+                    case 9 -> BepaalLoop();
+>>>>>>> Stashed changes
                     default -> System.out.println("Dat is geen optie");
                 }
             } catch (InputMismatchException e) {
@@ -72,6 +98,27 @@ public class Loop {
 
     private void AddTemplate() {
         //voeg code toe
+    }
+
+    private void bekijkTotaalprijs() {
+        while(true) {
+            System.out.println("Totaalprijs:\n" + "€" + offerte.getTotaalPrijs());
+
+            System.out.println("[0] terug");
+
+            int input;
+
+            try {
+                input = scanner.nextInt();
+            } catch(InputMismatchException exc) {
+                System.out.println("[error] typ een cijfer");
+                continue;
+            }
+
+            if(input == 0) {
+                break;
+            }
+        }
     }
 
     private void BekijkPrijsOpgave() {

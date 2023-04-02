@@ -56,7 +56,7 @@ public class Offerte {
         }
     }
 
-    public double getTotaalPrijs() {
+    public double getTotaalPrijs() {//NOG TOE TE VOEGEN: niet oude prijs tonen als er geen milieukorting is
 
 
         double totaalPrijs = 0.0;

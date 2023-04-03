@@ -46,8 +46,4 @@ public class Onderdeel {
         return milieukorting;
     }
 
-    public double berekenGereduceerdePrijs(double prijs) {//Nieuwprijs na korting
-        double gereduceerdePrijs = prijs * (1 - this.getMilieukorting());
-        return gereduceerdePrijs;
-    }
 }

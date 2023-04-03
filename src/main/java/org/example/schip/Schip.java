@@ -72,7 +72,7 @@ public class Schip {
         ArrayList<Onderdeel> lijst = totaalLijst.getTotaalLijst();
         while (b) {
             try {
-                System.out.println("Wat is het nummer van het onderdeel?");
+                System.out.println("Wat is het nummer van het onderdeel dat u wilt toevoegen?");
                 System.out.println("[0] om terug te gaan");
                 int input = scanner.nextInt();
                 if (input == 0) {

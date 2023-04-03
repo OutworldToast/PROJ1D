@@ -12,6 +12,8 @@ public class TestPrijsOpgave {
 
     public static void main(String[] args) {
         // Start de main loop.
+
+
         Klant k1 = new Klant("Jantje", "jan@gmail.com");
         Offerte ofe = new Offerte("mijOffr", k1);
         TotaalLijst t1 = new TotaalLijst();

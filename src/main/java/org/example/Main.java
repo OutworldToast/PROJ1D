@@ -40,9 +40,7 @@ public class Main {
         TotaalLijst totaalLijst = new TotaalLijst();
 
 
-        PrijsOpgave juanofferte = new PrijsOpgave(k1,juan,totaalLijst);
 
-        juanofferte.toonPrijsopgave();
     }
 }
 

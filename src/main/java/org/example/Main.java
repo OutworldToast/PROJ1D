@@ -1,15 +1,18 @@
 package org.example;
 import org.example.klant.*;
+import org.example.offerte.Offerte;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        //System.out.println("Hello world!");
 
         //TestKlant();
         //TestLijst();
-        new Loop();
+       // new Loop();
+        TestprijsOpgave();
     }
 
     public static void TestKlant() {
@@ -27,6 +30,18 @@ public class Main {
     public static void TestLijst() {
         TotaalLijst lijst = new TotaalLijst();
         lijst.printOpties();
+    }
+
+    public static void TestprijsOpgave(){
+
+        Klant k1 = new Klant("Juan", "juan@gmail.com");
+        Offerte juan = new Offerte("Juan", k1);
+        TotaalLijst totaalLijst = new TotaalLijst();
+
+
+        PrijsOpgave juanofferte = new PrijsOpgave(k1,juan,totaalLijst);
+
+        juanofferte.toonPrijsopgave();
     }
 }
 

@@ -1,5 +1,11 @@
 package org.example;
 
+import org.example.klant.Bedrijf;
+import org.example.klant.Klant;
+import org.example.klant.Overheid;
+import org.example.klant.Particulier;
+import org.example.offerte.Offerte;
+import org.example.offerte.Onderdeel;
 import org.example.schip.Schip;
 
 import java.util.InputMismatchException;
@@ -10,19 +16,28 @@ public class Loop {
     public static Scanner scanner = new Scanner(System.in);
     TotaalLijst totaalLijst = new TotaalLijst();
 
+    private Offerte offerte;
+
+
     public Loop(){
         Introductie();
         BepaalLoop();
     }
 
     private void scheepsbouwerloop() {
+        offerteMakenLoop();
+
         while (loop) {
             try {
                 System.out.println("Wat wilt u doen?");
                 System.out.println("[1] Programma verlaten");
-                System.out.println("[2] Klant aanmaken");
-                System.out.println("[3] Schip aanmaken");
-                System.out.println("[4] Offerte aanmaken"); //veranderen
+
+                if (offerte != null) {
+                    System.out.println("[2] Klant veranderen");
+                    System.out.println("[3] Schip veranderen");
+                    System.out.println("[4] Offerte veranderen"); //veranderen
+                }
+
                 System.out.println("[5] Prijsopgave bekijken");
                 System.out.println("[6] Boot Template toevoegen");
                 System.out.println("[7] Onderdelen toevoegen");
@@ -30,9 +45,9 @@ public class Loop {
                 int input = scanner.nextInt();
                 switch (input) {
                     case 1 -> Exit();
-                    case 2 -> MaakKlant();
-                    case 3 -> MaakSchip();
-                    case 4 -> MaakOfferte();
+                    case 2 -> veranderKlant();
+                    case 3 -> veranderSchip();
+                    case 4 -> veranderOfferte();
                     case 5 -> BekijkPrijsOpgave();
                     case 6 -> AddTemplate();
                     case 7 -> AddOnderdeel();
@@ -46,7 +61,87 @@ public class Loop {
         }
     }
 
-    private void MaakSchip() { //STANDUP: waar zetten we schepenlijst?
+    private void offerteMakenLoop() {
+        boolean stopLoop = false;
+
+        // Zorg dat de scanner niet blijft wachten op een input
+        scanner.nextLine();
+
+        while(!stopLoop) {
+            System.out.println(
+                    "Wil je gelijk een offerte aanmaken? Hiermee kun je onderdelen, schepen en klanten aanmaken.\n[ja] [nee]"
+            );
+
+            String input = scanner.nextLine();
+
+            if(input.equals("ja")) {
+                System.out.println("Geef een beschrijving van de offerte:");
+                String beschrijving = scanner.nextLine();
+                Klant klant;
+
+                while(true) {
+                    System.out.println("Voor welk soort klant wordt de offerte gemaakt?\n" +
+                            "[particulier] [bedrijf] [overheid]");
+
+                    input = scanner.nextLine();
+
+                    if (input.equals("particulier")) {
+                        System.out.print("Voer de naam in:");
+                        String naam = scanner.nextLine();
+                        System.out.println("Voer de e-mail in:");
+                        String email = scanner.nextLine();
+
+                        klant = new Particulier(naam, email);
+                        break;
+                    }
+                    else if (input.equals("bedrijf")) {
+                        System.out.print("Voer de naam in:");
+                        String naam = scanner.nextLine();
+                        System.out.println("Voer de e-mail in:");
+                        String email = scanner.nextLine();
+                        System.out.print("Voer het KVK nummer in:");
+                        int kvk;
+
+                        try {
+                            kvk = scanner.nextInt();
+                        } catch (InputMismatchException e) {
+                            System.out.println("[error] Typ een cijfer");
+                            scanner.nextLine();
+                            continue;
+                        }
+
+                        klant = new Bedrijf(naam, email, kvk);
+                        break;
+                    }
+                    else if (input.equals("overheid")) {
+                        System.out.print("Voer de naam in:");
+                        String naam = scanner.nextLine();
+                        System.out.println("Voer de e-mail in:");
+                        String email = scanner.nextLine();
+                        System.out.print("Voer de gemeente in:");
+                        String gemeente = scanner.nextLine();
+
+                        klant = new Overheid(naam, email, gemeente);
+                        break;
+                    }
+                    else {
+                        System.out.println("Dat is geen optie");
+                    }
+                }
+
+                offerte = new Offerte(beschrijving, klant);
+                stopLoop = true;
+            }
+            else if(input.equals("nee")) {
+                stopLoop = true;
+            }
+            else {
+                System.out.println("Dat is geen optie");
+            }
+        }
+    }
+
+    private void veranderSchip() { //STANDUP: waar zetten we schepenlijst?
         Schip schip = new Schip(totaalLijst);
         schip.invoerLoop();
     }
@@ -76,11 +171,11 @@ public class Loop {
         //voeg code toe
     }
 
-    private void MaakOfferte() {
+    private void veranderOfferte() {
         //voeg code toe
     }
 
-    private void MaakKlant() {
+    private void veranderKlant() {
         //voeg code toe
     }
 

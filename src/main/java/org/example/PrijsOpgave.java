@@ -1,75 +1,83 @@
 package org.example;
 
 import org.example.klant.Klant;
+import org.example.offerte.Offerte;
+import org.example.offerte.Onderdeel;
 
 public class PrijsOpgave {
 
-    private Klant klant;
+    private Klant klantnaam;
    ///private Schip schiptype;
-    private String specificaties;
-    private double materialeKosten;
-    private int arbeidsuren;
-    private double uurtarief;
 
-    public PrijsOpgave(Klant klant, String specificaties, double materialeKosten, int arbeidsuren, double uurtarief) {
-        this.klant = klant;
-        this.specificaties = specificaties;
-        this.materialeKosten = materialeKosten;
-        this.arbeidsuren = arbeidsuren;
-        this.uurtarief = uurtarief;
+    private Offerte offerte;
+
+    private TotaalLijst totaalLijst;
+
+
+
+
+
+
+    public PrijsOpgave(Klant klantnaam, Offerte offerte, TotaalLijst totaalLijst) {
+        this.klantnaam = klantnaam;
+        this.offerte = offerte;
+        this.totaalLijst = totaalLijst;
     }
 
-    public Klant getKlant() {
-        return klant;
+    public Klant getKlantnaam() {
+        return klantnaam;
     }
 
-    public void setKlant(Klant klant) {
-        this.klant = klant;
+    public void setKlantnaam(Klant klantnaam) {
+        this.klantnaam = klantnaam;
     }
 
-    public String getSpecificaties() {
-        return specificaties;
+    public Offerte getOfferte() {
+        return offerte;
     }
 
-    public void setSpecificaties(String specificaties) {
-        this.specificaties = specificaties;
+    public void setOfferte(Offerte offerte) {
+        this.offerte = offerte;
     }
 
-    public double getMaterialeKosten() {
-        return materialeKosten;
+    public TotaalLijst getTotaalLijst() {
+        return totaalLijst;
     }
 
-    public void setMaterialeKosten(double materialeKosten) {
-        this.materialeKosten = materialeKosten;
+    public void setTotaalLijst(TotaalLijst totaalLijst) {
+        this.totaalLijst = totaalLijst;
     }
 
-    public int getArbeidsuren() {
-        return arbeidsuren;
-    }
 
-    public void setArbeidsuren(int arbeidsuren) {
-        this.arbeidsuren = arbeidsuren;
-    }
 
-    public double getUurtarief() {
-        return uurtarief;
-    }
 
-    public void setUurtarief(double uurtarief) {
-        this.uurtarief = uurtarief;
-    }
 
-    public double berekenTotaleKosten() {
-        return getMaterialeKosten()  + (getArbeidsuren() * getUurtarief());
-    }
+    public void toonPrijsopgave() {
 
-    public void printPrijsopgave() {
-        System.out.println("Prijsopgave voor " + klant.getNaam());
-       // System.out.println("Scheepsbouwproject: " + schipType + " met " + specificaties);
-        System.out.println("Materialenkosten: €" + materialeKosten);
-        System.out.println("Arbeidsuren: " + arbeidsuren);
-        System.out.println("Uurtarief: €" + uurtarief);
-        System.out.println("Totale kosten: €" + berekenTotaleKosten());
+
+
+        System.out.println();
+        System.out.println();
+        System.out.println(klantnaam.getNaam() + " hierbij kunt u de totale kosten verwachten: ");
+
+
+            for (Onderdeel t : totaalLijst.getTotaalLijst()
+            ) {
+
+
+
+                System.out.printf("%-15s ---- € %.2f%n", t.getNaam(), t.getPrijs());
+
+
+            }
+
+
+
+
+
+
+
+
     }
 
 }

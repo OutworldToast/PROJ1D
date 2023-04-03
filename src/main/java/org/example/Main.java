@@ -23,6 +23,7 @@ public class Main {
         klantArrayList.get(1).setEmail("Joost@hotmail.com");
         Klant.printArrayList(klantArrayList);
         klantArrayList.get(0).printKlantInfo();
+        klantArrayList.set(0, new Klant("joost","hallo"));
 
     }
 

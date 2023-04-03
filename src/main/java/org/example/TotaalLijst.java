@@ -112,10 +112,10 @@ public class TotaalLijst {
                         }
                         System.out.println("Hoeveel kost het onderdeel?");
                         double prijs = scanner.nextDouble(); //voeg afronding toe
-                        scanner.next();
+                        scanner.nextLine();
                         System.out.println("Wat is het milieukortingspercentage? (0-100) ");
                         int milieukorting = scanner.nextInt();
-                        scanner.next();
+                        scanner.nextLine();
                         addOptie(naam, categorie, prijs, milieukorting);
                         }
                     case 2 -> updateOnderdeelLoop();

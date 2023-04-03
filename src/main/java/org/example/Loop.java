@@ -1,8 +1,5 @@
 package org.example;
 
-import org.example.klant.Klant;
-import org.example.klant.Particulier;
-import org.example.offerte.Offerte;
 import org.example.schip.Schip;
 
 import java.util.InputMismatchException;
@@ -77,7 +74,6 @@ public class Loop {
 
     private void BekijkPrijsOpgave() {
         //voeg code toe
-
     }
 
     private void MaakOfferte() {

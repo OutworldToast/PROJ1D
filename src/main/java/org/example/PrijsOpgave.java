@@ -1,20 +1,17 @@
 package org.example;
 
 import org.example.klant.Klant;
+import org.example.offerte.Offerte;
+import org.example.offerte.Onderdeel;
 
 import java.sql.SQLOutput;
 import java.util.Date;
 
 public class PrijsOpgave {
 
-    private Klant klant;
-   ///private Schip schiptype;
-    private String specificaties;
-    private double materialeKosten;
-    private int arbeidsuren;
-    private double uurtarief;
+    private Klant klantnaam;
+    ///private Schip schiptype;
 
-<<<<<<< HEAD
     private Offerte offerte;
 
     private TotaalLijst totaalLijst;
@@ -30,57 +27,36 @@ public class PrijsOpgave {
         this.klantnaam = klantnaam;
         this.offerte = offerte;
         this.totaalLijst = totaalLijst;
-=======
-    public PrijsOpgave(Klant klant, String specificaties, double materialeKosten, int arbeidsuren, double uurtarief) {
-        this.klant = klant;
-        this.specificaties = specificaties;
-        this.materialeKosten = materialeKosten;
-        this.arbeidsuren = arbeidsuren;
-        this.uurtarief = uurtarief;
->>>>>>> parent of f4e9fce (prisjopgave)
     }
 
-    public Klant getKlant() {
-        return klant;
+    public Klant getKlantnaam() {
+        return klantnaam;
     }
 
-    public void setKlant(Klant klant) {
-        this.klant = klant;
+    public void setKlantnaam(Klant klantnaam) {
+        this.klantnaam = klantnaam;
     }
 
-    public String getSpecificaties() {
-        return specificaties;
+    public Offerte getOfferte() {
+        return offerte;
     }
 
-    public void setSpecificaties(String specificaties) {
-        this.specificaties = specificaties;
+    public void setOfferte(Offerte offerte) {
+        this.offerte = offerte;
     }
 
-    public double getMaterialeKosten() {
-        return materialeKosten;
+    public TotaalLijst getTotaalLijst() {
+        return totaalLijst;
     }
 
-    public void setMaterialeKosten(double materialeKosten) {
-        this.materialeKosten = materialeKosten;
+    public void setTotaalLijst(TotaalLijst totaalLijst) {
+        this.totaalLijst = totaalLijst;
     }
 
-    public int getArbeidsuren() {
-        return arbeidsuren;
-    }
 
-    public void setArbeidsuren(int arbeidsuren) {
-        this.arbeidsuren = arbeidsuren;
-    }
 
-    public double getUurtarief() {
-        return uurtarief;
-    }
 
-    public void setUurtarief(double uurtarief) {
-        this.uurtarief = uurtarief;
-    }
 
-<<<<<<< HEAD
     public void toonPrijsopgave() {
 
         String strOfferte = "PRIJSOPGAVE";
@@ -110,23 +86,23 @@ public class PrijsOpgave {
 
 
 
-            for (Onderdeel t : totaalLijst.getTotaalLijst()
-            ) {
-                String strgezochtOnderdeel = t.getNaam();
-                 result += totaal + t.getPrijs();
-                 if (t.equals(strgezochtOnderdeel)){
-                     teller++;
-                 }
-
-
-
-                System.out.printf("%-20s   %-20s  %-20s  € %.2f%n", teller, t.getCategorie(), t.getNaam(), t.getPrijs()); // HOVEELHEID PER ONDERDEEL
-                System.out.println();
-
+        for (Onderdeel t : totaalLijst.getTotaalLijst()
+        ) {
+            String strgezochtOnderdeel = t.getNaam();
+            result += totaal + t.getPrijs();
+            if (t.equals(strgezochtOnderdeel)){
+                teller++;
             }
+
+
+
+            System.out.printf("%-20s   %-20s  %-20s  € %.2f%n", teller, t.getCategorie(), t.getNaam(), t.getPrijs()); // HOVEELHEID PER ONDERDEEL
+            System.out.println();
+
+        }
         System.out.print("-------------------------------------------------------------------------------------------------------\n");
 
-        System.out.printf("%-60s\n", strKorting); //
+        System.out.printf("%-60s  %-60s  \n", strKorting, klantnaam.getKortingAlsPercentage()); //
         System.out.printf("%-60s\n", strBtw ); // BEREKEN BTW
         System.out.printf("%-90s  € %.2f%n", strResult,  result );
 
@@ -139,19 +115,7 @@ public class PrijsOpgave {
 
 
 
-=======
-    public double berekenTotaleKosten() {
-        return getMaterialeKosten()  + (getArbeidsuren() * getUurtarief());
-    }
->>>>>>> parent of f4e9fce (prisjopgave)
 
-    public void printPrijsopgave() {
-        System.out.println("Prijsopgave voor " + klant.getNaam());
-       // System.out.println("Scheepsbouwproject: " + schipType + " met " + specificaties);
-        System.out.println("Materialenkosten: €" + materialeKosten);
-        System.out.println("Arbeidsuren: " + arbeidsuren);
-        System.out.println("Uurtarief: €" + uurtarief);
-        System.out.println("Totale kosten: €" + berekenTotaleKosten());
     }
 
 }

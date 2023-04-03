@@ -1,7 +1,6 @@
 
 import org.example.TotaalLijst;
 import org.example.klant.Klant;
-import org.example.klant.Particulier;
 import org.example.offerte.Offerte;
 import org.testng.Assert;
 import org.testng.annotations.Test;

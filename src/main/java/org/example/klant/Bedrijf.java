@@ -17,6 +17,7 @@ public class  Bedrijf extends Klant {
     public void printKlantInfo() {
         setKortingAlsPercentage(3);
         super.printKlantInfo();
+        System.out.println("Het KVK-nummer van dit bedrijf is: "+ KVKNummer);
     }
 
 }

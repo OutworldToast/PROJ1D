@@ -23,10 +23,11 @@ public class PrijsOpgave {
 
 
 
-    public PrijsOpgave(Klant klantnaam, Offerte offerte, TotaalLijst totaalLijst) {
+    public PrijsOpgave(Klant klantnaam, Offerte offerte, TotaalLijst totaalLijst, Date date) {
         this.klantnaam = klantnaam;
         this.offerte = offerte;
         this.totaalLijst = totaalLijst;
+        this.date = date;
     }
 
     public Klant getKlantnaam() {
@@ -73,14 +74,18 @@ public class PrijsOpgave {
         double totaal = 0;
         double result = 0;
         int teller = 1;
+        double regelTotaal;
 
         System.out.printf( "%60s\n", strOfferte);
         System.out.print("-------------------------------------------------------------------------------------------------------");
         System.out.println();
 
-        System.out.println("02-01-2023");
-        System.out.println("AAN: "+ klantnaam.getNaam());
-        System.out.printf("%-20s | %-20s| %-20s | %-20s  | %-20s\n ", strHoeveelheid,strCategorie, strBeschrijving,strPrijsPerEenheid, strRegelTotaal);
+
+        System.out.println("PRIJSOPGAVE VOOR: "+ klantnaam.getNaam());
+        System.out.println("DATUM: "+ date);
+        System.out.println("BEDRIJF: ");
+        System.out.println();
+        System.out.printf("%-20s | %-20s| %-20s | %-20s | %-20s\n ", strHoeveelheid,strCategorie, strBeschrijving,strPrijsPerEenheid, strRegelTotaal);
         System.out.print("-------------------------------------------------------------------------------------------------------\n");
 
 
@@ -92,19 +97,23 @@ public class PrijsOpgave {
             result += totaal + t.getPrijs();
             if (t.equals(strgezochtOnderdeel)){
                 teller++;
+
+
             }
 
+            double rtotaal = t.getPrijs() * teller;
 
-
-            System.out.printf("%-20s   %-20s  %-20s  € %.2f%n", teller, t.getCategorie(), t.getNaam(), t.getPrijs()); // HOVEELHEID PER ONDERDEEL
+            System.out.printf("%-20s   %-20s  %-20s  € %.2f               € %.2f ", teller, t.getCategorie(), t.getNaam(), t.getPrijs(), rtotaal); // HOVEELHEID PER ONDERDEEL
             System.out.println();
 
         }
         System.out.print("-------------------------------------------------------------------------------------------------------\n");
 
-        System.out.printf("%-60s  %-60s  \n", strKorting, klantnaam.getKortingAlsPercentage()); //
+        System.out.printf("%-70s  %-20s  \n", strKorting, klantnaam.getKortingAlsPercentage()); //
         System.out.printf("%-60s\n", strBtw ); // BEREKEN BTW
-        System.out.printf("%-90s  € %.2f%n", strResult,  result );
+        System.out.printf("%-88s  € %.2f%n", strResult,  result );
+       // System.out.printf("%-88s  € %.2f%n", strResult,  offerte.getTotaalPrijs());  NullpointerException ivm schip is null
+
 
 
 

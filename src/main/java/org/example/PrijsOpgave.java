@@ -1,6 +1,10 @@
 package org.example;
 
 import org.example.klant.Klant;
+import org.example.offerte.Offerte;
+
+import java.sql.SQLOutput;
+import java.util.Date;
 
 public class PrijsOpgave {
 
@@ -10,6 +14,17 @@ public class PrijsOpgave {
     private double materialeKosten;
     private int arbeidsuren;
     private double uurtarief;
+
+    private Offerte offerte;
+
+    private TotaalLijst totaalLijst;
+
+    private Date date;
+
+
+
+
+
 
     public PrijsOpgave(Klant klant, String specificaties, double materialeKosten, int arbeidsuren, double uurtarief) {
         this.klant = klant;

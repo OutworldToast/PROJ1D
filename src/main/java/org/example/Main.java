@@ -1,5 +1,7 @@
 package org.example;
 import org.example.klant.*;
+import org.example.offerte.Offerte;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 

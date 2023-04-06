@@ -1,6 +1,6 @@
 package org.example.klant;
 
-public class Bedrijf extends Klant {
+public class  Bedrijf extends Klant {
     int KVKNummer;
 
     public void setKVKNummer(int KVKNummer) {

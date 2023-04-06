@@ -16,6 +16,7 @@ public class Loop {
     TotaalLijst totaalLijst = new TotaalLijst();
 
     private Offerte offerte;
+    private Klant klant;
 
 
     public Loop(){
@@ -76,7 +77,6 @@ public class Loop {
             if(input.equals("ja")) {
                 System.out.println("Geef een beschrijving van de offerte:");
                 String beschrijving = scanner.nextLine();
-                Klant klant;
 
                 while(true) {
                     System.out.println("Voor welk soort klant wordt de offerte gemaakt?\n" +

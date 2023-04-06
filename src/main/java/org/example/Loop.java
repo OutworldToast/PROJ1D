@@ -129,7 +129,7 @@ public class Loop {
             try {
 
                 int input = scanner.nextInt();
-
+                scanner.nextLine();
                 System.out.print("Voer de naam in:");
                 String naam = scanner.nextLine();
                 System.out.println("Voer de e-mail in:");

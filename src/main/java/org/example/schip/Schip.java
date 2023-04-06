@@ -44,7 +44,7 @@ public class Schip {
         }
     }
 
-    private void printOnderdeelLijst() {
+    private void printOnderdeelLijst() { //UPDATE: pas aan voor hoeveelheid
         totaalLijst.printOnderdeelLijst(onderdeelLijst);
     }
 
@@ -74,12 +74,12 @@ public class Schip {
 
     private void voegOnderdeelToeConsole() { //STANDUP: waar check voor essentiele onderdelen?
         boolean b = true;
-        totaalLijst.printOpties(); //STANDUP: willen we dit hier?
         ArrayList<Onderdeel> lijst = totaalLijst.getTotaalLijst();
         while (b) {
             try {
                 System.out.println("Wat is het nummer van het onderdeel dat u wilt toevoegen?");
                 System.out.println("[0] om terug te gaan");
+                totaalLijst.printOpties();
                 int input = scanner.nextInt();
                 if (input == 0) {
                     b = false;
@@ -149,29 +149,5 @@ public class Schip {
             }
         }
     }
-    /* buiten scope
-    public void setMateriaal() {
-        Scanner scanner = Loop.scanner;
-        boolean b = false;
-        while (!b) {
-            try {
-                System.out.println("Wat voor materiaal?");
-                System.out.println("[1] Offerte bekijken");
-                System.out.println("[2] Verander gebruikerstype");
-                System.out.println("[3] Programma verlaten");
-                int input = scanner.nextInt();
-                switch (input) {
-                    case 1 -> BekijkPrijsOpgave();
-                    case 2 -> BepaalLoop();
-                    case 3 -> Exit();
-                    default -> System.out.println("Dat is geen optie");
-                }
-            } catch (InputMismatchException e) {
-                System.out.println("Typ een cijfer");
-                scanner.next();
-            }
-        }
 
-    }
-    */
 }

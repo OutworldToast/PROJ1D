@@ -1,6 +1,8 @@
 package org.example.offerte;
 
 public class Onderdeel {
+
+    private int hoeveelheid = 1;
     private String naam; //naam van de optie
     private String categorie; //bijbehorende categorie (essentieel of extra)
     private double prijs; //prijs van de optie
@@ -44,6 +46,14 @@ public class Onderdeel {
 
     public int getMilieukorting() {//Methode
         return milieukorting;
+    }
+
+    public int getHoeveelheid() {
+        return hoeveelheid;
+    }
+
+    public void verhoogHoeveelheid() {
+        hoeveelheid++;
     }
 
 }

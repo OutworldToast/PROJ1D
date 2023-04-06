@@ -10,6 +10,8 @@ import java.util.Scanner;
 
 public class Schip {
 
+
+
     private String materiaal;
     private final TotaalLijst totaalLijst;
     private final ArrayList<Onderdeel> onderdeelLijst = new ArrayList<>();
@@ -64,7 +66,17 @@ public class Schip {
 
     public void voegOnderdeelToe(int onderdeelNummer) {
         Onderdeel onderdeel = totaalLijst.getTotaalLijst().get(onderdeelNummer - 1);
-        onderdeelLijst.add(onderdeel);
+
+
+        for (Onderdeel x : onderdeelLijst) {
+            if (x.getNaam().equals(onderdeel.getNaam())){
+                x.verhoogHoeveelheid();
+            }
+            else {
+                onderdeelLijst.add(onderdeel);
+            }
+        }
+
         System.out.printf("Het onderdeel '%s' is toegevoegd%n", onderdeel.getNaam());
     }
 

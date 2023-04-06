@@ -56,4 +56,8 @@ public class Onderdeel {
         hoeveelheid++;
     }
 
+    public void verminderHoeveelheid() {
+        hoeveelheid--;
+    }
+
 }

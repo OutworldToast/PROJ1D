@@ -10,17 +10,9 @@ import java.util.Scanner;
 
 public class Schip {
 
-
-
-    private String materiaal;
-    private final TotaalLijst totaalLijst;
+    private final TotaalLijst totaalLijst = Loop.totaalLijst;
     private final ArrayList<Onderdeel> onderdeelLijst = new ArrayList<>();
     Scanner scanner = Loop.scanner;
-
-    public Schip(TotaalLijst totaalLijst) {
-        this.totaalLijst = totaalLijst;
-        //setMateriaal();
-    }
 
     public void invoerLoop(){
         boolean b = true;
@@ -105,7 +97,13 @@ public class Schip {
 
     public void verwijderOnderdeel(int onderdeelNummer) {
         Onderdeel onderdeel = onderdeelLijst.get(onderdeelNummer - 1);
-        onderdeelLijst.remove(onderdeel);
+
+        if (onderdeel.getHoeveelheid() > 1) {
+            onderdeel.verminderHoeveelheid();
+        } else {
+            onderdeelLijst.remove(onderdeel);
+        }
+
         System.out.printf("Het onderdeel '%s' is verwijderd%n", onderdeel.getNaam());
     }
 
@@ -134,7 +132,6 @@ public class Schip {
     private void verwijderOnderdeelConsole() {
         boolean b = true;
         printOnderdeelLijst();
-        ArrayList<Onderdeel> lijst = onderdeelLijst;
         while (b) {
             try {
                 System.out.println("Wat is het nummer van het onderdeel?");
@@ -142,7 +139,7 @@ public class Schip {
                 int input = scanner.nextInt();
                 if (input == 0) {
                     b = false;
-                } else if (input > 0 && input <= lijst.size()) {
+                } else if (input > 0 && input <= onderdeelLijst.size()) {
                     verwijderOnderdeel(input);
                     b = false;
                 } else {
@@ -153,7 +150,7 @@ public class Schip {
             }
         }
     }
-    /* STANDUP: materiaalklasse ofzo nodig
+    /* buiten scope
     public void setMateriaal() {
         Scanner scanner = Loop.scanner;
         boolean b = false;

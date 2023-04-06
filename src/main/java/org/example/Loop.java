@@ -4,7 +4,6 @@ import org.example.klant.Bedrijf;
 import org.example.klant.Klant;
 import org.example.klant.Overheid;
 import org.example.offerte.Offerte;
-import org.example.schip.Schip;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -129,8 +128,9 @@ public class Loop {
             try {
 
                 int input = scanner.nextInt();
+                scanner.nextLine();
 
-                System.out.print("Voer de naam in:");
+                System.out.println("Voer de naam in:");
                 String naam = scanner.nextLine();
                 System.out.println("Voer de e-mail in:");
                 String email = scanner.nextLine();
@@ -278,14 +278,16 @@ public class Loop {
         while (loop) {
             try {
                 System.out.println("Wat wilt u doen?");
+                System.out.println("[0] Programma verlaten");
                 System.out.println("[1] Offerte bekijken");
                 System.out.println("[2] Verander gebruikerstype");
-                System.out.println("[3] Programma verlaten");
+                System.out.println("[3]");
                 int input = scanner.nextInt();
                 switch (input) {
+                    case 0 -> Exit();
                     case 1 -> BekijkPrijsOpgave();
                     case 2 -> BepaalLoop();
-                    case 3 -> Exit();
+                    case 3 -> totaalLijst.printOpties();
                     default -> System.out.println("Dat is geen optie");
                 }
             } catch (InputMismatchException e) {

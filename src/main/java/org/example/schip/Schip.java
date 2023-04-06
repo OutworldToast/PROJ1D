@@ -31,6 +31,7 @@ public class Schip {
                 System.out.println("[4] Onderdeel toevoegen aan schip");
                 System.out.println("[5] Onderdeel verwijderen uit schip");
                 System.out.println("[6] Onderdeel toevoegen/veranderen in totaallijst");
+                System.out.println("[7] Milieukorting toevoegen aan onderdeel");
                 int input = scanner.nextInt();
                 switch (input) {
                     case 1 -> b = false;
@@ -39,6 +40,7 @@ public class Schip {
                     case 4 -> voegOnderdeelToeConsole();
                     case 5 -> verwijderOnderdeelConsole();
                     case 6 -> totaalLijst.addLoop();
+                    case 7 -> invoerKorting();
                     default -> System.out.println("Dat is geen optie");
                 }
             } catch (InputMismatchException e) {
@@ -93,6 +95,28 @@ public class Schip {
         Onderdeel onderdeel = onderdeelLijst.get(onderdeelNummer - 1);
         onderdeelLijst.remove(onderdeel);
         System.out.printf("Het onderdeel '%s' is verwijderd%n", onderdeel.getNaam());
+    }
+
+    public void invoerKorting(){
+        Scanner sc = new Scanner(System.in);
+        boolean k = true;
+        while(k){
+            try{
+                ArrayList<Onderdeel> onderdeel = getTotaalOnderdeelLijst().getTotaalLijst();
+                getTotaalOnderdeelLijst().printOnderdeelLijst(onderdeel);
+                System.out.println("Voor welke onderdeel wilt u korting toepassen?");
+                int keuze = sc.nextInt();
+                if (keuze > 0 && keuze <= onderdeel.size()){
+                    scanner.nextLine();
+                    System.out.println("Hoeveel procent korting wilt u toepassen?");
+                    int percentage = sc.nextInt();
+                    onderdeel.get(keuze - 1).setMilieukorting(percentage);//Binnen 0-100 percentage toevoegen
+                    k = false;
+                }
+            }catch (Exception d){
+                System.out.println("Geen onderdeel aangegeven");
+            }
+        }
     }
 
     private void verwijderOnderdeelConsole() {

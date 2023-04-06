@@ -104,11 +104,20 @@ public class PrijsOpgave {
 
         for (Onderdeel t : totaalLijst.getTotaalLijst()
         ) {
-            result = regelTotaal * t.getPrijs();
 
 
 
-            System.out.printf("%-20s   %-20s  %-20s  € %.2f                € %.2f  ", teller, t.getCategorie(), t.getNaam(), t.getPrijs(), result);
+            String gezochtOnderdeel = "Mast";
+            if (gezochtOnderdeel.equals(t.getNaam())){
+                teller += t.getHoeveelheid();
+
+            }
+
+            result = t.getPrijs() * t.getHoeveelheid();
+
+
+
+            System.out.printf("%-20s   %-20s  %-20s  € %.2f                € %.2f  ", t.getHoeveelheid(), t.getCategorie(), t.getNaam(), t.getPrijs(), result);
             System.out.println();
             totaal += t.getPrijs();
 

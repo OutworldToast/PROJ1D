@@ -4,7 +4,9 @@ import org.example.klant.Bedrijf;
 import org.example.klant.Klant;
 import org.example.klant.Overheid;
 import org.example.offerte.Offerte;
+import org.example.offerte.Onderdeel;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -23,7 +25,7 @@ public class Loop {
 
     private void scheepsbouwerloop() {
 
-        if (offerte != null) {
+        if (offerte == null) {
             offerteMakenLoop();
         }
 
@@ -281,19 +283,52 @@ public class Loop {
                 System.out.println("[0] Programma verlaten");
                 System.out.println("[1] Offerte bekijken");
                 System.out.println("[2] Verander gebruikerstype");
-                System.out.println("[3]");
+                System.out.println("[3] Bekijk Opties");
                 int input = scanner.nextInt();
                 switch (input) {
                     case 0 -> Exit();
                     case 1 -> BekijkPrijsOpgave();
                     case 2 -> BepaalLoop();
-                    case 3 -> totaalLijst.printOpties();
+                    case 3 -> bekijkOptielijst();
                     default -> System.out.println("Dat is geen optie");
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Typ een cijfer");
                 scanner.next();
             }
+        }
+    }
+    private void bekijkOptielijst() {
+        ArrayList<Onderdeel> lijst = new ArrayList<>();
+        boolean b = true;
+        while (b) {
+            try {
+                System.out.println("Welke onderdelen wilt u selecteren");
+                System.out.println("[0] Klaar");
+                totaalLijst.printOpties();
+                int input = scanner.nextInt();
+                if (input == 0) {
+                    b = false;
+                } else if (input > 0 && input <= totaalLijst.getTotaalLijst().size()) {
+                    Onderdeel onderdeel = totaalLijst.getTotaalLijst().get(input - 1);
+                    lijst.add(onderdeel);
+                    System.out.println("U heeft onderdeel: "+ onderdeel.getNaam() + " toegevoegd.");
+                    System.out.println();
+                } else {
+                    System.out.println("Dat is geen optie");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Typ een getal");
+                scanner.next();
+            }
+        }
+        double som = 0;
+        for (Onderdeel onderdeel : lijst) {
+            som += onderdeel.getPrijs();
+        }
+        if (som != 0){
+            System.out.println("Totaalprijs van geselecteerde onderdelen is: "+som);
+            System.out.println();
         }
     }
 

@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class Offerte {
     private String beschrijving;
     private Klant klant;
-    private Schip schip;
+    private final Schip schip = new Schip();
 
     public Offerte(String beschrijving, Klant klant) {
         this.beschrijving = beschrijving;
@@ -39,7 +39,6 @@ public class Offerte {
 
 
     public double getTotaalPrijs() {//NOG TOE TE VOEGEN: niet oude prijs tonen als er geen milieukorting is
-
 
         double totaalPrijs = 0.0;
 

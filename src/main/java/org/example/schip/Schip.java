@@ -10,14 +10,9 @@ import java.util.Scanner;
 
 public class Schip {
 
-    private final TotaalLijst totaalLijst;
+    private final TotaalLijst totaalLijst = Loop.totaalLijst;
     private final ArrayList<Onderdeel> onderdeelLijst = new ArrayList<>();
     Scanner scanner = Loop.scanner;
-
-    public Schip(TotaalLijst totaalLijst) {
-        this.totaalLijst = totaalLijst;
-        //setMateriaal();
-    }
 
     public void invoerLoop(){
         boolean b = true;

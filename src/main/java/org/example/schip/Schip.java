@@ -96,6 +96,7 @@ public class Schip {
         onderdeelLijst.remove(onderdeel);
         System.out.printf("Het onderdeel '%s' is verwijderd%n", onderdeel.getNaam());
     }
+
     public void invoerKorting(){
         Scanner sc = new Scanner(System.in);
         boolean k = true;

@@ -3,7 +3,6 @@ package org.example;
 import org.example.klant.Bedrijf;
 import org.example.klant.Klant;
 import org.example.klant.Overheid;
-import org.example.klant.Particulier;
 import org.example.offerte.Offerte;
 import org.example.schip.Schip;
 
@@ -138,7 +137,7 @@ public class Loop {
 
                 switch (input) {
                     case 1 -> {
-                        return new Particulier(naam, email);
+                        return new Klant(naam, email);
                     }
                     case 2 -> {
 
@@ -225,8 +224,55 @@ public class Loop {
     }
 
     private void veranderKlant() {
-
+        System.out.println("Wat is het type klant?[1] Particulier, [2] Overheid, [3] Bedrijf, [4] aangepast");
+        int typeklant = scanner.nextInt();
+        scanner.nextLine();
+        if (typeklant == 1) {
+            System.out.println("Voer de naam van de klant in:");
+            String naam = scanner.nextLine();
+            System.out.println("Voer de e-mail van de klant in:");
+            String Email = scanner.nextLine();
+            offerte.setKlant(new Klant(naam, Email));
+            offerte.getKlant().printKlantInfo();
+        }
+        if (typeklant == 2) {
+            System.out.println("Voer de naam van de overheid in:");
+            String naam = scanner.nextLine();
+            System.out.println("Voer de e-mail van de overheid in:");
+            String Email = scanner.nextLine();
+            System.out.println("Voer de Gemeente van de overheid in:");
+            String Gemeente = scanner.nextLine();
+            offerte.setKlant(new Overheid(naam, Email, Gemeente));
+            offerte.getKlant().printKlantInfo();
+        }
+        if (typeklant == 3) {
+            System.out.println("Voer de naam van het bedrijf in:");
+            String naam = scanner.nextLine();
+            System.out.println("Voer de e-mail van het bedrijf in:");
+            String Email = scanner.nextLine();
+            System.out.println("Voer het KVKNummer van het bedrijf in:");
+            int KVKNummer = scanner.nextInt();
+            scanner.nextLine();
+            offerte.setKlant(new Bedrijf(naam, Email, KVKNummer));
+            offerte.getKlant().printKlantInfo();
+        }
+        if (typeklant == 4) {
+            System.out.println("Voer de naam van de klant in:");
+            String naam = scanner.nextLine();
+            System.out.println("Voer de e-mail van de klant in:");
+            String Email = scanner.nextLine();
+            System.out.println("Voer de extra informatie van de klant in:");
+            String extraInfo = scanner.nextLine();
+            offerte.setKlant(new Klant(naam, Email));
+            System.out.println("Voer de korting als percentage in (5% wordt ingevuld als 5):");
+            int kortingAlsPercentage = scanner.nextInt();
+            scanner.nextLine();
+            offerte.getKlant().setKortingAlsPercentage(kortingAlsPercentage);
+            offerte.getKlant().printKlantInfo();
+            System.out.println(extraInfo);
+        }
     }
+
 
     private void klantloop() {
         while (loop) {

@@ -2,18 +2,15 @@ package org.example;
 
 import org.example.klant.Klant;
 import org.example.offerte.Offerte;
+import org.example.offerte.Onderdeel;
 
 import java.sql.SQLOutput;
 import java.util.Date;
 
 public class PrijsOpgave {
 
-    private Klant klant;
-   ///private Schip schiptype;
-    private String specificaties;
-    private double materialeKosten;
-    private int arbeidsuren;
-    private double uurtarief;
+    private Klant klantnaam;
+    ///private Schip schiptype;
 
     private Offerte offerte;
 
@@ -26,65 +23,91 @@ public class PrijsOpgave {
 
 
 
-    public PrijsOpgave(Klant klant, String specificaties, double materialeKosten, int arbeidsuren, double uurtarief) {
-        this.klant = klant;
-        this.specificaties = specificaties;
-        this.materialeKosten = materialeKosten;
-        this.arbeidsuren = arbeidsuren;
-        this.uurtarief = uurtarief;
+
+
+    public PrijsOpgave(Klant klantnaam, Offerte offerte, TotaalLijst totaalLijst) {
+        this.klantnaam = klantnaam;
+        this.offerte = offerte;
+        this.totaalLijst = totaalLijst;
     }
 
-    public Klant getKlant() {
-        return klant;
+    public Klant getKlantnaam() {
+        return klantnaam;
     }
 
-    public void setKlant(Klant klant) {
-        this.klant = klant;
+    public void setKlantnaam(Klant klantnaam) {
+        this.klantnaam = klantnaam;
     }
 
-    public String getSpecificaties() {
-        return specificaties;
+    public Offerte getOfferte() {
+        return offerte;
     }
 
-    public void setSpecificaties(String specificaties) {
-        this.specificaties = specificaties;
+    public void setOfferte(Offerte offerte) {
+        this.offerte = offerte;
     }
 
-    public double getMaterialeKosten() {
-        return materialeKosten;
+    public TotaalLijst getTotaalLijst() {
+        return totaalLijst;
     }
 
-    public void setMaterialeKosten(double materialeKosten) {
-        this.materialeKosten = materialeKosten;
+    public void setTotaalLijst(TotaalLijst totaalLijst) {
+        this.totaalLijst = totaalLijst;
     }
 
-    public int getArbeidsuren() {
-        return arbeidsuren;
-    }
 
-    public void setArbeidsuren(int arbeidsuren) {
-        this.arbeidsuren = arbeidsuren;
-    }
+    public void toonPrijsopgave() {
 
-    public double getUurtarief() {
-        return uurtarief;
-    }
+        String strOfferte = "PRIJSOPGAVE";
+        String strResult = "TOTAAL ONDERDELEN: ";
+        String strHoeveelheid = "HVH";
+        String strBeschrijving  = "BESCHRIJVING";
+        String strVerkoper = "VERKOPER";
+        String strPrijsPerEenheid = "PRIJS PER EENHEID";
+        String strRegelTotaal = "REGELTOTAAL";
+        String strKorting = "KORTING";
+        String strBtw = "BTW";
+        String strCategorie = "CATEGORIE";
 
-    public void setUurtarief(double uurtarief) {
-        this.uurtarief = uurtarief;
-    }
+        double totaal = 0;
+        double result = 0;
+        int teller = 1;
 
-    public double berekenTotaleKosten() {
-        return getMaterialeKosten()  + (getArbeidsuren() * getUurtarief());
-    }
+        System.out.printf( "%60s\n", strOfferte);
+        System.out.print("-------------------------------------------------------------------------------------------------------");
+        System.out.println();
 
-    public void printPrijsopgave() {
-        System.out.println("Prijsopgave voor " + klant.getNaam());
-       // System.out.println("Scheepsbouwproject: " + schipType + " met " + specificaties);
-        System.out.println("Materialenkosten: €" + materialeKosten);
-        System.out.println("Arbeidsuren: " + arbeidsuren);
-        System.out.println("Uurtarief: €" + uurtarief);
-        System.out.println("Totale kosten: €" + berekenTotaleKosten());
+        System.out.println("02-01-2023");
+        System.out.println("AAN: "+ klantnaam.getNaam());
+        System.out.printf("%-20s | %-20s| %-20s | %-20s  | %-20s\n ", strHoeveelheid,strCategorie, strBeschrijving,strPrijsPerEenheid, strRegelTotaal);
+        System.out.print("-------------------------------------------------------------------------------------------------------\n");
+
+
+
+
+        for (Onderdeel t : totaalLijst.getTotaalLijst()
+        ) {
+            String strgezochtOnderdeel = t.getNaam();
+            result += totaal + t.getPrijs();
+            if (t.equals(strgezochtOnderdeel)){
+                teller++;
+            }
+
+
+
+            System.out.printf("%-20s   %-20s  %-20s  € %.2f%n", teller, t.getCategorie(), t.getNaam(), t.getPrijs()); // HOVEELHEID PER ONDERDEEL
+            System.out.println();
+
+        }
+        System.out.print("-------------------------------------------------------------------------------------------------------\n");
+
+        System.out.printf("%-60s  %-60s  \n", strKorting, klantnaam.getKortingAlsPercentage()); //
+        System.out.printf("%-60s\n", strBtw ); // BEREKEN BTW
+        System.out.printf("%-90s  € %.2f%n", strResult,  result );
+
+
+
+
     }
 
 }

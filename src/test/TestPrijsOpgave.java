@@ -5,6 +5,7 @@ import org.example.klant.Bedrijf;
 import org.example.klant.Klant;
 import org.example.klant.Particulier;
 import org.example.offerte.Offerte;
+import org.example.offerte.Onderdeel;
 import org.example.schip.Schip;
 
 import java.util.Date;
@@ -22,13 +23,15 @@ public class TestPrijsOpgave {
         TotaalLijst t1 = new TotaalLijst();
         Date dateToday = new Date();
 
+
         PrijsOpgave prijsOpgave = new PrijsOpgave(k1,ofe,t1,dateToday);
+        t1.getTotaalLijst().get(6).setMilieukorting(20);
 
 
 
-        t1.addOptie("Goud accenten","Extra",1200,0);
-        t1.addOptie("Mast","Essentiel",455,0);
         prijsOpgave.toonPrijsopgave();
     }
+
+
 
 }

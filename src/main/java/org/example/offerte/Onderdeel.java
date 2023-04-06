@@ -13,6 +13,7 @@ public class Onderdeel {
         this.categorie = categorie;
         this.prijs = prijs;
         this.milieukorting = milieukorting;
+
     }
 
     public String getNaam() {

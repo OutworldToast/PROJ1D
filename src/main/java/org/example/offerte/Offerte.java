@@ -58,7 +58,7 @@ public class Offerte {
 
     public double getTotaalPrijs() {
 
-
+        //deze moet klant korting meerekenen
         double totaalPrijs = 0.0;
 
         for(Onderdeel onderdeel : schip.getOnderdeelLijst()) {

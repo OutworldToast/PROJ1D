@@ -89,7 +89,6 @@ public class PrijsOpgave {
         System.out.print("-------------------------------------------------------------------------------------------------------");
         System.out.println();
 
-
         System.out.println("PRIJSOPGAVE VOOR: "+ klantnaam.getNaam());
         System.out.println("DATUM: "+ date);
         System.out.println("BEDRIJF: "  );
@@ -97,31 +96,12 @@ public class PrijsOpgave {
         System.out.printf("%-20s | %-20s| %-20s | %-20s | %-20s\n ", strHoeveelheid,strCategorie, strBeschrijving,strPrijsPerEenheid, strRegelTotaal);
         System.out.print("-------------------------------------------------------------------------------------------------------\n");
 
-
-
-
-
-
         for (Onderdeel t : totaalLijst.getTotaalLijst()
         ) {
-
-
-
-            String gezochtOnderdeel = "Mast";
-            if (gezochtOnderdeel.equals(t.getNaam())){
-                teller += t.getHoeveelheid();
-
-            }
-
-            result = t.getPrijs() * t.getHoeveelheid();
-
-
-
-            System.out.printf("%-20s   %-20s  %-20s  € %.2f                € %.2f  ", t.getHoeveelheid(), t.getCategorie(), t.getNaam(), t.getPrijs(), result);
+            System.out.printf("%-20s   %-20s  %-20s  € %.2f                € %.2f  ", teller, t.getCategorie(), t.getNaam(), t.getPrijs(), result);
             System.out.println();
+            result = t.getPrijs();
             totaal += t.getPrijs();
-
-
 
         }
 
@@ -130,19 +110,7 @@ public class PrijsOpgave {
 
         System.out.printf("%-70s  %-20s  \n", strKorting, klantnaam.getKortingAlsPercentage()); //
         System.out.printf("%-60s\n", strBtw ); // BEREKEN BTW
-        System.out.printf("%-88s  € %.2f%n", strResult,  totaal );
-
-
-
-
-
-
-
-
-
-
-
-
+        System.out.printf("%-88s  € %.2f%n", strResult,  totaal + result);
 
     }
 

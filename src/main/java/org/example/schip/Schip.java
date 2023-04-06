@@ -108,18 +108,17 @@ public class Schip {
     }
 
     public void invoerKorting(){
-        Scanner sc = new Scanner(System.in);
         boolean k = true;
         while(k){
             try{
                 ArrayList<Onderdeel> onderdeel = getTotaalOnderdeelLijst().getTotaalLijst();
                 getTotaalOnderdeelLijst().printOnderdeelLijst(onderdeel);
                 System.out.println("Voor welke onderdeel wilt u korting toepassen?");
-                int keuze = sc.nextInt();
+                int keuze = scanner.nextInt();
                 if (keuze > 0 && keuze <= onderdeel.size()){
                     scanner.nextLine();
                     System.out.println("Hoeveel procent korting wilt u toepassen?");
-                    int percentage = sc.nextInt();
+                    int percentage = scanner.nextInt();
                     onderdeel.get(keuze - 1).setMilieukorting(percentage);//Binnen 0-100 percentage toevoegen
                     k = false;
                 }

@@ -74,6 +74,7 @@ public class Loop {
 
     private void BekijkPrijsOpgave() {
         //voeg code toe
+
     }
 
     private void MaakOfferte() {

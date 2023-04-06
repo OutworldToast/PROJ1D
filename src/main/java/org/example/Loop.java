@@ -5,7 +5,6 @@ import org.example.klant.Klant;
 import org.example.klant.Overheid;
 import org.example.klant.Particulier;
 import org.example.offerte.Offerte;
-import org.example.offerte.Onderdeel;
 import org.example.schip.Schip;
 
 import java.util.InputMismatchException;
@@ -69,76 +68,92 @@ public class Loop {
 
         while(!stopLoop) {
             System.out.println(
-                    "Wil je gelijk een offerte aanmaken? Hiermee kun je onderdelen, schepen en klanten aanmaken.\n[ja] [nee]"
+                    "Wil je gelijk een offerte aanmaken? Hiermee kun je onderdelen, schepen en klanten aanmaken.\n[1] Ja\n [2] Nee"
             );
 
-            String input = scanner.nextLine();
+            int input = scanner.nextInt();
 
-            if(input.equals("ja")) {
+            if(input == 1) {
                 System.out.println("Geef een beschrijving van de offerte:");
                 String beschrijving = scanner.nextLine();
-                Klant klant;
 
-                while(true) {
-                    System.out.println("Voor welk soort klant wordt de offerte gemaakt?\n" +
-                            "[particulier] [bedrijf] [overheid]");
+                Klant klant = kiesKlantTypeLoop();
 
-                    input = scanner.nextLine();
 
-                    if (input.equals("particulier")) {
-                        System.out.print("Voer de naam in:");
-                        String naam = scanner.nextLine();
-                        System.out.println("Voer de e-mail in:");
-                        String email = scanner.nextLine();
-
-                        klant = new Particulier(naam, email);
-                        break;
-                    }
-                    else if (input.equals("bedrijf")) {
-                        System.out.print("Voer de naam in:");
-                        String naam = scanner.nextLine();
-                        System.out.println("Voer de e-mail in:");
-                        String email = scanner.nextLine();
-                        System.out.print("Voer het KVK nummer in:");
-                        int kvk;
-
-                        try {
-                            kvk = scanner.nextInt();
-                        } catch (InputMismatchException e) {
-                            System.out.println("[error] Typ een cijfer");
-                            scanner.nextLine();
-                            continue;
-                        }
-
-                        klant = new Bedrijf(naam, email, kvk);
-                        break;
-                    }
-                    else if (input.equals("overheid")) {
-                        System.out.print("Voer de naam in:");
-                        String naam = scanner.nextLine();
-                        System.out.println("Voer de e-mail in:");
-                        String email = scanner.nextLine();
-                        System.out.print("Voer de gemeente in:");
-                        String gemeente = scanner.nextLine();
-
-                        klant = new Overheid(naam, email, gemeente);
-                        break;
-                    }
-                    else {
-                        System.out.println("Dat is geen optie");
-                    }
-                }
 
                 offerte = new Offerte(beschrijving, klant);
                 stopLoop = true;
             }
-            else if(input.equals("nee")) {
+            else if(input == 2) {
                 stopLoop = true;
             }
             else {
                 System.out.println("Dat is geen optie");
             }
         }
+    }
+
+    private Klant kiesKlantTypeLoop () {
+
+        while (true) {
+            try {
+
+                System.out.println("""
+                                Voor welk soort klant wordt de offerte gemaakt?
+                            [1] Particulier
+                            [2] Bedrijf
+                            [3] Overheid
+                            """);
+
+                    int input = scanner.nextInt();
+
+                    switch (input) {
+                        case 1 -> {
+                            System.out.print("Voer de naam in:");
+                            String naam = scanner.nextLine();
+                            System.out.println("Voer de e-mail in:");
+                            String email = scanner.nextLine();
+
+                            return new Particulier(naam, email);
+                        }
+                        case 2 -> {
+                            System.out.print("Voer de naam in:");
+                            String naam = scanner.nextLine();
+                            System.out.println("Voer de e-mail in:");
+                            String email = scanner.nextLine();
+                            System.out.print("Voer het KVK nummer in:");
+                            int kvk;
+
+                            try {
+                                kvk = scanner.nextInt();
+                            } catch (InputMismatchException e) {
+                                System.out.println("Typ een cijfer");
+                                scanner.nextLine();
+                                continue;
+                            }
+
+                            return new Bedrijf(naam, email, kvk);
+                        }
+                        case 3 -> {
+                            System.out.print("Voer de naam in:");
+                            String naam = scanner.nextLine();
+                            System.out.println("Voer de e-mail in:");
+                            String email = scanner.nextLine();
+                            System.out.print("Voer de gemeente in:");
+                            String gemeente = scanner.nextLine();
+
+                            return new Overheid(naam, email, gemeente);
+                        }
+                        default -> System.out.println("Dat is geen optie");
+                    }
+
+
+            } catch (InputMismatchException e) {
+                System.out.println("Typ een cijfer");
+                scanner.next();
+            }
+        }
+
     }
 
     private void veranderSchip() { //STANDUP: waar zetten we schepenlijst?

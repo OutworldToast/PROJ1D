@@ -10,9 +10,6 @@ import java.util.Scanner;
 
 public class Schip {
 
-
-
-    private String materiaal;
     private final TotaalLijst totaalLijst;
     private final ArrayList<Onderdeel> onderdeelLijst = new ArrayList<>();
     Scanner scanner = Loop.scanner;

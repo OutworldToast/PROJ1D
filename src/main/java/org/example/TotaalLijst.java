@@ -112,29 +112,31 @@ public class TotaalLijst {
                         }
                         System.out.println("Hoeveel kost het onderdeel?");
                         double prijs = scanner.nextDouble(); //voeg afronding toe
-                        scanner.next();
+                        scanner.nextLine();
                         System.out.println("Wat is het milieukortingspercentage? (0-100) ");
                         int milieukorting = scanner.nextInt();
-                        scanner.next();
+                        scanner.nextLine();
                         addOptie(naam, categorie, prijs, milieukorting);
+                        System.out.printf("Onderdeel '%s' is toegevoegd%n", naam);
                         }
                     case 2 -> updateOnderdeelLoop();
                     default -> {System.out.println("Dat is geen optie");scanner.next();}
                 }
             } catch (Exception e) {
                 System.out.println("Typ een getal");
+                scanner.next();
             }
 
         }
     }
 
     private void updateOnderdeelLoop(){
-        printOpties();
         boolean b = true;
         while (b) {
             try {
                 System.out.println("Wat is het nummer van het onderdeel?");
                 System.out.println("[0] om terug te gaan");
+                printOpties();
                 int input = scanner.nextInt();
                 if (input == 0) {
                     b = false;
@@ -147,6 +149,7 @@ public class TotaalLijst {
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Typ een getal");
+                scanner.next();
             }
         }
     }
@@ -165,18 +168,38 @@ public class TotaalLijst {
                 System.out.println("[3] Verander prijs");
                 System.out.println("[4] Verander milieukortingspercentage");
                 int input = scanner.nextInt();
+                scanner.nextLine();
                 switch (input) {//NOG TOE TE VOEGEN: controles voor foutieve inputs
                     case 0 -> b = false;
-                    case 1 -> onderdeel.setNaam(scanner.nextLine());
-                    case 2 -> onderdeel.setCategorie(scanner.nextLine());
-                    case 3 -> onderdeel.setPrijs(scanner.nextDouble());
-                    case 4 -> onderdeel.setMilieukorting(scanner.nextInt());
+                    case 1 -> {
+                        System.out.println("Wat is de nieuwe naam?");
+                        onderdeel.setNaam(scanner.nextLine());
+                        }
+                    case 2 -> {
+                        System.out.println("Wat is de nieuwe categorie?");
+                        String categorie = scanner.nextLine();
+                        if (categorie.equalsIgnoreCase("EX")){
+                            categorie = "Extra";
+                        } else if (categorie.equalsIgnoreCase("ES")) {
+                            categorie = "Essentieel";
+                        } else {
+                            System.out.println("Dat is geen optie");
+                        }
+                        onderdeel.setCategorie(categorie);
+                        }
+                    case 3 -> {
+                        System.out.println("Wat is de nieuwe prijs?");
+                        onderdeel.setPrijs(scanner.nextDouble());scanner.nextLine();}
+                    case 4 -> {
+                        System.out.println("Wat is de nieuwe milieukortingspercentage?");
+                        onderdeel.setMilieukorting(scanner.nextInt());scanner.nextLine();}
                     default -> System.out.println("Dat is geen optie");
                 }
                 b = false;
 
             } catch (InputMismatchException e) {
                 System.out.println("Typ een getal");
+                scanner.next();
             }
         }
     }

@@ -13,7 +13,7 @@ public class PrijsOpgave {
 
     private Klant klantnaam;
 
-    //private Schip schiptype;
+
 
 
 

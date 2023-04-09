@@ -3,7 +3,7 @@ import org.example.PrijsOpgave;
 import org.example.TotaalLijst;
 import org.example.klant.Bedrijf;
 import org.example.klant.Klant;
-import org.example.klant.Particulier;
+i
 import org.example.offerte.Offerte;
 import org.example.offerte.Onderdeel;
 import org.example.schip.Schip;

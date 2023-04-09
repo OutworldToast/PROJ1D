@@ -16,6 +16,6 @@ public class Overheid extends Klant {
     @Override
     public void printKlantInfo() {
         super.printKlantInfo();
-        System.out.println(Gemeente);
+        System.out.println("De naam van de gemeente is: "+ Gemeente);
     }
 }

@@ -10,15 +10,9 @@ import java.util.Scanner;
 
 public class Schip {
 
-    private String materiaal;
-    private final TotaalLijst totaalLijst;
+    private final TotaalLijst totaalLijst = Loop.totaalLijst;
     private final ArrayList<Onderdeel> onderdeelLijst = new ArrayList<>();
     Scanner scanner = Loop.scanner;
-
-    public Schip(TotaalLijst totaalLijst) {
-        this.totaalLijst = totaalLijst;
-        //setMateriaal();
-    }
 
     public void invoerLoop(){
         boolean b = true;
@@ -31,6 +25,7 @@ public class Schip {
                 System.out.println("[4] Onderdeel toevoegen aan schip");
                 System.out.println("[5] Onderdeel verwijderen uit schip");
                 System.out.println("[6] Onderdeel toevoegen/veranderen in totaallijst");
+                System.out.println("[7] Milieukorting toevoegen aan onderdeel");
                 int input = scanner.nextInt();
                 switch (input) {
                     case 1 -> b = false;
@@ -39,6 +34,7 @@ public class Schip {
                     case 4 -> voegOnderdeelToeConsole();
                     case 5 -> verwijderOnderdeelConsole();
                     case 6 -> totaalLijst.addLoop();
+                    case 7 -> invoerKorting();
                     default -> System.out.println("Dat is geen optie");
                 }
             } catch (InputMismatchException e) {
@@ -62,7 +58,17 @@ public class Schip {
 
     public void voegOnderdeelToe(int onderdeelNummer) {
         Onderdeel onderdeel = totaalLijst.getTotaalLijst().get(onderdeelNummer - 1);
-        onderdeelLijst.add(onderdeel);
+
+
+        for (Onderdeel x : onderdeelLijst) {
+            if (x.getNaam().equals(onderdeel.getNaam())){
+                x.verhoogHoeveelheid();
+            }
+            else {
+                onderdeelLijst.add(onderdeel);
+            }
+        }
+
         System.out.printf("Het onderdeel '%s' is toegevoegd%n", onderdeel.getNaam());
     }
 
@@ -72,7 +78,7 @@ public class Schip {
         ArrayList<Onderdeel> lijst = totaalLijst.getTotaalLijst();
         while (b) {
             try {
-                System.out.println("Wat is het nummer van het onderdeel?");
+                System.out.println("Wat is het nummer van het onderdeel dat u wilt toevoegen?");
                 System.out.println("[0] om terug te gaan");
                 int input = scanner.nextInt();
                 if (input == 0) {
@@ -91,14 +97,41 @@ public class Schip {
 
     public void verwijderOnderdeel(int onderdeelNummer) {
         Onderdeel onderdeel = onderdeelLijst.get(onderdeelNummer - 1);
-        onderdeelLijst.remove(onderdeel);
+
+        if (onderdeel.getHoeveelheid() > 1) {
+            onderdeel.verminderHoeveelheid();
+        } else {
+            onderdeelLijst.remove(onderdeel);
+        }
+
         System.out.printf("Het onderdeel '%s' is verwijderd%n", onderdeel.getNaam());
+    }
+
+    public void invoerKorting(){
+        Scanner sc = new Scanner(System.in);
+        boolean k = true;
+        while(k){
+            try{
+                ArrayList<Onderdeel> onderdeel = getTotaalOnderdeelLijst().getTotaalLijst();
+                getTotaalOnderdeelLijst().printOnderdeelLijst(onderdeel);
+                System.out.println("Voor welke onderdeel wilt u korting toepassen?");
+                int keuze = sc.nextInt();
+                if (keuze > 0 && keuze <= onderdeel.size()){
+                    scanner.nextLine();
+                    System.out.println("Hoeveel procent korting wilt u toepassen?");
+                    int percentage = sc.nextInt();
+                    onderdeel.get(keuze - 1).setMilieukorting(percentage);//Binnen 0-100 percentage toevoegen
+                    k = false;
+                }
+            }catch (Exception d){
+                System.out.println("Geen onderdeel aangegeven");
+            }
+        }
     }
 
     private void verwijderOnderdeelConsole() {
         boolean b = true;
         printOnderdeelLijst();
-        ArrayList<Onderdeel> lijst = onderdeelLijst;
         while (b) {
             try {
                 System.out.println("Wat is het nummer van het onderdeel?");
@@ -106,7 +139,7 @@ public class Schip {
                 int input = scanner.nextInt();
                 if (input == 0) {
                     b = false;
-                } else if (input > 0 && input <= lijst.size()) {
+                } else if (input > 0 && input <= onderdeelLijst.size()) {
                     verwijderOnderdeel(input);
                     b = false;
                 } else {
@@ -117,7 +150,7 @@ public class Schip {
             }
         }
     }
-    /* STANDUP: materiaalklasse ofzo nodig
+    /* buiten scope
     public void setMateriaal() {
         Scanner scanner = Loop.scanner;
         boolean b = false;

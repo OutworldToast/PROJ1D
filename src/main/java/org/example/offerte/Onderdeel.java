@@ -1,12 +1,14 @@
 package org.example.offerte;
 
 public class Onderdeel {
+
+    private int hoeveelheid = 1;
     private String naam; //naam van de optie
     private String categorie; //bijbehorende categorie (essentieel of extra)
     private double prijs; //prijs van de optie
     private int milieukorting;//Berekende korting voor elk onderdeel indien van toepassing
 
-    private int hoeveelheid = 1;
+
 
     public Onderdeel(String naam, String categorie, double prijs, int milieukorting) {
         this.naam = naam;
@@ -53,8 +55,16 @@ public class Onderdeel {
         return milieukorting;
     }
 
-    public double berekenGereduceerdePrijs(double prijs) {//Nieuwprijs na korting
-        double gereduceerdePrijs = prijs * (1 - this.getMilieukorting());
-        return gereduceerdePrijs;
+    public int getHoeveelheid() {
+        return hoeveelheid;
     }
+
+    public void verhoogHoeveelheid() {
+        hoeveelheid++;
+    }
+
+    public void verminderHoeveelheid() {
+        hoeveelheid--;
+    }
+
 }

@@ -14,24 +14,4 @@ public class TestPrijsOpgave {
 
 
 
-    public static void main(String[] args) {
-        // Start de main loop.
 
-
-        Klant k1 = new Bedrijf("Jantje", "jan@gmail.com",123456);
-        Offerte ofe = new Offerte("mijOffr", k1);
-        TotaalLijst t1 = new TotaalLijst();
-        Date dateToday = new Date();
-
-
-        PrijsOpgave prijsOpgave = new PrijsOpgave(k1,ofe,t1,dateToday);
-        t1.getTotaalLijst().get(6).setMilieukorting(20);
-
-
-
-        prijsOpgave.toonPrijsopgave();
-    }
-
-
-
-}

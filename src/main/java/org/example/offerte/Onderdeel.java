@@ -55,9 +55,7 @@ public class Onderdeel {
         return milieukorting;
     }
 
-    public int getHoeveelheid() {
-        return hoeveelheid;
-    }
+
 
     public void verhoogHoeveelheid() {
         hoeveelheid++;

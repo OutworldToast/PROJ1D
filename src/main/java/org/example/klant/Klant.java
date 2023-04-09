@@ -47,6 +47,7 @@ public class Klant {
         System.out.println("De naam van de klant is: " + getNaam());
         System.out.println("De email die opgegeven is: " + getEmail());
         System.out.println("De korting voor deze klant is: " + getKortingAlsPercentage());
+
     }
     public void veranderKlantInfo(){
         //hier moet nog code komen om de Info van elke klant te veranderen.

@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class Offerte {
     private String beschrijving;
     private Klant klant;
-    private final Schip schip = new Schip();
+    private Schip schip;
 
     public Offerte(String beschrijving, Klant klant) {
         this.beschrijving = beschrijving;
@@ -37,8 +37,27 @@ public class Offerte {
         return schip;
     }
 
+    public void invoerKorting(){
+        Scanner sc = new Scanner(System.in);
+        boolean k = true;
+        while(k){
+            try{
+                ArrayList<Onderdeel> onderdeel = schip.getOnderdeelLijst();
+                schip.getTotaalOnderdeelLijst().printOnderdeelLijst(onderdeel);
+                System.out.println("Voor welke onderdeel wilt u korting toepassen?");
+                int keuze = sc.nextInt();
+                if (keuze > 0 && keuze <= onderdeel.size()){
+                    int percentage = sc.nextInt();
+                    onderdeel.get(keuze - 1).setMilieukorting(percentage);//Binnen 0-100 percentage toevoegen
+                }
+            }catch (Exception d){
+                System.out.println("Geen onderdeel aangegeven");
+            }
+        }
+    }
 
-    public double getTotaalPrijs() {//NOG TOE TE VOEGEN: niet oude prijs tonen als er geen milieukorting is
+    public double getTotaalPrijs() {
+
 
         double totaalPrijs = 0.0;
 

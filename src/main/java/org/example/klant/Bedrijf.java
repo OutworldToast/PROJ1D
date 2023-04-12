@@ -13,10 +13,13 @@ public class  Bedrijf extends Klant {
         kortingAlsPercentage = 8;
     }
 
+
+
     @Override
     public void printKlantInfo() {
         super.printKlantInfo();
         System.out.println("Het KVK-nummer van dit bedrijf is: "+ KVKNummer);
+
     }
 
 }

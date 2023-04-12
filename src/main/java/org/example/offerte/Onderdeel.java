@@ -8,11 +8,14 @@ public class Onderdeel {
     private double prijs; //prijs van de optie
     private int milieukorting;//Berekende korting voor elk onderdeel indien van toepassing
 
+
+
     public Onderdeel(String naam, String categorie, double prijs, int milieukorting) {
         this.naam = naam;
         this.categorie = categorie;
         this.prijs = prijs;
         this.milieukorting = milieukorting;
+
     }
 
     public String getNaam() {
@@ -44,13 +47,15 @@ public class Onderdeel {
         this.milieukorting = percentage;
     }
 
+    public int getHoeveelheid() {
+        return hoeveelheid;
+    }
+
     public int getMilieukorting() {//Methode
         return milieukorting;
     }
 
-    public int getHoeveelheid() {
-        return hoeveelheid;
-    }
+
 
     public void verhoogHoeveelheid() {
         hoeveelheid++;

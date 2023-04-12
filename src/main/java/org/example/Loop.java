@@ -327,7 +327,7 @@ public class Loop {
             som += onderdeel.getPrijs();
         }
         if (som != 0){
-            System.out.println("Totaalprijs van geselecteerde onderdelen is: "+som);
+            System.out.printf("Totaalprijs van geselecteerde onderdelen is: €%.2f", som);
             System.out.println();
         }
     }

@@ -34,5 +34,12 @@ class SchipTest {
         schip.voegOnderdeelToe(18);
         assertEquals(11,schip.getOnderdeelLijst().size());
     }
-
+    @Test
+    void berekenPrijsTest(){
+        Schip schip = new Schip();
+        // tien procent milieu korting op een prijs van 455 wordt 409,50
+        assertEquals(409.50, schip.berekenPrijs(schip.getOnderdeelLijst().get(1)));
+    }
+    @Test
+    void
 }

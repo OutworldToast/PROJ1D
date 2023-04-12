@@ -138,7 +138,7 @@ public class Schip {
             }
         }
     }
-    private double berekenPrijs(Onderdeel onderdeel){
+    public double berekenPrijs(Onderdeel onderdeel){
         double prijs = onderdeel.getPrijs();
         int milieukorting = onderdeel.getMilieukorting();
 
@@ -147,7 +147,7 @@ public class Schip {
         return prijs;
     }
     private void verwijderOnderdeelConsole() {
-        boolean b = true;
+        boolean b = true; // check eerst de hoeveelheid voordat ie verwijderd
         printOnderdeelLijst();
         while (b) {
             try {

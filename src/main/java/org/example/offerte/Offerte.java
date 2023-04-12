@@ -15,6 +15,7 @@ public class Offerte {
     public Offerte(String beschrijving, Klant klant) {
         this.beschrijving = beschrijving;
         this.klant = klant;
+        schip = new Schip();
     }
 
     public String getBeschrijving() {

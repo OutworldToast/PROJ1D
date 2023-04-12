@@ -7,6 +7,7 @@ import org.example.offerte.Offerte;
 import org.example.offerte.Onderdeel;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -76,6 +77,7 @@ public class Loop {
 
     private String bepaalBeschrijving () {
         System.out.println("Geef een beschrijving van de offerte:");
+        scanner.nextLine();
         return scanner.nextLine();
     }
 
@@ -194,7 +196,8 @@ public class Loop {
 
     private void BekijkPrijsOpgave() {
         //voeg code toe
-
+        PrijsOpgave prijsOpgave = new PrijsOpgave(offerte.getKlant(),offerte,new Date());
+        prijsOpgave.toonPrijsopgave();
 
     }
 

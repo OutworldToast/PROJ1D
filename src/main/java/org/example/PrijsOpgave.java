@@ -15,11 +15,12 @@ public class PrijsOpgave {
     private final TotaalLijst totaalLijst = Loop.totaalLijst;
     private Date date;
 
-    double result;
+    public double result;
 
     public PrijsOpgave(Klant klant, Offerte offerte, Date date) {
         this.klant = klant;
         this.offerte = offerte;
+        this.totaalLijst = totaalLijst;
         this.date = date;
     }
 

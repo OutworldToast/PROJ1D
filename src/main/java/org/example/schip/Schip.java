@@ -14,6 +14,14 @@ public class Schip {
     private final ArrayList<Onderdeel> onderdeelLijst = new ArrayList<>();
     Scanner scanner = Loop.scanner;
 
+    public Schip() {
+        for (Onderdeel e : totaalLijst.getTotaalLijst()) {
+            if (e.getCategorie().equals("Essentieel")) {
+                onderdeelLijst.add(e);
+            }
+        }
+    }
+
     public void invoerLoop(){
         boolean b = true;
         while (b) {
@@ -57,21 +65,22 @@ public class Schip {
 
 
     public void voegOnderdeelToe(int onderdeelNummer) {
+
         Onderdeel onderdeel = totaalLijst.getTotaalLijst().get(onderdeelNummer - 1);
+        boolean gevonden = false;
 
-
-        for (Onderdeel x : onderdeelLijst) {
-            if (x.getNaam().equals(onderdeel.getNaam())){
-                x.verhoogHoeveelheid();
+         for (Onderdeel x : onderdeelLijst) {
+                if (x.getNaam().equals(onderdeel.getNaam())){
+                    x.verhoogHoeveelheid();
+                    gevonden = true;
+                }
             }
-            else {
-                onderdeelLijst.add(onderdeel);
-            }
+             if(!gevonden) {
+            onderdeelLijst.add(onderdeel);
         }
 
-        System.out.printf("Het onderdeel '%s' is toegevoegd%n", onderdeel.getNaam());
-    }
-
+            System.out.printf("Het onderdeel '%s' is toegevoegd%n", onderdeel.getNaam());
+        }
     private void voegOnderdeelToeConsole() { //STANDUP: waar check voor essentiele onderdelen?
         boolean b = true;
         ArrayList<Onderdeel> lijst = totaalLijst.getTotaalLijst();

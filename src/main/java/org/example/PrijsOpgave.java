@@ -17,7 +17,7 @@ public class PrijsOpgave {
 
     double result;
 
-    public PrijsOpgave(Klant klant, Offerte offerte, TotaalLijst totaalLijst, Date date) {
+    public PrijsOpgave(Klant klant, Offerte offerte, Date date) {
         this.klant = klant;
         this.offerte = offerte;
         this.totaalLijst = totaalLijst;
@@ -69,13 +69,12 @@ public class PrijsOpgave {
         System.out.println("DATUM: " + date);
         System.out.println("AAN: " + offerte.getKlant().getNaam());
 
-        System.out.println("SCHIP: "  + offerte.getSchip());
+        System.out.println("SCHIP: "  + offerte.getBeschrijving());
         System.out.println();
         System.out.printf("%-20s | %-20s| %-20s | %-20s | %-20s | %-20s\n ", strHoeveelheid,strCategorie, strBeschrijving,strPrijsPerEenheid,strKorting, strRegelTotaal);
         System.out.println("------------------------------------------------------------------------------------------------------------------------------");
 
-        for (Onderdeel t : totaalLijst.getTotaalLijst()
-        ) {
+        for (Onderdeel t : offerte.getSchip().getOnderdeelLijst()){
 
             regelTotaal = t.getPrijs() * t.getHoeveelheid() * ((100 - t.getMilieukorting())/100.0);
 
@@ -97,13 +96,13 @@ public class PrijsOpgave {
         // Start de main loop.
 
 
-        Klant k1 = new Bedrijf("Jantje", "jan@gmail.com",123456);
+        Klant k1 = new Bedrijf("Jantje gebruiker", "jan@gmail.com",123456);
         Offerte ofe = new Offerte("mijOffr", k1);
         TotaalLijst t1 = new TotaalLijst();
         Date dateToday = new Date();
 
 
-        PrijsOpgave prijsOpgave = new PrijsOpgave(k1,ofe,t1,dateToday);
+        PrijsOpgave prijsOpgave = new PrijsOpgave(k1,ofe,dateToday);
         t1.getTotaalLijst().get(6).setMilieukorting(20);
 
 

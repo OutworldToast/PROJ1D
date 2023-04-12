@@ -10,9 +10,9 @@ import java.util.Date;
 
 public class PrijsOpgave {
 
-    private Klant klant;
-    private Offerte offerte;
-    private TotaalLijst totaalLijst;
+    private final Klant klant;
+    private final Offerte offerte;
+    private final TotaalLijst totaalLijst = Loop.totaalLijst;
     private Date date;
 
     double result;
@@ -20,7 +20,6 @@ public class PrijsOpgave {
     public PrijsOpgave(Klant klant, Offerte offerte, Date date) {
         this.klant = klant;
         this.offerte = offerte;
-        this.totaalLijst = totaalLijst;
         this.date = date;
     }
 

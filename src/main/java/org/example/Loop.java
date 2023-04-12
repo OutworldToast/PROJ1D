@@ -195,10 +195,12 @@ public class Loop {
     }
 
     private void BekijkPrijsOpgave() {
-        //voeg code toe
-        PrijsOpgave prijsOpgave = new PrijsOpgave(offerte.getKlant(),offerte,new Date());
-        prijsOpgave.toonPrijsopgave();
-
+        if (offerte == null) {
+            System.out.println("Er is geen offerte beschikbaar");
+        } else {
+            PrijsOpgave prijsOpgave = new PrijsOpgave(offerte.getKlant(), offerte, new Date());
+            prijsOpgave.toonPrijsopgave();
+        }
     }
 
     private void veranderSchip() {
@@ -230,7 +232,7 @@ public class Loop {
         }
     }
 
-    private void veranderKlant() {
+    private void veranderKlant() { //clean-up
         System.out.println("Wat is het type klant?[1] Particulier, [2] Overheid, [3] Bedrijf, [4] aangepast");
         int typeklant = scanner.nextInt();
         scanner.nextLine();
@@ -367,7 +369,11 @@ public class Loop {
                         return false;
                     }
                     case 2 -> {
-                        return true;
+                        if (checkScheepsbouwerWachtwoord()) {
+                            return true;
+                        } else {
+                            System.out.println("Incorrect wachtwoord");
+                        }
                     }
                     default -> System.out.println("Dat is geen optie");
                 }
@@ -376,5 +382,11 @@ public class Loop {
                 scanner.next();
             }
         }
+    }
+
+    private boolean checkScheepsbouwerWachtwoord() {
+        scanner.nextLine();
+        System.out.println("Wat is het wachtwoord?");
+        return scanner.nextLine().equals("st3RK");
     }
 }

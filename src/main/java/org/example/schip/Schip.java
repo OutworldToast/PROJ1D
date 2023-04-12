@@ -27,22 +27,22 @@ public class Schip {
         while (b) {
             try {
                 System.out.println("Wat wilt u doen?");
-                System.out.println("[1] Terug");
-                System.out.println("[2] Toon totaallijst");
-                System.out.println("[3] Toon huidige onderdelen");
-                System.out.println("[4] Onderdeel toevoegen aan schip");
-                System.out.println("[5] Onderdeel verwijderen uit schip");
-                System.out.println("[6] Onderdeel toevoegen/veranderen in totaallijst");
-                System.out.println("[7] Milieukorting toevoegen aan onderdeel");
+                System.out.println("[0] Terug");
+                System.out.println("[1] Toon totaallijst");
+                System.out.println("[2] Toon huidige onderdelen");
+                System.out.println("[3] Onderdeel toevoegen aan schip");
+                System.out.println("[4] Onderdeel verwijderen uit schip");
+                System.out.println("[5] Onderdeel toevoegen/veranderen in totaallijst");
+                System.out.println("[6] Milieukorting toevoegen aan onderdeel");
                 int input = scanner.nextInt();
                 switch (input) {
-                    case 1 -> b = false;
-                    case 2 -> totaalLijst.printOpties();
-                    case 3 -> printOnderdeelLijst();
-                    case 4 -> voegOnderdeelToeConsole();
-                    case 5 -> verwijderOnderdeelConsole();
-                    case 6 -> totaalLijst.addLoop();
-                    case 7 -> invoerKorting();
+                    case 0 -> b = false;
+                    case 1 -> totaalLijst.printOpties();
+                    case 2 -> printOnderdeelLijst();
+                    case 3 -> voegOnderdeelToeConsole();
+                    case 4 -> verwijderOnderdeelConsole();
+                    case 5 -> totaalLijst.addLoop();
+                    case 6 -> invoerKorting();
                     default -> System.out.println("Dat is geen optie");
                 }
             } catch (InputMismatchException e) {
@@ -147,7 +147,7 @@ public class Schip {
         return prijs;
     }
     private void verwijderOnderdeelConsole() {
-        boolean b = true; // check eerst de hoeveelheid voordat ie verwijderd
+        boolean b = true;
         printOnderdeelLijst();
         while (b) {
             try {

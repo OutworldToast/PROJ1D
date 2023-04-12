@@ -41,5 +41,7 @@ class SchipTest {
         assertEquals(409.50, schip.berekenPrijs(schip.getOnderdeelLijst().get(1)));
     }
     @Test
-    void
+    void testKlantkortingveranderenTijdensAanmaken(){
+
+    }
 }

@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.klant.Aangepast;
 import org.example.klant.Bedrijf;
 import org.example.klant.Klant;
 import org.example.klant.Overheid;
@@ -19,7 +20,7 @@ public class Loop {
     private Offerte offerte;
 
 
-    public Loop(){
+    public Loop() {
         Introductie();
         BepaalLoop();
     }
@@ -75,7 +76,7 @@ public class Loop {
         offerte = new Offerte(beschrijving, klant);
     }
 
-    private String bepaalBeschrijving () {
+    private String bepaalBeschrijving() {
         System.out.println("Geef een beschrijving van de offerte:");
         scanner.nextLine();
         return scanner.nextLine();
@@ -87,7 +88,7 @@ public class Loop {
         // Zorg dat de scanner niet blijft wachten op een input
         scanner.nextLine();
 
-        while(!stopLoop) {
+        while (!stopLoop) {
             System.out.println(
                     """
                     Wil je gelijk een offerte aanmaken?
@@ -100,37 +101,32 @@ public class Loop {
             try {
                 int input = scanner.nextInt();
 
-                if(input == 1) {
+                if (input == 1) {
                     maakOfferte();
                     stopLoop = true;
-                }
-                else if(input == 2) {
+                } else if (input == 2) {
                     stopLoop = true;
-                }
-                else {
+                } else {
                     System.out.println("Dat is geen optie");
                 }
 
-            } catch (InputMismatchException e){
+            } catch (InputMismatchException e) {
                 System.out.println("Typ een cijfer");
                 scanner.next();
             }
         }
     }
 
-    private Klant kiesKlantTypeLoop () {
-
+    private Klant kiesKlantTypeLoop() {
         while (true) {
-
             System.out.println("""
-                            Voor welk soort klant wordt de offerte gemaakt?
-                            [1] Particulier
-                            [2] Bedrijf
-                            [3] Overheid
-                            """);
-
+                    Voor welk soort klant wordt de offerte gemaakt?
+                    [1] Particulier
+                    [2] Bedrijf
+                    [3] Overheid
+                    [4] Aangepast
+                    """);
             try {
-
                 int input = scanner.nextInt();
                 scanner.nextLine();
 
@@ -144,10 +140,8 @@ public class Loop {
                         return new Klant(naam, email);
                     }
                     case 2 -> {
-
                         System.out.print("Voer het KVK nummer in:");
                         int kvk;
-
                         try {
                             kvk = scanner.nextInt();
                         } catch (InputMismatchException e) {
@@ -155,15 +149,26 @@ public class Loop {
                             scanner.nextLine();
                             continue;
                         }
-
                         return new Bedrijf(naam, email, kvk);
                     }
                     case 3 -> {
-
                         System.out.print("Voer de gemeente in:");
                         String gemeente = scanner.nextLine();
-
                         return new Overheid(naam, email, gemeente);
+                    }
+                    case 4 -> {
+                        System.out.println("Voer de extra informatie van de klant in:");
+                        String extraInfo = scanner.nextLine();
+                        // offerte.setKlant(new Klant(naam, email));
+                        System.out.println("Voer de korting als percentage in (5% wordt ingevuld als 5):");
+                        int kortingAlsPercentage = 0;
+                        try {
+                            kortingAlsPercentage = scanner.nextInt();
+                        } catch (InputMismatchException e) {
+                            System.out.println("U heeft geen cijfer ingevuld percentage is automatisch 0 geworden.");
+                            scanner.nextLine();
+                        }
+                        return new Aangepast(naam, email, extraInfo,kortingAlsPercentage);
                     }
                     default -> System.out.println("Dat is geen optie");
                 }
@@ -176,6 +181,11 @@ public class Loop {
         }
 
     }
+    private void veranderKlant() {
+        offerte.setKlant(kiesKlantTypeLoop());
+    }
+
+
 
     private void Exit() {
         System.out.println("Dank u voor het gebruik van ons product");
@@ -232,112 +242,63 @@ public class Loop {
         }
     }
 
-    private void veranderKlant() { //clean-up
-        System.out.println("Wat is het type klant?[1] Particulier, [2] Overheid, [3] Bedrijf, [4] aangepast");
-        int typeklant = scanner.nextInt();
-        scanner.nextLine();
-        if (typeklant == 1) {
-            System.out.println("Voer de naam van de klant in:");
-            String naam = scanner.nextLine();
-            System.out.println("Voer de e-mail van de klant in:");
-            String Email = scanner.nextLine();
-            offerte.setKlant(new Klant(naam, Email));
-            offerte.getKlant().printKlantInfo();
-        }
-        if (typeklant == 2) {
-            System.out.println("Voer de naam van de overheid in:");
-            String naam = scanner.nextLine();
-            System.out.println("Voer de e-mail van de overheid in:");
-            String Email = scanner.nextLine();
-            System.out.println("Voer de Gemeente van de overheid in:");
-            String Gemeente = scanner.nextLine();
-            offerte.setKlant(new Overheid(naam, Email, Gemeente));
-            offerte.getKlant().printKlantInfo();
-        }
-        if (typeklant == 3) {
-            System.out.println("Voer de naam van het bedrijf in:");
-            String naam = scanner.nextLine();
-            System.out.println("Voer de e-mail van het bedrijf in:");
-            String Email = scanner.nextLine();
-            System.out.println("Voer het KVKNummer van het bedrijf in:");
-            int KVKNummer = scanner.nextInt();
-            scanner.nextLine();
-            offerte.setKlant(new Bedrijf(naam, Email, KVKNummer));
-            offerte.getKlant().printKlantInfo();
-        }
-        if (typeklant == 4) {
-            System.out.println("Voer de naam van de klant in:");
-            String naam = scanner.nextLine();
-            System.out.println("Voer de e-mail van de klant in:");
-            String Email = scanner.nextLine();
-            System.out.println("Voer de extra informatie van de klant in:");
-            String extraInfo = scanner.nextLine();
-            offerte.setKlant(new Klant(naam, Email));
-            System.out.println("Voer de korting als percentage in (5% wordt ingevuld als 5):");
-            int kortingAlsPercentage = scanner.nextInt();
-            scanner.nextLine();
-            offerte.getKlant().setKortingAlsPercentage(kortingAlsPercentage);
-            offerte.getKlant().printKlantInfo();
-            System.out.println(extraInfo);
-        }
-    }
 
-
-    private void klantloop() {
-        while (loop) {
-            try {
-                System.out.println("Wat wilt u doen?");
-                System.out.println("[0] Programma verlaten");
-                System.out.println("[1] Offerte bekijken");
-                System.out.println("[2] Verander gebruikerstype");
-                System.out.println("[3] Bekijk Opties");
-                int input = scanner.nextInt();
-                switch (input) {
-                    case 0 -> Exit();
-                    case 1 -> BekijkPrijsOpgave();
-                    case 2 -> BepaalLoop();
-                    case 3 -> bekijkOptielijst();
-                    default -> System.out.println("Dat is geen optie");
+        private void klantloop () {
+            while (loop) {
+                try {
+                    System.out.println("Wat wilt u doen?");
+                    System.out.println("[0] Programma verlaten");
+                    System.out.println("[1] Offerte bekijken");
+                    System.out.println("[2] Verander gebruikerstype");
+                    System.out.println("[3] Bekijk Opties");
+                    int input = scanner.nextInt();
+                    switch (input) {
+                        case 0 -> Exit();
+                        case 1 -> BekijkPrijsOpgave();
+                        case 2 -> BepaalLoop();
+                        case 3 -> bekijkOptielijst();
+                        default -> System.out.println("Dat is geen optie");
+                    }
+                } catch (InputMismatchException e) {
+                    System.out.println("Typ een cijfer");
+                    scanner.next();
                 }
-            } catch (InputMismatchException e) {
-                System.out.println("Typ een cijfer");
-                scanner.next();
             }
         }
-    }
-    private void bekijkOptielijst() {
-        ArrayList<Onderdeel> lijst = new ArrayList<>();
-        boolean b = true;
-        while (b) {
-            try {
-                System.out.println("Welke onderdelen wilt u selecteren");
-                System.out.println("[0] Klaar");
-                totaalLijst.printOpties();
-                int input = scanner.nextInt();
-                if (input == 0) {
-                    b = false;
-                } else if (input > 0 && input <= totaalLijst.getTotaalLijst().size()) {
-                    Onderdeel onderdeel = totaalLijst.getTotaalLijst().get(input - 1);
-                    lijst.add(onderdeel);
-                    System.out.println("U heeft onderdeel: "+ onderdeel.getNaam() + " toegevoegd.");
-                    System.out.println();
-                } else {
-                    System.out.println("Dat is geen optie");
+
+        private void bekijkOptielijst () {
+            ArrayList<Onderdeel> lijst = new ArrayList<>();
+            boolean b = true;
+            while (b) {
+                try {
+                    System.out.println("Welke onderdelen wilt u selecteren");
+                    System.out.println("[0] Klaar");
+                    totaalLijst.printOpties();
+                    int input = scanner.nextInt();
+                    if (input == 0) {
+                        b = false;
+                    } else if (input > 0 && input <= totaalLijst.getTotaalLijst().size()) {
+                        Onderdeel onderdeel = totaalLijst.getTotaalLijst().get(input - 1);
+                        lijst.add(onderdeel);
+                        System.out.println("U heeft onderdeel: " + onderdeel.getNaam() + " toegevoegd.");
+                        System.out.println();
+                    } else {
+                        System.out.println("Dat is geen optie");
+                    }
+                } catch (InputMismatchException e) {
+                    System.out.println("Typ een getal");
+                    scanner.next();
                 }
-            } catch (InputMismatchException e) {
-                System.out.println("Typ een getal");
-                scanner.next();
+            }
+            double som = 0;
+            for (Onderdeel onderdeel : lijst) {
+                som += onderdeel.getPrijs();
+            }
+            if (som != 0) {
+                System.out.printf("Totaalprijs van geselecteerde onderdelen is: €%.2f", som);
+                System.out.println();
             }
         }
-        double som = 0;
-        for (Onderdeel onderdeel : lijst) {
-            som += onderdeel.getPrijs();
-        }
-        if (som != 0){
-            System.out.printf("Totaalprijs van geselecteerde onderdelen is: €%.2f", som);
-            System.out.println();
-        }
-    }
 
     private void Introductie(){
         System.out.println("Welkom bij ShipFlex!");

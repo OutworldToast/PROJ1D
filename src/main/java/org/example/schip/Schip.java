@@ -129,6 +129,8 @@ public class Schip {
                     System.out.println("Hoeveel procent korting wilt u toepassen?");
                     int percentage = scanner.nextInt();
                     onderdeel.get(keuze - 1).setMilieukorting(percentage);//Binnen 0-100 percentage toevoegen
+                    double nieuwprijs = berekenPrijs(onderdeel.get(keuze - 1));
+                    System.out.println("De prijs van dit onderdeel na de korting: "+nieuwprijs);
                     k = false;
                 }
             }catch (Exception d){
@@ -136,7 +138,14 @@ public class Schip {
             }
         }
     }
+    private double berekenPrijs(Onderdeel onderdeel){
+        double prijs = onderdeel.getPrijs();
+        int milieukorting = onderdeel.getMilieukorting();
 
+        prijs -= (milieukorting / 100.0) * prijs;
+
+        return prijs;
+    }
     private void verwijderOnderdeelConsole() {
         boolean b = true;
         printOnderdeelLijst();

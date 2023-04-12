@@ -123,7 +123,7 @@ public class Loop {
         while (true) {
 
             System.out.println("""
-                                Voor welk soort klant wordt de offerte gemaakt?
+                            Voor welk soort klant wordt de offerte gemaakt?
                             [1] Particulier
                             [2] Bedrijf
                             [3] Overheid

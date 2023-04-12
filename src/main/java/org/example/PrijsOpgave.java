@@ -69,7 +69,7 @@ public class PrijsOpgave {
         System.out.println("DATUM: " + date);
         System.out.println("AAN: " + offerte.getKlant().getNaam());
 
-        System.out.println("SCHIP: "  + offerte.getBeschrijving());
+        System.out.println("BESCHRIJVING: "  + offerte.getBeschrijving());
         System.out.println();
         System.out.printf("%-20s | %-20s| %-20s | %-20s | %-20s | %-20s\n ", strHoeveelheid,strCategorie, strBeschrijving,strPrijsPerEenheid,strKorting, strRegelTotaal);
         System.out.println("------------------------------------------------------------------------------------------------------------------------------");

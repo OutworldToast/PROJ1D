@@ -81,10 +81,13 @@ public class PrijsOpgave {
             System.out.println();
 
             totaal += regelTotaal;
+            korting = offerte.getKlant().getKortingAlsPercentage();
+            korting -= regelTotaal;
 
         }
 
         System.out.println("------------------------------------------------------------------------------------------------------------------------------");
+        System.out.printf("%-100s  € %.2f%n", strKorting,  korting);
         System.out.printf("%-100s  € %.2f%n", strRegelTotaal,  totaal);
         System.out.printf("%-100s  € %.2f%n", strBtw, berekenBtw(totaal, btwPercentage) );
         System.out.printf("%-100s  € %.2f%n", strTotaal, result + totaal) ;

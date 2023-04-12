@@ -71,14 +71,14 @@ public class PrijsOpgave {
 
         System.out.println("BESCHRIJVING: "  + offerte.getBeschrijving());
         System.out.println();
-        System.out.printf("%-20s | %-20s| %-20s | %-20s | %-20s | %-20s\n ", strHoeveelheid,strCategorie, strBeschrijving,strPrijsPerEenheid,strKorting, strRegelTotaal);
-        System.out.println("------------------------------------------------------------------------------------------------------------------------------");
+        System.out.printf("%-5s | %-20s| %-20s\t | %-20s | %-20s | %-20s\n ", strHoeveelheid,strCategorie, strBeschrijving,strPrijsPerEenheid,strKorting, strRegelTotaal);
+        System.out.println("-------------------------------------------------------------------------------------------------------------------------------");
 
         for (Onderdeel t : offerte.getSchip().getOnderdeelLijst()){
 
             regelTotaal = t.getPrijs() * t.getHoeveelheid() * ((100 - t.getMilieukorting())/100.0);
 
-            System.out.printf("%-20s   %-20s  %-20s  € %.2f                 %3d%%                  € %.2f  ", t.getHoeveelheid(), t.getCategorie(), t.getNaam(), t.getPrijs(),t.getMilieukorting(), regelTotaal);
+            System.out.printf("%-5s   %-20s  %-20s\t  € %.2f                 %-3d%%\t                  € %.2f  ", t.getHoeveelheid(), t.getCategorie(), t.getNaam(), t.getPrijs(),t.getMilieukorting(), regelTotaal);
             System.out.println();
 
             totaal += regelTotaal;
@@ -86,9 +86,13 @@ public class PrijsOpgave {
         }
 
         System.out.println("------------------------------------------------------------------------------------------------------------------------------");
-        System.out.printf("%-112s  € %.2f%n", strRegelTotaal,  totaal);
-        System.out.printf("%-112s  € %.2f%n", strBtw, berekenBtw(totaal, btwPercentage) );
-        System.out.printf("%-112s  € %.2f%n", strTotaal, result + totaal) ;
+        System.out.printf("%-100s  € %.2f%n", strRegelTotaal,  totaal);
+        System.out.printf("%-100s  € %.2f%n", strBtw, berekenBtw(totaal, btwPercentage) );
+        System.out.printf("%-100s  € %.2f%n", strTotaal, result + totaal) ;
+        System.out.println();
+        System.out.println();
+        System.out.println("                                                     <<<<  DREAM TEAM >>>>");
+
 
     }
 

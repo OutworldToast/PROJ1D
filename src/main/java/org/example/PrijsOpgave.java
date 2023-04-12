@@ -10,9 +10,9 @@ import java.util.Date;
 
 public class PrijsOpgave {
 
-    private final Klant klant;
-    private final Offerte offerte;
-    private final TotaalLijst totaalLijst = Loop.totaalLijst;
+    private  Klant klant;
+    private  Offerte offerte;
+    private TotaalLijst totaalLijst = Loop.totaalLijst;
     private Date date;
 
     public double result;
@@ -95,7 +95,7 @@ public class PrijsOpgave {
 
 
         System.out.println("------------------------------------------------------------------------------------------------------------------------------");
-        System.out.printf("%-100s  € %.2f%n", strKorting,  korting);
+        System.out.printf("%-100s  € %.2f%n", strMilieuKorting,  korting);
         System.out.printf("%-100s  € %.2f%n", strRegelTotaal,  totaal);
         System.out.printf("%-100s  € %.2f%n", strKlantKorting, korting);
         System.out.printf("%-100s  € %.2f%n", strRegelTotaal,  totaal - korting);

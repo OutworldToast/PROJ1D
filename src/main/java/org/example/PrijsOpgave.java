@@ -57,7 +57,7 @@ public class PrijsOpgave {
             totaalMilieuKorting += subRegelTotaal - regelTotaal;
             totaal += regelTotaal;
 
-            System.out.printf("%-5s   %-20s  %-20s\t  € %.2f                 %.1f%%\t                  € %.2f  ", t.getHoeveelheid(), t.getCategorie(), t.getNaam(), t.getPrijs(),milieuKorting, regelTotaal);
+            System.out.printf("%-5s   %-20s  %-20s\t  € %-20.2f %.1f%-18%\t € %.2f  ", t.getHoeveelheid(), t.getCategorie(), t.getNaam(), t.getPrijs(),milieuKorting, regelTotaal);
             System.out.println();
 
 

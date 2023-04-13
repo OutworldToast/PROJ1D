@@ -1,11 +1,8 @@
 package org.example;
- 
 import org.example.klant.Bedrijf;
 import org.example.klant.Klant;
-
 import org.example.offerte.Offerte;
 import org.example.offerte.Onderdeel;
-
 import java.util.Date;
 
 public class PrijsOpgave {
@@ -36,6 +33,7 @@ public class PrijsOpgave {
     }
 
     public void toonPrijsopgave() {
+
         double totaal = 0.0;
         double milieuKorting = 0.0;
         double korting = 0.0;
@@ -88,8 +86,7 @@ public class PrijsOpgave {
         System.out.println("==============================================================================================================================");
         System.out.printf("%-100s  € %.2f%n", strTotaal, result + totaal - korting) ;
         System.out.println();
-        System.out.println();
-        System.out.println("                                                     <<<<  DREAM TEAM >>>>");
+        System.out.println("                                                     <<<< DREAM TEAM >>>>");
 
 
     }
@@ -99,14 +96,18 @@ public class PrijsOpgave {
 
 
         Klant k1 = new Bedrijf("Jantje gebruiker", "jan@gmail.com",123456);
-        k1.setKortingAlsPercentage(8);
+        k1.setKortingAlsPercentage(20);
         Offerte ofe = new Offerte("mijOffr", k1);
         TotaalLijst t1 = new TotaalLijst();
         Date dateToday = new Date();
-        PrijsOpgave prijsOpgave = new PrijsOpgave(k1,ofe,dateToday);
-        prijsOpgave.toonPrijsopgave();
-        t1.getTotaalLijst().get(1).setMilieukorting(40);
+        t1.getTotaalLijst().get(6).setMilieukorting(10);
 
+
+        PrijsOpgave prijsOpgave = new PrijsOpgave(k1,ofe,dateToday);
+
+
+
+        prijsOpgave.toonPrijsopgave();
     }
 
 

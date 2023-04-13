@@ -17,7 +17,7 @@ public class TotaalLijst {
         return totaalLijst;
     }
 
-    public TotaalLijst(){ //test 123
+    public TotaalLijst(){
 
         String line; //string waar de regels ingelezen worden
         String splitBy = ","; //delimiter

@@ -1,12 +1,9 @@
 package org.example;
 
-
-import org.example.offerte.Onderdeel;
 import org.example.schip.Schip;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
-import org.testng.annotations.Ignore;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -14,7 +11,6 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
-import java.util.ArrayList;
 
 
 class SchipTest {

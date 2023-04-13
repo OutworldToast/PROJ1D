@@ -7,12 +7,7 @@ import java.util.Date;
 
 public class PrijsOpgave {
     private final Offerte offerte;
-    private final TotaalLijst totaalLijst = Loop.totaalLijst;
     private final Date date;
-
-    public double result;
-
-    double regelTotaal;
 
     public PrijsOpgave(Offerte offerte, Date date) {
         this.offerte = offerte;
@@ -20,36 +15,23 @@ public class PrijsOpgave {
     }
 
     public double berekenBtw(double bedragZonderBtw) {
-        result = bedragZonderBtw * (21.0 / 100.0);
-        return result;
+        return bedragZonderBtw * (21.0 / 100.0);
     }
 
 
-
     public static double berekenRegelTotaal(double prijs, int hoeveelheid, double milieukorting) {
-
-        double regelTotaal = prijs * hoeveelheid * ((100 - milieukorting) / 100.0);
-        return regelTotaal;
+        return prijs * hoeveelheid * ((100 - milieukorting) / 100.0);
     }
 
     public void toonPrijsopgave() {
 
-        double totaal = 0.0;
-        double milieuKorting = 0.0;
-        double korting = 0.0;
-        String strPrijsOpgave = "PRIJSOPGAVE";
-        String strHoeveelheid = "HVH";
-        String strBeschrijving  = "BESCHRIJVING";
-        String strPrijsPerEenheid = "PRIJS PER EENHEID";
-        String strRegelTotaal = "SUBTOTAAL";
         String strMilieuKorting = "MILIEUKORTING";
+        String strRegelTotaal = "SUBTOTAAL";
         String strKlantKorting = "KLANTKORTING";
         String strBtw = "BTW";
-        String strCategorie = "CATEGORIE";
         String strTotaal = "TOTAAL TE BETALEN";
 
-
-        System.out.printf( "%70s\n", strPrijsOpgave);
+        System.out.printf( "%70s\n", "PRIJSOPGAVE");
         System.out.println("==============================================================================================================================");
         System.out.println();
 
@@ -58,31 +40,40 @@ public class PrijsOpgave {
 
         System.out.println("BESCHRIJVING: "  + offerte.getBeschrijving());
         System.out.println();
-        System.out.printf("%-5s | %-20s| %-20s\t | %-20s | %-20s | %-20s\n ", strHoeveelheid,strCategorie, strBeschrijving,strPrijsPerEenheid, strMilieuKorting, strRegelTotaal);
+        System.out.printf("%-5s | %-20s| %-20s\t | %-20s | %-20s | %-20s\n ", "HVH", "CATEGORIE",
+                "BESCHRIJVING", "PRIJS PER EENHEID", strMilieuKorting, strRegelTotaal);
         System.out.println("==============================================================================================================================");
+
+        double totaal = 0.0;
+        double totaalMilieuKorting = 0.0;
+
+        offerte.getSchip().getOnderdeelLijst().get(6).setMilieukorting(20);
 
         for (Onderdeel t : offerte.getSchip().getOnderdeelLijst()){
 
-            milieuKorting = t.getMilieukorting();
-            regelTotaal = t.getPrijs() * t.getHoeveelheid() * ((100 - milieuKorting)/100.0);
+            double milieuKorting = t.getMilieukorting();
+            double subRegelTotaal = t.getPrijs() * t.getHoeveelheid();
+            double regelTotaal = berekenRegelTotaal(t.getPrijs(), t.getHoeveelheid(), milieuKorting);
+            totaalMilieuKorting += subRegelTotaal - regelTotaal;
+            totaal += regelTotaal;
 
-            System.out.printf("%-5s   %-20s  %-20s\t  € %.2f                 %1f%%\t                  € %.2f  ", t.getHoeveelheid(), t.getCategorie(), t.getNaam(), t.getPrijs(),milieuKorting, regelTotaal);
+            System.out.printf("%-5s   %-20s  %-20s\t  € %.2f                 %.1f%%\t                  € %.2f  ", t.getHoeveelheid(), t.getCategorie(), t.getNaam(), t.getPrijs(),milieuKorting, regelTotaal);
             System.out.println();
 
-            totaal += regelTotaal;
-            korting = offerte.getKlant().getKortingAlsPercentage();
-            korting -= regelTotaal;
-            korting = totaal * offerte.getKlant().getKortingAlsPercentage() /100;
+
+            //korting = totaal * offerte.getKlant().getKortingAlsPercentage() /100;
 
 
         }
 
+        double korting = totaal * offerte.getKlant().getKortingAlsPercentage()/100;
+        double result = berekenBtw(totaal - korting);
 
         System.out.println("==============================================================================================================================");
         System.out.printf("%-100s  € %.2f%n", strRegelTotaal,  totaal);
         System.out.printf("%-100s  € %.2f-%n", strKlantKorting, korting);
-        System.out.printf("%-100s  € %.2f-%n", strMilieuKorting, milieuKorting);
-        System.out.printf("%-100s  € %.2f%n", strBtw, berekenBtw(totaal - korting, btwPercentage) );
+        System.out.printf("%-100s  € %.2f-%n", strMilieuKorting, totaalMilieuKorting);
+        System.out.printf("%-100s  € %.2f%n", strBtw, result);
         System.out.println("==============================================================================================================================");
         System.out.printf("%-100s  € %.2f%n", strTotaal, result + totaal - korting) ;
         System.out.println();
@@ -98,13 +89,9 @@ public class PrijsOpgave {
         Klant k1 = new Bedrijf("Jantje gebruiker", "jan@gmail.com",123456);
         k1.setKortingAlsPercentage(20);
         Offerte ofe = new Offerte("mijOffr", k1);
-        TotaalLijst t1 = new TotaalLijst();
         Date dateToday = new Date();
-        t1.getTotaalLijst().get(6).setMilieukorting(10);
 
-
-        PrijsOpgave prijsOpgave = new PrijsOpgave(k1,ofe,dateToday);
-
+        PrijsOpgave prijsOpgave = new PrijsOpgave(ofe,dateToday);
 
 
         prijsOpgave.toonPrijsopgave();

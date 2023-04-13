@@ -1,10 +1,9 @@
 package org.example;
-import org.example.TotaalLijst;
 import org.testng.annotations.Test;
 
-public class OptieLijstTest {
+public class TotaalLijstTest {
     @Test
-    public void TestOptieLijstInlezen() {
+    public void TestTotaalLijstInlezen() {
         TotaalLijst lijst = new TotaalLijst();
 
         lijst.printOpties();

@@ -37,25 +37,6 @@ public class Offerte {
         return schip;
     }
 
-    public void invoerKorting(){
-        Scanner scanner = new Scanner(System.in);
-        boolean k = true;
-        while(k){
-            try{
-                ArrayList<Onderdeel> onderdeel = schip.getOnderdeelLijst();
-                schip.getTotaalOnderdeelLijst().printOnderdeelLijst(onderdeel);
-                System.out.println("Voor welke onderdeel wilt u korting toepassen?");
-                int keuze = scanner.nextInt();
-                if (keuze > 0 && keuze <= onderdeel.size()){
-                    int percentage = scanner.nextInt();
-                    onderdeel.get(keuze - 1).setMilieukorting(percentage);//Binnen 0-100 percentage toevoegen
-                }
-            } catch (Exception d){
-                System.out.println("Geen onderdeel aangegeven");
-            }
-        }
-    }
-
     public double getTotaalPrijs() {
 
         double totaalPrijs = 0.0;

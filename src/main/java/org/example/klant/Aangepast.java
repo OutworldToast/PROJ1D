@@ -1,7 +1,7 @@
 package org.example.klant;
 
 public class Aangepast extends Klant {
-    String extraInfo;
+    private String extraInfo;
 
     public void setExtraInfo(String extraInfo) {
         this.extraInfo = extraInfo;

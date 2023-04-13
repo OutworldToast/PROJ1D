@@ -30,8 +30,8 @@ public class PrijsOpgave {
         return klant;
     }
 
-    public double berekenBtw(double bedragZonderBtw, double btwPercentage) {
-        result = bedragZonderBtw * (btwPercentage / 100);
+    public double berekenBtw(double bedragZonderBtw) {
+        result = bedragZonderBtw * (21 / 100);
         return result;
     }
 
@@ -99,7 +99,7 @@ public class PrijsOpgave {
         System.out.printf("%-100s  € %.2f%n", strRegelTotaal,  totaal);
         System.out.printf("%-100s  € %.2f%n", strKlantKorting, korting);
         System.out.printf("%-100s  € %.2f%n", strRegelTotaal,  totaal - korting);
-        System.out.printf("%-100s  € %.2f%n", strBtw, berekenBtw(totaal - korting, btwPercentage) );
+        System.out.printf("%-100s  € %.2f%n", strBtw, berekenBtw(totaal - korting) );
         System.out.printf("%-100s  € %.2f%n", strTotaal, result + totaal - korting) ;
         System.out.println();
         System.out.println();

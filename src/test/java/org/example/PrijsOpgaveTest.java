@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.klant.Bedrijf;
 import org.example.klant.Klant;
 import org.example.offerte.Offerte;
 import java.util.Date;
@@ -7,10 +8,48 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class PrijsOpgaveTest {
+
+
+
     @Test
     void BerekenBTWTest(){
         Klant klant = new Klant("","");
         PrijsOpgave p = new PrijsOpgave(new Offerte("", klant),new Date());
-        assertEquals(210,p.berekenBtw(1000));
+        assertEquals(168,p.berekenBtw(1000,200));
+        assertEquals(210,p.berekenBtw(1000,0));
     }
+
+    @Test
+    void berekenTotaalTest(){
+
+        Klant k1 = new Bedrijf("Jantje gebruiker", "jan@gmail.com",123456);
+        k1.setKortingAlsPercentage(8);
+        Offerte ofe = new Offerte("mijOffr", k1);
+        TotaalLijst t1 = new TotaalLijst();
+        Date dateToday = new Date();
+        PrijsOpgave prijsOpgave = new PrijsOpgave(ofe,dateToday);
+
+       assertEquals(1210,prijsOpgave.berekenTotaal(2000,1000,210));
+       assertEquals(121,prijsOpgave.berekenTotaal(100,0,21));
+    }
+
+    @Test
+    void berekenRegelTotaalTest(){
+
+        Klant k1 = new Bedrijf("Jantje gebruiker", "jan@gmail.com",123456);
+        Offerte ofe = new Offerte("mijOffr", k1);
+        TotaalLijst t1 = new TotaalLijst();
+        Date dateToday = new Date();
+        PrijsOpgave prijsOpgave = new PrijsOpgave(ofe,dateToday);
+
+        assertEquals(80, prijsOpgave.berekenRegelTotaal(100,1,20));
+        assertEquals(1200,prijsOpgave.berekenRegelTotaal(300,4,0));
+
+
+    }
+
+
+
+
+
 }

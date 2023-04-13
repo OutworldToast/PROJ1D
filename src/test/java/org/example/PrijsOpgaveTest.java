@@ -48,6 +48,22 @@ public class PrijsOpgaveTest {
 
     }
 
+    @Test
+    void berekenKortingTest(){
+
+            TotaalLijst t1 = new TotaalLijst();
+            t1.getTotaalLijst().get(1).setMilieukorting(10);
+            t1.addOptie("TurboPropeller","Extra", Double.parseDouble("1200"),30);
+            Klant k1 = new Bedrijf("Jantje gebruiker", "jan@gmail.com",123456);
+            k1.setKortingAlsPercentage(8);
+            Offerte offerte = new Offerte("mijOffr", k1);
+            Date dateToday = new Date();
+            PrijsOpgave prijsOpgave = new PrijsOpgave(offerte,dateToday);
+            prijsOpgave.toonPrijsopgave();
+
+
+    }
+
 
 
 

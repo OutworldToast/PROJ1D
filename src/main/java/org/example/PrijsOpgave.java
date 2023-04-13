@@ -1,18 +1,18 @@
 package org.example;
- 
-import org.example.klant.Bedrijf;
-import org.example.klant.Klant;
 
 import org.example.offerte.Offerte;
 import org.example.offerte.Onderdeel;
-
 import java.util.Date;
 
 public class PrijsOpgave {
     private final Offerte offerte;
     private final Date date;
 
-
+    /**
+     *
+     * @param offerte vanuit de offerte kunnen we de prijsopgave maken
+     * @param date datum van de offerte
+     */
 
     public PrijsOpgave(Offerte offerte, Date date) {
         this.offerte = offerte;
@@ -24,13 +24,12 @@ public class PrijsOpgave {
 
     }
 
-
     public double berekenRegelTotaal(double prijs, int hoeveelheid, double milieukorting) {
         return  prijs * hoeveelheid * ((100 - milieukorting) / 100.0);
 
     }
 
-    private double berekenKorting(double bedragZonderKorting,double klantKorting) {
+    public double berekenKorting(double bedragZonderKorting,double klantKorting) {
         return  bedragZonderKorting * (klantKorting / 100.0);
     }
 
@@ -41,12 +40,20 @@ public class PrijsOpgave {
     public void toonPrijsopgave() {
 
 
-        double milieuKorting;
+        double milieuKorting = 0;
         double totaal = 0.0;
         double regelTotaal;
         double btw = 0.0;
         double klantkorting = 0.0;
 
+        /**
+         * Hieronder wordt het overzicht van de prijsopgave aangemaakt. In het eerste deel
+         * wordt de datum, de klantnaam en de beschrijving van de offerte aangeroep. Vervolgens
+         * een for loop om de onderdelen, prijzen en kortingen van de offerte
+         * te tonen. Als laatste wordt de berekening van het subtotaal,
+         * klantkorting, milieukorting, btw en totaal getoond.
+         *
+         */
 
         System.out.printf( "%70s\n", "PRIJSOPGAVE");
         System.out.println("==============================================================================================================================");
@@ -73,44 +80,15 @@ public class PrijsOpgave {
             totaal += regelTotaal;  //
             klantkorting = berekenKorting(totaal,offerte.getKlant().getKortingAlsPercentage());
             btw = berekenBtw(totaal,klantkorting);
-
         }
 
         System.out.println("==============================================================================================================================");
         System.out.printf("%-100s  € %.2f%n", "REGELTOTAAL",  totaal);
         System.out.printf("%-100s  € %.2f-%n", "KLANTKORTING", klantkorting);
-
-        //System.out.printf("%-100s  € %.2f-%n", strMilieuKorting, milieuKorting);
+        System.out.printf("%-100s  € %.2f-%n", "MILIEUKORTING", milieuKorting);
         System.out.printf("%-100s  € %.2f%n", "BTW", btw);
         System.out.println("==============================================================================================================================");
-       // System.out.printf("%-100s  € %.2f%n", strTotaal, result + totaal - korting);
         System.out.printf("%-100s  € %.2f%n", "TOTAAL TE BETALEN", berekenTotaal(totaal,klantkorting,btw));
-
-        System.out.println();
-        System.out.println();
-        System.out.println();
         System.out.println("                                                     <<<<  DREAM TEAM >>>>");
     }
-
-
-
-
-    public static void main(String[] args) {
-        // Start de main loop.
-
-
-        Klant k1 = new Bedrijf("Jantje gebruiker", "jan@gmail.com",123456);
-        k1.setKortingAlsPercentage(8);
-        Offerte ofe = new Offerte("mijOffr", k1);
-        TotaalLijst t1 = new TotaalLijst();
-        Date dateToday = new Date();
-        PrijsOpgave prijsOpgave = new PrijsOpgave(ofe,dateToday);
-        t1.getTotaalLijst().get(6).setMilieukorting(10);
-
-        prijsOpgave.toonPrijsopgave();
-
-    }
-
-
-
 }

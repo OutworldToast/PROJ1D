@@ -1,4 +1,4 @@
-
+package org.example;
 import org.example.TotaalLijst;
 import org.testng.annotations.Test;
 

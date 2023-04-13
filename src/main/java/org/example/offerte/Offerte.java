@@ -1,6 +1,5 @@
 package org.example.offerte;
 
-import org.example.TotaalLijst;
 import org.example.klant.Klant;
 import org.example.schip.Schip;
 
@@ -10,7 +9,7 @@ import java.util.Scanner;
 public class Offerte {
     private String beschrijving;
     private Klant klant;
-    private Schip schip;
+    private final Schip schip;
 
     public Offerte(String beschrijving, Klant klant) {
         this.beschrijving = beschrijving;
@@ -39,26 +38,25 @@ public class Offerte {
     }
 
     public void invoerKorting(){
-        Scanner sc = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         boolean k = true;
         while(k){
             try{
                 ArrayList<Onderdeel> onderdeel = schip.getOnderdeelLijst();
                 schip.getTotaalOnderdeelLijst().printOnderdeelLijst(onderdeel);
                 System.out.println("Voor welke onderdeel wilt u korting toepassen?");
-                int keuze = sc.nextInt();
+                int keuze = scanner.nextInt();
                 if (keuze > 0 && keuze <= onderdeel.size()){
-                    int percentage = sc.nextInt();
+                    int percentage = scanner.nextInt();
                     onderdeel.get(keuze - 1).setMilieukorting(percentage);//Binnen 0-100 percentage toevoegen
                 }
-            }catch (Exception d){
+            } catch (Exception d){
                 System.out.println("Geen onderdeel aangegeven");
             }
         }
     }
 
     public double getTotaalPrijs() {
-
 
         double totaalPrijs = 0.0;
 
@@ -69,8 +67,6 @@ public class Offerte {
 
             prijs -= (milieukorting / 100.0) * prijs;
 
-            System.out.println("oude prijs: " + onderdeel.getPrijs());
-            System.out.println("nieuwe prijs: " + prijs);
             totaalPrijs += prijs;
         }
 

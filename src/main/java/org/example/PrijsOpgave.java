@@ -9,25 +9,17 @@ import org.example.offerte.Onderdeel;
 import java.util.Date;
 
 public class PrijsOpgave {
-
-    private  Klant klant;
-    private  Offerte offerte;
-    private TotaalLijst totaalLijst = Loop.totaalLijst;
-    private Date date;
+    private final Offerte offerte;
+    private final TotaalLijst totaalLijst = Loop.totaalLijst;
+    private final Date date;
 
     public double result;
 
     double regelTotaal;
 
-    public PrijsOpgave(Klant klant, Offerte offerte, Date date) {
-        this.klant = klant;
+    public PrijsOpgave(Offerte offerte, Date date) {
         this.offerte = offerte;
-        this.totaalLijst = totaalLijst;
         this.date = date;
-    }
-
-    public Klant getKlant() {
-        return klant;
     }
 
     public double berekenBtw(double bedragZonderBtw) {
@@ -120,7 +112,7 @@ public class PrijsOpgave {
         t1.getTotaalLijst().get(6).setMilieukorting(10);
 
 
-        PrijsOpgave prijsOpgave = new PrijsOpgave(k1,ofe,dateToday);
+        PrijsOpgave prijsOpgave = new PrijsOpgave(ofe,dateToday);
 
 
 

@@ -14,13 +14,12 @@ import java.util.Scanner;
 
 public class Loop {
     boolean loop = true;
-    public static Scanner scanner = new Scanner(System.in);
+    public static Scanner scanner = new Scanner(System.in);;
     public static TotaalLijst totaalLijst = new TotaalLijst();
 
     private Offerte offerte;
 
-
-    public Loop() {
+    public void start() {
         Introductie();
         BepaalLoop();
     }
@@ -208,7 +207,7 @@ public class Loop {
         if (offerte == null) {
             System.out.println("Er is geen offerte beschikbaar");
         } else {
-            PrijsOpgave prijsOpgave = new PrijsOpgave(offerte.getKlant(), offerte, new Date());
+            PrijsOpgave prijsOpgave = new PrijsOpgave(offerte, new Date());
             prijsOpgave.toonPrijsopgave();
         }
     }

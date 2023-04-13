@@ -1,4 +1,4 @@
-
+package org.example;
 import org.example.TotaalLijst;
 import org.example.klant.Klant;
 import org.example.offerte.Offerte;

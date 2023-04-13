@@ -24,6 +24,9 @@ public class Schip {
 
     public void invoerLoop(){
         boolean b = true;
+
+        Scanner scanner = new Scanner(System.in);
+
         while (b) {
             try {
                 System.out.println("Wat wilt u doen?");
@@ -81,7 +84,7 @@ public class Schip {
 
             System.out.printf("Het onderdeel '%s' is toegevoegd%n", onderdeel.getNaam());
         }
-    private void voegOnderdeelToeConsole() { //STANDUP: waar check voor essentiele onderdelen?
+    private void voegOnderdeelToeConsole() {
         boolean b = true;
         ArrayList<Onderdeel> lijst = totaalLijst.getTotaalLijst();
         while (b) {

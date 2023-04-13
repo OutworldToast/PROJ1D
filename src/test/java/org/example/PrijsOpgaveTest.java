@@ -10,7 +10,7 @@ public class PrijsOpgaveTest {
     @Test
     void BerekenBTWTest(){
         Klant klant = new Klant("","");
-        PrijsOpgave p = new PrijsOpgave(klant,new Offerte("", klant),new Date());
+        PrijsOpgave p = new PrijsOpgave(new Offerte("", klant),new Date());
         assertEquals(210,p.berekenBtw(1000));
     }
 }

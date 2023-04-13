@@ -4,14 +4,23 @@ package org.example;
 import org.example.offerte.Onderdeel;
 import org.example.schip.Schip;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
+import org.testng.annotations.Ignore;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 
 
 class SchipTest {
+
+    private static final InputStream inOriginal = System.in;
+    private static final PrintStream outOriginal = System.out;
 
     @Test
     void onderdeel1verhogenTest(){
@@ -44,4 +53,34 @@ class SchipTest {
     void testKlantkortingveranderenTijdensAanmaken(){
 
     }
+
+    @Test
+    void invoerLoopErrorControl(){
+        Schip schip = new Schip();
+
+        String userInput = String.format("e%s0", System.lineSeparator());
+        ByteArrayInputStream bais = new ByteArrayInputStream(userInput.getBytes());
+        System.setIn(bais);
+
+        String expected = "Typ een cijfer";
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(baos);
+        System.setOut(printStream);
+
+        schip.invoerLoop();
+
+        String[] lines = baos.toString().split(System.lineSeparator());
+        String actual = lines[lines.length-9];
+
+        // checkout output
+        assertEquals(expected,actual);
+    }
+
+
+    @AfterAll
+    static void restoreStreams(){
+        System.setIn(inOriginal);
+        System.setOut(outOriginal);
+    }
+
 }

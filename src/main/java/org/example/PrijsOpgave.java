@@ -61,21 +61,18 @@ public class PrijsOpgave {
             System.out.println();
 
 
-            //korting = totaal * offerte.getKlant().getKortingAlsPercentage() /100;
-
-
         }
 
         double korting = totaal * offerte.getKlant().getKortingAlsPercentage()/100;
         double result = berekenBtw(totaal - korting);
 
         System.out.println("==============================================================================================================================");
-        System.out.printf("%-100s  € %.2f%n", strRegelTotaal,  totaal);
-        System.out.printf("%-100s  € %.2f-%n", strKlantKorting, korting);
-        System.out.printf("%-100s  € %.2f-%n", strMilieuKorting, totaalMilieuKorting);
-        System.out.printf("%-100s  € %.2f%n", strBtw, result);
+        System.out.printf("%-100s € %.2f-%n", strMilieuKorting, totaalMilieuKorting);
+        System.out.printf("%-100s € %.2f%n", strRegelTotaal,  totaal);
+        System.out.printf("%-100s € %.2f-%n", strKlantKorting, korting);
+        System.out.printf("%-100s € %.2f%n", strBtw, result);
         System.out.println("==============================================================================================================================");
-        System.out.printf("%-100s  € %.2f%n", strTotaal, result + totaal - korting) ;
+        System.out.printf("%-100s € %.2f%n", strTotaal, result + totaal - korting) ;
         System.out.println();
         System.out.println("                                                     <<<< DREAM TEAM >>>>");
 

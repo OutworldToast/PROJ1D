@@ -9,13 +9,10 @@ import java.util.Scanner;
 
 public class TotaalLijst {
 
-    Scanner scanner = Loop.scanner;
+    private final Scanner scanner = Loop.scanner;
     boolean gesorteerd = false;
     private final ArrayList<Onderdeel> totaalLijst = new ArrayList<>();
 
-    public ArrayList<Onderdeel> getTotaalLijst() {
-        return totaalLijst;
-    }
 
     public TotaalLijst(){
 
@@ -27,6 +24,10 @@ public class TotaalLijst {
             System.out.println(e);
         }
 
+    }
+
+    public ArrayList<Onderdeel> getTotaalLijst() {
+        return totaalLijst;
     }
 
     public void leesLijstIn(File file){

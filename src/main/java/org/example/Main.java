@@ -7,8 +7,8 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        // Start de main loop.
-        new Loop().start();
+
+        new Loop().start(); // Start de loop.
 
     }
 }

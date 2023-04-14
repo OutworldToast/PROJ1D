@@ -44,10 +44,6 @@ class SchipTest {
         // tien procent milieu korting op een prijs van 455 wordt 409,50
         assertEquals(409.50, schip.berekenPrijs(schip.getOnderdeelLijst().get(1)));
     }
-    @Test
-    void testKlantkortingveranderenTijdensAanmaken(){
-
-    }
 
     @Test
     void invoerLoopErrorControl(){

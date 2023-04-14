@@ -19,8 +19,8 @@ public class PrijsOpgave {
         this.date = date;
     }
 
-    public double berekenBtw(double bedragZonderBtw, double klantkorting) {
-        return  (bedragZonderBtw - klantkorting) * (21.0 / 100.0);
+    public double berekenBtw(double bedragZonderBtw, double klantkorting, double milieuK) {
+        return  (bedragZonderBtw - klantkorting - milieuK) * (21.0 / 100.0);
 
     }
 
@@ -33,8 +33,8 @@ public class PrijsOpgave {
         return  bedragZonderKorting * (klantKorting / 100.0);
     }
 
-    public double berekenTotaal(double subtotaal, double kortingBedrag, double btwBedrag) {
-        return subtotaal  - kortingBedrag + btwBedrag;
+    public double berekenTotaal(double subtotaal, double kortingBedrag, double milieuK, double btwBedrag) {
+        return subtotaal  - kortingBedrag - milieuK + btwBedrag;
     }
 
     public void toonPrijsopgave() {
@@ -70,7 +70,10 @@ public class PrijsOpgave {
 
 
         for (Onderdeel t : offerte.getSchip().getOnderdeelLijst()){
-
+            if (t.getMilieukorting() != 0 ){
+                double mili = t.getPrijs() * t.getHoeveelheid();
+                milieuKorting = mili * (((double) t.getMilieukorting()) / 100); // variabel int milieuKorting wordt omgezet in double(cast)
+            }
             regelTotaal = berekenRegelTotaal(t.getPrijs(),t.getHoeveelheid(),t.getMilieukorting());
 
             System.out.printf("%-5s   %-20s  %-20s\t  € %.2f                 %d%%\t                  € %.2f ",
@@ -79,7 +82,7 @@ public class PrijsOpgave {
 
             totaal += regelTotaal;  //
             klantkorting = berekenKorting(totaal,offerte.getKlant().getKortingAlsPercentage());
-            btw = berekenBtw(totaal,klantkorting);
+            btw = berekenBtw(totaal,klantkorting,milieuKorting);
         }
 
         System.out.println("==============================================================================================================================");
@@ -88,7 +91,7 @@ public class PrijsOpgave {
         System.out.printf("%-100s  € %.2f-%n", "MILIEUKORTING", milieuKorting);
         System.out.printf("%-100s  € %.2f%n", "BTW", btw);
         System.out.println("==============================================================================================================================");
-        System.out.printf("%-100s  € %.2f%n", "TOTAAL TE BETALEN", berekenTotaal(totaal,klantkorting,btw));
+        System.out.printf("%-100s  € %.2f%n", "TOTAAL TE BETALEN", berekenTotaal(totaal,klantkorting,milieuKorting,btw));
         System.out.println("                                                     <<<<  DREAM TEAM >>>>");
     }
 }

@@ -9,14 +9,13 @@ public class OfferteTest {
 
 
     @Test
-    public void printTotaalPrijsTest() {
-        /*Klant klant = new Particulier("Mark", "markie@hotmail.com");
+    public void berekenTotaalPrijsTest() {
+        Klant klant = new Klant("Mark", "markie@hotmail.com");
         Offerte offerte = new Offerte("Test beschrijving", klant);
 
-        offerte.getSchip().voegOnderdeelToe(1);
 
-        double totaalPrijs = offerte.getTotaalPrijs();
+        double totaalPrijs = offerte.berekenTotaalPrijs();
 
-        Assert.assertEquals(totaalPrijs, 46.50);*/
+        Assert.assertEquals(totaalPrijs, 3961.54);
     }
 }

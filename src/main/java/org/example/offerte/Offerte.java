@@ -1,5 +1,6 @@
 package org.example.offerte;
 
+import org.example.PrijsOpgave;
 import org.example.klant.Klant;
 import org.example.schip.Schip;
 
@@ -38,20 +39,19 @@ public class Offerte {
     }
 
     public double berekenTotaalPrijs() {
-
+        // Bereken de totaalprijs zonder klant korting
         double totaalPrijs = 0.0;
 
         for(Onderdeel onderdeel : schip.getOnderdeelLijst()) {
-            double prijs = onderdeel.getPrijs();
-
+            double prijs = onderdeel.getPrijs() * onderdeel.getHoeveelheid();
             int milieukorting = onderdeel.getMilieukorting();
-
             prijs -= (milieukorting / 100.0) * prijs;
-
             totaalPrijs += prijs;
         }
 
-        return totaalPrijs;
+        double btw = PrijsOpgave.berekenBtw(totaalPrijs);
+
+        return totaalPrijs + btw;
     }
 
 }

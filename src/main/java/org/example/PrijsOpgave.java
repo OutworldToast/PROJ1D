@@ -14,7 +14,7 @@ public class PrijsOpgave {
         this.date = date;
     }
 
-    public double berekenBtw(double bedragZonderBtw) {
+    public static double berekenBtw(double bedragZonderBtw) {
         return bedragZonderBtw * (21.0 / 100.0);
     }
 

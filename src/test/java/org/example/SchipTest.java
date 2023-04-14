@@ -1,12 +1,9 @@
 package org.example;
 
-
-import org.example.offerte.Onderdeel;
 import org.example.schip.Schip;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
-import org.testng.annotations.Ignore;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -14,7 +11,6 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
-import java.util.ArrayList;
 
 
 class SchipTest {
@@ -35,7 +31,6 @@ class SchipTest {
         schip.getOnderdeelLijst().get(1).setMilieukorting(10);
         assertEquals(10,schip.getOnderdeelLijst().get(1).getMilieukorting());
         assertEquals(455,schip.getOnderdeelLijst().get(1).getPrijs());
-
     }
     @Test
     void onderdeel18ToevoegenTest(){

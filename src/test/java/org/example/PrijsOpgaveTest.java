@@ -42,14 +42,13 @@ public class PrijsOpgaveTest {
         TotaalLijst t1 = new TotaalLijst();
         Date dateToday = new Date();
         PrijsOpgave prijsOpgave = new PrijsOpgave(ofe,dateToday);
-
-
+        assertEquals(300,prijsOpgave.berekenRegelTotaal(100,3,0));
 
 
     }
 
     @Test
-    void berekenKortingTest(){
+    void berekeningKortingTest(){
 
             Klant k1 = new Klant("Test", "Test");
             Offerte offerte = new Offerte("TestOfferte", k1);
@@ -58,7 +57,11 @@ public class PrijsOpgaveTest {
             offerte.getKlant().setKortingAlsPercentage(10);
             PrijsOpgave prijsOpgave = new PrijsOpgave(offerte,dateToday);
 
-            prijsOpgave.toonPrijsopgave();
+
+            assertEquals(100,prijsOpgave.berekenKorting(200,50));
+
+
+
 
 
     }

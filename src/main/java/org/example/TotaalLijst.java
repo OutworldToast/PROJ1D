@@ -19,12 +19,21 @@ public class TotaalLijst {
 
     public TotaalLijst(){
 
+        try {
+            ClassLoader classLoader = getClass().getClassLoader();
+            File file = new File(classLoader.getResource("opties.csv").getFile());
+            leesLijstIn(file);
+        } catch (Exception e){
+            System.out.println(e);
+        }
+
+    }
+
+    public void leesLijstIn(File file){
         String line; //string waar de regels ingelezen worden
         String splitBy = ","; //delimiter
         try {
 
-            ClassLoader classLoader = getClass().getClassLoader();
-            File file = new File(classLoader.getResource("opties.csv").getFile());
             InputStream is = new FileInputStream(file);
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
             //file inlezen

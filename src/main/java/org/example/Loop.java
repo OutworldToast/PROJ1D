@@ -16,7 +16,6 @@ public class Loop {
     boolean loop = true;
     public static Scanner scanner = new Scanner(System.in);;
     public static TotaalLijst totaalLijst = new TotaalLijst();
-
     private Offerte offerte;
 
     public void start() {

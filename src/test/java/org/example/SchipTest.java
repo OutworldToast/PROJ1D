@@ -31,7 +31,6 @@ class SchipTest {
         schip.getOnderdeelLijst().get(1).setMilieukorting(10);
         assertEquals(10,schip.getOnderdeelLijst().get(1).getMilieukorting());
         assertEquals(455,schip.getOnderdeelLijst().get(1).getPrijs());
-
     }
     @Test
     void onderdeel18ToevoegenTest(){

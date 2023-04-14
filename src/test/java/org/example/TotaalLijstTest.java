@@ -10,22 +10,14 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 
 public class TotaalLijstTest {
-    @Test
-    public void TestTotaalLijstInlezen() {
-        TotaalLijst lijst = new TotaalLijst();
-
-        lijst.printOpties();
-    }
-
-    private ArrayList<Onderdeel> lijst;
-
 
     @Test
     public void testPrintOnderdeelLijst() {
+
         TotaalLijst totaalLijst = new TotaalLijst();
 
 
-        lijst = new ArrayList<>();
+        ArrayList<Onderdeel> lijst = new ArrayList<>();
         lijst.add(new Onderdeel("Onderdeel 1", "Essentieel", 10.0, 5));
         lijst.add(new Onderdeel("Onderdeel 2", "Extra", 20.0, 10));
         lijst.add(new Onderdeel("Onderdeel 3", "Essentieel", 30.0, 15));
@@ -41,6 +33,7 @@ public class TotaalLijstTest {
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(baos);
+        PrintStream original = System.out;
         System.setOut(printStream);
 
         // Voer de methode uit om de lijst te sorteren en af te drukken
@@ -49,5 +42,7 @@ public class TotaalLijstTest {
         // Controleer of de lijst correct is afgedrukt
         Assertions.assertEquals(expected,
                 baos.toString());
+
+        System.setOut(original);
     }
 }

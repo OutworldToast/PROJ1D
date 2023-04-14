@@ -1,13 +1,17 @@
 package org.example;
+import org.example.klant.Klant;
+import org.example.offerte.Offerte;
 import org.example.offerte.Onderdeel;
-import org.testng.annotations.Test;
 import org.junit.jupiter.api.Assertions;
+import org.testng.annotations.Test;
+import org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 
 import javax.management.StringValueExp;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class TotaalLijstTest {
 
@@ -44,5 +48,20 @@ public class TotaalLijstTest {
                 baos.toString());
 
         System.setOut(original);
+    }
+
+    @Test
+    public void addOptieTest(){
+
+        TotaalLijst t1 = new TotaalLijst();
+
+        Onderdeel o1 = new Onderdeel("Motor","Essentieel", 600,0);
+        t1.addOptie("Motor","Essentieel", 600,0);
+        Assertions.assertEquals(o1.getNaam(),t1.getTotaalLijst().get(t1.getTotaalLijst().size()-1).getNaam());
+        Assertions.assertEquals(o1.getCategorie(),t1.getTotaalLijst().get(t1.getTotaalLijst().size()-1).getCategorie());
+        Assertions.assertEquals(o1.getPrijs(),t1.getTotaalLijst().get(t1.getTotaalLijst().size()-1).getPrijs());
+        Assertions.assertEquals(o1.getMilieukorting(),t1.getTotaalLijst().get(t1.getTotaalLijst().size()-1).getMilieukorting());
+
+
     }
 }

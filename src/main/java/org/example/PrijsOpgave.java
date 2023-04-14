@@ -47,7 +47,6 @@ public class PrijsOpgave {
         double totaal = 0.0;
         double totaalMilieuKorting = 0.0;
 
-        offerte.getSchip().getOnderdeelLijst().get(6).setMilieukorting(20);
 
         for (Onderdeel t : offerte.getSchip().getOnderdeelLijst()){
 

@@ -15,4 +15,16 @@ public class PrijsOpgaveTest {
         assertEquals(210,p.berekenBtw(1000));
     }
 
+    @Test
+    void berekenRegelTotaal(){
+
+        Klant klant = new Klant("","");
+        PrijsOpgave p = new PrijsOpgave(new Offerte("", klant),new Date());
+
+        assertEquals(540,p.berekenRegelTotaal(200,3, 10));
+    }
+
+
+
+
 }

@@ -37,7 +37,7 @@ public class Offerte {
         return schip;
     }
 
-    public double getTotaalPrijs() {
+    public double berekenTotaalPrijs() {
 
         double totaalPrijs = 0.0;
 

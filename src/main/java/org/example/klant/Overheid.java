@@ -1,6 +1,6 @@
 package org.example.klant;
 public class Overheid extends Klant {
-    String Gemeente;
+    private String Gemeente;
     public void setGemeente(String gemeente) {
         Gemeente = gemeente;
     }

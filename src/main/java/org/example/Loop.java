@@ -18,12 +18,12 @@ public class Loop {
     public static TotaalLijst totaalLijst = new TotaalLijst();
     private Offerte offerte;
 
-    public void start() {
+    public void start() {//begint de UI-loop
         Introductie();
         BepaalLoop();
     }
 
-    private void scheepsbouwerloop() {
+    private void scheepsbouwerloop() {//het scheepsbouwermenu
 
         if (offerte == null) {
             offerteMakenLoop();
@@ -65,7 +65,7 @@ public class Loop {
         }
     }
 
-    private void maakOfferte() {
+    private void maakOfferte() { //maakt een nieuwe offerte
 
         String beschrijving = bepaalBeschrijving();
 
@@ -74,17 +74,16 @@ public class Loop {
         offerte = new Offerte(beschrijving, klant);
     }
 
-    private String bepaalBeschrijving() {
+    private String bepaalBeschrijving() { //vraagt om input
         System.out.println("Geef een beschrijving van de offerte:");
         scanner.nextLine();
         return scanner.nextLine();
     }
 
-    private void offerteMakenLoop() {
+    private void offerteMakenLoop() { //loop voor het eerst aanmaken van een offerte
         boolean stopLoop = false;
 
         // Zorg dat de scanner niet blijft wachten op een input
-        scanner.nextLine();
 
         while (!stopLoop) {
             System.out.println(
@@ -92,8 +91,7 @@ public class Loop {
                     Wil je gelijk een offerte aanmaken?
                     Hiermee kun je onderdelen aan een schip toevoegen en klanten aanmaken.
                     [1] Ja
-                    [2] Nee
-                    """
+                    [2] Nee"""
             );
 
             try {
@@ -115,15 +113,14 @@ public class Loop {
         }
     }
 
-    private Klant kiesKlantTypeLoop() {
+    private Klant kiesKlantTypeLoop() { //vraagt om input en returnt dan een soort klant gebaseerd daarop
         while (true) {
             System.out.println("""
                     Voor welk soort klant wordt de offerte gemaakt?
                     [1] Particulier
                     [2] Bedrijf
                     [3] Overheid
-                    [4] Aangepast
-                    """);
+                    [4] Aangepast""");
             try {
                 int input = scanner.nextInt();
                 scanner.nextLine();
@@ -157,7 +154,6 @@ public class Loop {
                     case 4 -> {
                         System.out.println("Voer de extra informatie van de klant in:");
                         String extraInfo = scanner.nextLine();
-                        // offerte.setKlant(new Klant(naam, email));
                         System.out.println("Voer de korting als percentage in (5% wordt ingevuld als 5):");
                         int kortingAlsPercentage = 0;
                         try {
@@ -179,18 +175,18 @@ public class Loop {
         }
 
     }
-    private void veranderKlant() {
+    private void veranderKlant() { //verandert de klant
         offerte.setKlant(kiesKlantTypeLoop());
     }
 
 
 
-    private void Exit() {
+    private void Exit() { //verlaat het programma
         System.out.println("Dank u voor het gebruik van ons product");
         loop = false;
     }
 
-    private void BepaalLoop() {
+    private void BepaalLoop() { //bepaalt in welke loop de gebruiker terechtkomt
         if (IsScheepsbouwer()) {
             scheepsbouwerloop();
         } else {
@@ -198,11 +194,11 @@ public class Loop {
         }
     }
 
-    private void AddOnderdeel() {
+    private void AddOnderdeel() { //voegt een onderdeel aan de totaallijst toe
         totaalLijst.addLoop();
     }
 
-    private void BekijkPrijsOpgave() {
+    private void BekijkPrijsOpgave() { //toont een prijsopgave
         if (offerte == null) {
             System.out.println("Er is geen offerte beschikbaar");
         } else {
@@ -212,10 +208,11 @@ public class Loop {
     }
 
     private void veranderSchip() {
+        //brengt de gebruiker naar een loop waarin ze veranderingen aan het schip kunnen maken
         offerte.getSchip().invoerLoop();
     }
 
-    private void veranderOfferte() {
+    private void veranderOfferte() { //loop waarin bepaald wordt wat in de offerte gedaan moet worden
         boolean looping = true;
 
         while (looping) {
@@ -298,17 +295,18 @@ public class Loop {
             }
         }
 
-    private void Introductie(){
+    private void Introductie(){//introscherm
         System.out.println("Welkom bij ShipFlex!");
         System.out.println("Dit is een programma gemaakt door Dream Team");
         System.out.println("In dit programma kunt u offertes voor boten maken en bekijken");
-        System.out.println("Typ het teken tussen de blokhaken[1] om verder te gaan");
-        boolean b = false;
-        while (!b) {
+        System.out.println("Typ het teken tussen de blokhaken");
+        System.out.println("[1] Verder");
+        boolean looping = true;
+        while (looping) {
             try {
                 int input = scanner.nextInt();
                 if (input == 1) {
-                    b = true;
+                    looping = false;
                 } else {
                     System.out.println("Typ [1] om verder te gaan");
                 }
@@ -320,7 +318,9 @@ public class Loop {
     }
     private boolean IsScheepsbouwer() {
         while (true) {
-            System.out.println("Bent u een klant[1] of een scheepsbouwer[2]?");
+            System.out.println("Wat voor type gebruiker bent u?");
+            System.out.println("[1] Klant");
+            System.out.println("[2] Scheepsbouwer");
             try {
                 int input = scanner.nextInt();
                 switch (input) {

@@ -28,8 +28,9 @@ public class Onderdeel {
         this.prijs = prijs;
     }
     public void setMilieukorting(int percentage) {
-        //check voor non-valide waardes
-        this.milieukorting = percentage;
+        if (percentage > 100 || percentage < 0) {
+            this.milieukorting = 0;
+        } else {this.milieukorting = percentage;}
     }
     public int getHoeveelheid() {
         return hoeveelheid;

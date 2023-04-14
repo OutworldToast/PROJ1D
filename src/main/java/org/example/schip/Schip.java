@@ -9,8 +9,8 @@ import java.util.Scanner;
 public class Schip {
     private final TotaalLijst totaalLijst = Loop.totaalLijst;
     private final ArrayList<Onderdeel> onderdeelLijst = new ArrayList<>();
-    Scanner scanner = Loop.scanner;
-    public Schip() {
+    private final Scanner scanner = Loop.scanner;
+    public Schip() {//voegt alle essentiele onderdelen toe
         for (Onderdeel e : totaalLijst.getTotaalLijst()) {
             if (e.getCategorie().equals("Essentieel")) {
                 onderdeelLijst.add(e);
@@ -47,7 +47,7 @@ public class Schip {
             }
         }
     }
-    private void printOnderdeelLijst() { //UPDATE: pas aan voor hoeveelheid
+    private void printOnderdeelLijst() {
         totaalLijst.printOnderdeelLijst(onderdeelLijst);
     }
     public ArrayList<Onderdeel> getOnderdeelLijst() {
@@ -114,7 +114,7 @@ public class Schip {
                     int percentage = scanner.nextInt();
                     onderdeel.get(keuze - 1).setMilieukorting(percentage);//Binnen 0-100 percentage toevoegen
                     double nieuwprijs = berekenPrijs(onderdeel.get(keuze - 1));
-                    System.out.println("De prijs van dit onderdeel na de korting: "+nieuwprijs);
+                    System.out.println("De prijs van dit onderdeel na de korting: €"+nieuwprijs);
                     k = false;
                 }
             }catch (Exception d){

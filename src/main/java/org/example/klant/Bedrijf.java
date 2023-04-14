@@ -1,6 +1,6 @@
 package org.example.klant;
 public class  Bedrijf extends Klant {
-    int KVKNummer;
+    private int KVKNummer;
     public void setKVKNummer(int KVKNummer) {
         this.KVKNummer = KVKNummer;
     }
@@ -12,6 +12,6 @@ public class  Bedrijf extends Klant {
     @Override
     public void printKlantInfo() {
         super.printKlantInfo();
-        System.out.println("Het KVK-nummer van dit bedrijf is: "+ KVKNummer);
+        System.out.println("Het KVK-nummer van dit bedrijf is: " + KVKNummer);
     }
 }

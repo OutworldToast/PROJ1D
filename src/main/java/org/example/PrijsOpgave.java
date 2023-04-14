@@ -19,7 +19,7 @@ public class PrijsOpgave {
     }
 
 
-    public static double berekenRegelTotaal(double prijs, int hoeveelheid, double milieukorting) {
+    public double berekenRegelTotaal(double prijs, int hoeveelheid, double milieukorting) {
         return prijs * hoeveelheid * ((100 - milieukorting) / 100.0);
     }
 
@@ -78,22 +78,5 @@ public class PrijsOpgave {
 
 
     }
-
-    public static void main(String[] args) {
-        // Start de main loop.
-
-
-        Klant k1 = new Bedrijf("Jantje gebruiker", "jan@gmail.com",123456);
-        k1.setKortingAlsPercentage(20);
-        Offerte ofe = new Offerte("mijOffr", k1);
-        Date dateToday = new Date();
-
-        PrijsOpgave prijsOpgave = new PrijsOpgave(ofe,dateToday);
-
-
-        prijsOpgave.toonPrijsopgave();
-    }
-
-
 
 }

@@ -2,19 +2,14 @@ package org.example.klant;
 import java.util.ArrayList;
 public class Klant {
     // De main klant waarvan alle andere overerven met hieronder de variabelen
-    private String naam;
+    protected String naam;
     protected int kortingAlsPercentage = 0;
-    private String email;
-    public static void printArrayList(ArrayList<Klant> klantArrayList){
-        for (Klant klant : klantArrayList) {
-            klant.printKlantInfo();
-        }
-    }
+    protected String email;
+
     public Klant(String naam, String email) {
         this.naam = naam;
         this.email = email;
     }
-    // De getters en Setters voor de variabelen
     public void setNaam(String naam) {
         this.naam = naam;
     }
